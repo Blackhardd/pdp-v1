@@ -50,6 +50,7 @@ jQuery(function($){
                     .then((response) => response.json())
                     .then((data) => {
                         this.state.salons = data
+                        console.log(data)
                     })
             },
             fetchCategories(){
@@ -523,9 +524,12 @@ jQuery(function($){
                             </div>
                         </div>
                         
-                        <div v-if="false"></div>
+                        <div class="cart-form__salon-wrap" v-if="cartData.salon">
+                            <div class="cart-for__label">салон:</div>
+                            <div class="cart-form__salon-title">{{ currentSalon }}</div>
+                        </div>
                 
-                        <div class="cartForm__title">заполните форму</div>
+                        <div class="cart-form__title">заполните форму</div>
                 
                         <div class="form__row">
                             <div class="form__col_full">
@@ -591,13 +595,21 @@ jQuery(function($){
                     </form>
                 </div>
             `,
-            props: ['cartData', 'isLoading'],
+            props: ['cartData', 'salons', 'isLoading'],
             data: function(){
                 return {
                     formErrors: [],
                     name: '',
                     phone: '',
                     email: ''
+                }
+            },
+            computed: {
+                currentSalon: function(){
+                    if(this.salons){
+                        let self = this
+                        return self.salons.find((salon) => salon.id == self.cartData.salon).title
+                    }
                 }
             },
             methods: {

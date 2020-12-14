@@ -3066,13 +3066,19 @@ input.search-form__input:focus {
     height: 24px;
 }
 
-.cartForm__title {
+.cart-for__label {
+    margin-bottom: 8px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.cart-form__title {
     margin-bottom: 36px;
     font-size: 24px;
     font-weight: bold;
 }
 
-.cart_header .cartForm__title {
+.cart_header .cart-form__title {
     margin-bottom: 16px;
 }
 
@@ -3108,6 +3114,14 @@ input.search-form__input:focus {
 
 .cart-form__list > div > button {
     margin-right: 12px;
+}
+
+.cart-form__salon-wrap {
+    margin-bottom: 40px;
+}
+
+.cart-form__salon-title {
+    font-size: 18px;
 }
 
 .cart-form__master-type {

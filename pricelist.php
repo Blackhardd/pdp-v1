@@ -105,6 +105,7 @@ get_header(); ?>
                             @set-hair-length="console.log(value)"
                             @cart-is-loading="setCartState"
                             :cart-data="sharedState.cart"
+                            :salons="sharedState.salons"
                             :is-loading="sharedState.isCartLoading"
                         />
                     </div>
