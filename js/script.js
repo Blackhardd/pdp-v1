@@ -35,7 +35,6 @@ jQuery(function($) {
                     if(direction === 2 && curScroll > 105){
                         document.querySelector('.main-header').classList.remove('active');
                         prevDirection = direction;
-                        console.log(direction)
                     }
                     else if(direction === 1){
                         document.querySelector('.main-header').classList.add('active');
@@ -67,11 +66,24 @@ jQuery(function($) {
 
         function pdp_init_services_slider(){
             if($('body:not(.page-template-pricelist) .service-categories').length){
-                $('.service-categories__salon-switcher select').on('selectric-change', function(event, element, selectric){
+                let parseURLs = function(salonId){
                     $('.service-categories__category > a').each(function(i){
-                        $(this).attr('href', '/ceni/?salonId=' + element.value + '&cat=' + $(this).data('category') );
+                        $(this).attr('href', '/ceni/?salonId=' + salonId + '&cat=' + $(this).data('category') );
                     });
-                });
+                }
+
+                parseURLs(49);
+
+                if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
+                    $('.service-categories__salon-switcher select').on('change', function(){
+                        parseURLs($(this).val());
+                    });
+                }
+                else{
+                    $('.service-categories__salon-switcher select').on('selectric-change', function(event, element, selectric){
+                        parseURLs(element.value);
+                    });
+                }
             }
         }
 

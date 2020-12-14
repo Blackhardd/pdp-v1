@@ -4,10 +4,9 @@ $salons = pdp_get_salons(); ?>
 <div class="service-categories">
     <div class="service-categories__salon-switcher">
         <select name="services_salon" id="services-salon-select" class="selectric selectric_pdp service-categories__salon-select">
-            <option value="">Выберите салон</option>
             <?php
             foreach( $salons as $salon ){
-                if( isset( $_GET['salon_pricelist'] ) && $_GET['salon_pricelist'] == $salon->ID ){ ?>
+                if( $salon->ID == 49 ){ ?>
                     <option value="<?=$salon->ID; ?>" selected><?=$salon->post_title; ?></option>
                 <?php } else { ?>
                     <option value="<?=$salon->ID; ?>"><?=$salon->post_title; ?></option>
