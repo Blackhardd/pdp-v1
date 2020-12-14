@@ -102,6 +102,7 @@
             <div class="cart cart_header" ref="cart">
                 <cart
                     @add-to-cart="addToCart"
+                    @set-hair-length="setHairLength($event)"
                     @cart-is-loading="setCartState"
                     :cart-data="sharedState.cart"
                     :salons="sharedState.salons"

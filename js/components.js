@@ -103,6 +103,7 @@ jQuery(function($){
                 }
             },
             setHairLength(length){
+                console.log(length)
                 this.state.cart.hair_length = length
                 this.getTotal()
             },
@@ -175,7 +176,7 @@ jQuery(function($){
                 }
             },
             mounted(){
-                let vm = this;
+                let vm = this
                 $(this.$el).find('select').selectric().on('change', function(){
                     vm.$emit('changed', this.value)
                 })
@@ -187,7 +188,7 @@ jQuery(function($){
                 <div class="selectric-wrap">
                     <select class="selectric_pdp" v-model="selected" :name="name">
                         <option value="" disabled>{{placeholder}}</option>
-                        <option v-for="option of options" :key="option.id" :value="option.id" :disabled="option.pricelist == false">{{option.title}}</option>
+                        <option v-for="option of options" :key="option.id" :value="option.id" :disabled="option.pricelist == false">{{ option.title }}</option>
                     </select>
                 </div>
             `
@@ -210,6 +211,9 @@ jQuery(function($){
                 },
                 updateTotal(){
                     store.updateTotal()
+                },
+                setHairLength(length){
+                    store.setHairLength(length)
                 },
                 closeMenus(){
                     this.isCartActive = false
@@ -407,6 +411,9 @@ jQuery(function($){
                 addToCart(service){
                     store.addToCart(service)
                 },
+                setHairLength(length){
+                    store.setHairLength(length)
+                },
                 changeMasterType(e){
                     store.setMasterType(e.target.checked)
                 },
@@ -421,6 +428,7 @@ jQuery(function($){
                 store.fetchCart()
             }
         });
+
 
         /**
          *  Price List Item Component
@@ -458,7 +466,7 @@ jQuery(function($){
                 <div class="selectric-wrap">
                     <select name="hair_length" class="selectric_pdp" :value="value">
                         <option value="" disabled>Выберите длину</option>
-                        <option v-for="length of lengths":key="length.id" :value="length.id">{{length.title}}</option>
+                        <option v-for="length of lengths":key="length.id" :value="length.id">{{ length.title }}</option>
                     </select>
                 </div>
             `,
@@ -488,9 +496,20 @@ jQuery(function($){
             mounted(){
                 let vm = this
 
-                $(vm.$el).find('select').selectric('init').on('change', function(){
-                    store.setHairLength(this.value)
-                });
+                let select = $(vm.$el).find('select').selectric('init')
+
+                if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
+                    select.on('change', function(){
+                        let length = $(this).val()
+                        vm.$emit('input', length)
+                    })
+                }
+                else{
+                    select.on('selectric-change', function(event, element, selectric){
+                        let length = element.value
+                        vm.$emit('input', length)
+                    })
+                }
             }
         });
 
@@ -522,6 +541,13 @@ jQuery(function($){
                                 <div class="alert__icon">!</div>
                                 <div class="alert__content">Выберите услуги</div>
                             </div>
+                        </div>
+                        
+                        <div v-show="isHairServiceInCart">
+                            <hair-length-select
+                                @input="setHairLength($event)"
+                                :value="cartData.hair_length"
+                            />
                         </div>
                         
                         <div class="cart-form__salon-wrap" v-if="cartData.salon">
@@ -610,9 +636,15 @@ jQuery(function($){
                         let self = this
                         return self.salons.find((salon) => salon.id == self.cartData.salon).title
                     }
+                },
+                isHairServiceInCart: function(){
+                    return this.cartData.items.filter((item) => item.prices.length > 1).length
                 }
             },
             methods: {
+                setHairLength(length){
+                    this.$emit('set-hair-length', length)
+                },
                 submitForm(){
                     let isValid = true
                     this.formErrors = []
@@ -650,9 +682,6 @@ jQuery(function($){
                             }
                         })
                     }
-                },
-                isHairServicesInCart(){
-                    return this.cartData.items.filter((item) => item.prices.length > 1).length
                 }
             },
             mounted(){

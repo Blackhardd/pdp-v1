@@ -30,6 +30,7 @@ get_header(); ?>
                                 <div class="mb_20px txt_fw-600 txt_fs-24px txt_lh-24px">ваша длина волос</div>
 
                                 <hair-length-select
+                                    @input="setHairLength($event)"
                                     :value="sharedState.cart.hair_length"
                                 />
                             </div>
@@ -102,7 +103,7 @@ get_header(); ?>
                     <div class="cart">
                         <cart
                             @add-to-cart="addToCart"
-                            @set-hair-length="console.log(value)"
+                            @set-hair-length="setHairLength($event)"
                             @cart-is-loading="setCartState"
                             :cart-data="sharedState.cart"
                             :salons="sharedState.salons"
