@@ -3970,18 +3970,23 @@ input.search-form__input:focus {
 
 
 /**
- *  Side appointment button
+ *  Sticky Buttons
  */
 
-.appointmentRight {
+.sticky-btns {
     position: fixed;
     right: -86px;
     top: 50%;
-    transform: rotateZ(-90deg);
+    transform: rotateZ(-90deg) translateY(100%);
     z-index: 2;
+    transition: transform 500ms ease;
 }
 
-.appointmentRight__btn:focus {
+.sticky-btns.active {
+    transform: rotateZ(-90deg) translateY(0);
+}
+
+.sticky-btns__btn:focus {
     outline: none;
 }
 

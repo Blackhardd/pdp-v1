@@ -69,8 +69,8 @@ add_action( 'wp_footer', 'pdp_add_right_appointment_button' );
 function pdp_add_right_appointment_button(){
     global $post;
     if( $post->ID != 66 ){ ?>
-        <div class="appointmentRight">
-            <button class="btn-sticky-right appointmentRight__btn" data-micromodal-trigger="modal-appointment">online запись</button>
+        <div class="sticky-btns">
+            <button class="btn-sticky-right sticky-btns__btn" data-micromodal-trigger="modal-appointment">online запись</button>
         </div>
     <?php
     }

@@ -49,6 +49,22 @@ jQuery(function($) {
 
         pdp_sticky_header();
 
+        function pdp_sticky_buttons(){
+            if($('.sticky-btns').length){
+                $(document).on('scroll', function(){
+                    let current_scroll = window.scrollY || document.scrollTop;
+                    if(current_scroll > 500){
+                        $('.sticky-btns').addClass('active');
+                    }
+                    else{
+                        $('.sticky-btns').removeClass('active');
+                    }
+                })
+            }
+        }
+
+        pdp_sticky_buttons();
+
         function pdp_init_services_slider(){
             if($('body:not(.page-template-pricelist) .service-categories').length){
                 $('.service-categories__salon-switcher select').on('selectric-change', function(event, element, selectric){
