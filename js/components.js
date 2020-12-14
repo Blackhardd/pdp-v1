@@ -606,7 +606,7 @@ jQuery(function($){
             },
             computed: {
                 currentSalon: function(){
-                    if(this.salons){
+                    if(this.salons.length){
                         let self = this
                         return self.salons.find((salon) => salon.id == self.cartData.salon).title
                     }
