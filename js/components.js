@@ -68,6 +68,7 @@ jQuery(function($){
                             this.state.pricelist = data
                             this.state.isPricelistLoading = false
                             this.state.isCategoryActive = false
+                            this.setCategoryFromURL()
                         })
                 }
             },
@@ -92,6 +93,12 @@ jQuery(function($){
                 let salon_id = new URL(window.location.href).searchParams.get('salonId')
                 if(salon_id){
                     this.setCurrentSalon(salon_id)
+                }
+            },
+            setCategoryFromURL(){
+                let category = new URL(window.location.href).searchParams.get('cat')
+                if(category){
+                    this.setActiveCategory(category)
                 }
             },
             setHairLength(length){
