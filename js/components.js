@@ -594,6 +594,8 @@ jQuery(function($){
                         let self = this;
                         let form_data = new FormData(event.target)
                         form_data.append('cart', JSON.stringify(this.cart))
+                        form_data.append('total', this.cartTotal)
+                        form_data.append('is_hair_services', this.isHairServiceInCart)
 
                         $.ajax({
                             method: 'POST',
