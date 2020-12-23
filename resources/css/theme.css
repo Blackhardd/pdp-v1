@@ -426,6 +426,18 @@ button {
 
 
 /**
+ *  Default Select
+ */
+
+select {
+    height: 38px;
+    background: #f9f9f9;
+    border: 1px solid #c4c4c4;
+    border-radius: 4px;
+}
+
+
+/**
  *  Links
  */
 
@@ -1601,8 +1613,13 @@ header.main-header.fixed.active {
     text-decoration: none;
 }
 
+.phonesList__placeholder a:hover .phonesList__phone {
+    color: #392BDF;
+}
+
 .phonesList__address {
     margin: 0;
+    color: #0E0D0A;
     font-weight: 500;
     font-style: normal;
 }
@@ -1625,6 +1642,10 @@ header.main-header.fixed.active {
     padding: 30px 26px 30px 32px;
     background: rgba(249, 249, 249, 0.97);
     border-radius: 0 0 4px 4px;
+}
+
+.phonesList:hover .phonesList__dropdownInner {
+    display: block;
 }
 
 .phonesList__dropdownInner.active {
@@ -2854,17 +2875,13 @@ input.search-form__input:focus {
 }
 
 .pricelist {
-    display: none;
+    display: grid;
     grid-template-columns: 1fr 390px;
     grid-column-gap: 100px;
 }
 
-.pricelist.active {
-    display: grid;
-}
-
 .pricelist__filters {
-    display: none;
+    display: flex;
     align-items: flex-end;
     justify-content: space-between;
     margin-bottom: 56px;
@@ -3066,7 +3083,7 @@ input.search-form__input:focus {
     height: 24px;
 }
 
-.cart-for__label {
+.cart-form__label {
     margin-bottom: 8px;
     font-size: 24px;
     font-weight: bold;
@@ -3075,6 +3092,7 @@ input.search-form__input:focus {
 .cart-form__title {
     margin-bottom: 36px;
     font-size: 24px;
+    line-height: 23px;
     font-weight: bold;
 }
 
@@ -3085,7 +3103,7 @@ input.search-form__input:focus {
 .cart-form__list {
     max-height: 102px;
     margin-right: 8px;
-    margin-bottom: 25px;
+    margin-bottom: 26px;
     overflow-y: scroll;
 }
 
@@ -3116,6 +3134,10 @@ input.search-form__input:focus {
     margin-right: 12px;
 }
 
+.cart-form__hair-length {
+    margin-bottom: 22px;
+}
+
 .cart-form__salon-wrap {
     margin-bottom: 40px;
 }
@@ -3126,10 +3148,6 @@ input.search-form__input:focus {
 
 .cart-form__master-type {
     margin-bottom: 24px;
-}
-
-.cart-form__hair-length {
-    margin-bottom: 30px;
 }
 
 .cart-form__footer {
@@ -4022,9 +4040,8 @@ input.search-form__input:focus {
     display: block;
 }
 
-.dimmer.blurred {
-    background: rgba(249, 249, 249, 0.97);
-    backdrop-filter: blur(10px);
+.dimmer.darkening {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 

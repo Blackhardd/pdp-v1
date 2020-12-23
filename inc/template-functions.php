@@ -49,7 +49,7 @@ function pdp_menu_add_appointments( $items, $args ){
             <button class="oce-cart" @click="isCartActive = !isCartActive">
                 запись
                 <div class="servicesCounter">
-                    <div class="servicesCounter__number">{{sharedState.cart.items.length}}</div>
+                    <div class="servicesCounter__number">{{ cartItems }}</div>
                 </div>
             </button>
         </li>

@@ -1,6 +1,6 @@
-<div class="phones-list phones-list_mobile" :class="{ active: isSalonsListMobileActive }">
+<div class="phones-list phones-list_mobile" :class="{ active: isMobileSalonsListActive }">
     <div class="phones-list__close">
-        <button class="btn-icon" @click="togglePhonesList">
+        <button class="btn-icon" @click="closeMenus">
             <svg width="20" height="20" fill="none"><path d="M20 10a10 10 0 10-20 0 10 10 0 0020 0zM8 10l4-4v8l-4-4z" fill="#392BDF"/></svg>
         </button>
     </div>

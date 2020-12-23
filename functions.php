@@ -232,7 +232,7 @@ function pdp_scripts() {
      * Enqueue Vue.js
      */
     wp_enqueue_script( 'vue', '//cdn.jsdelivr.net/npm/vue', array(), _S_VERSION, true );
-    wp_enqueue_script( 'vue-click-outside', '//cdn.jsdelivr.net/npm/v-click-outside@3.1.2/dist/v-click-outside.umd.min.js', array(), _S_VERSION, true );
+    wp_enqueue_script( 'vuex', '//unpkg.com/vuex@3.6.0/dist/vuex.js', array(), _S_VERSION, true );
 
     /**
      * Enqueue SimpleBar
@@ -260,7 +260,8 @@ function pdp_scripts() {
 
     wp_localize_script( 'pdp-components', 'pdpVueData', array(
         'rest_url'  => untrailingslashit( esc_url_raw( rest_url() ) ),
-        'ajax_url'  => admin_url( 'admin-ajax.php' )
+        'ajax_url'  => admin_url( 'admin-ajax.php' ),
+	    'salons'    => PDP_Core_Salon::get_all()
     ) );
 
     wp_localize_script( 'pdp-forms', 'pdpData', array(

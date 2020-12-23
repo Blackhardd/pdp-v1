@@ -1,4 +1,4 @@
-<div class="phonesList" @mouseover="isSalonsListActive = true" @mouseleave="isSalonsListActive = false">
+<div class="phonesList">
     <div class="phonesList__icon">
         <svg width="24" height="24" fill="none">
             <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 12l-4-4h8l-4 4z" fill="#000"/>
@@ -11,7 +11,7 @@
         </a>
     </div>
     <div class="phonesList__dropdown">
-        <div class="phonesList__dropdownInner" :class="{ active: isSalonsListActive }">
+        <div class="phonesList__dropdownInner">
             <?php
             $cat_args = array(
                 'taxonomy'      => 'city',

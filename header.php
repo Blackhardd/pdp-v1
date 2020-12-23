@@ -29,7 +29,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <main>
-	<header class="main-header">
+	<header id="header-app" class="main-header">
         <div class="header">
             <div class="container">
                 <?php get_template_part( 'templates/header/site-logo' ); ?>
@@ -45,8 +45,6 @@
                 </nav>
 
                 <?php get_template_part( 'templates/header/phones-list' ); ?>
-
-                <?php //get_template_part( 'templates/header/lang-switcher' ); ?>
             </div>
         </div>
 
@@ -61,7 +59,7 @@
                 <?php get_template_part( 'templates/header/site-logo', NULL, array( 'classes' => 'site-logo_mobile' ) ); ?>
 
                 <button class="btn-icon mobile-navigation-toggle" @click="toggleMenu">
-                    <div class="cart-counter" v-if="sharedState.cart.items.length">{{sharedState.cart.items.length}}</div>
+                    <div class="cart-counter">{{ cartItems }}</div>
                     <svg width="28" height="18" fill="none">
                         <path d="M.5 18h27v-3H.5v3zm0-7.5h27v-3H.5v3zM.5 0v3h27V0H.5z" fill="#0E0D0A"/>
                     </svg>
@@ -72,16 +70,16 @@
         <?php get_template_part( 'templates/header/phones-list-mobile' ); ?>
 
         <nav class="mobile-navigation" :class="{ active: isMobileMenuActive }">
-            <div class="mobile-navigation__close">
-                <button class="btn-icon" style="transform: rotate(180deg)" @click="toggleMenu">
+            <div class="mobile-navigation__close" @click="closeMenus">
+                <button class="btn-icon" style="transform: rotate(180deg)">
                     <svg width="20" height="20" fill="none"><path d="M20 10a10 10 0 10-20 0 10 10 0 0020 0zM8 10l4-4v8l-4-4z" fill="#392BDF"/></svg>
                 </button>
             </div>
 
             <div class="mobile-navigation__inner">
                 <div class="appointment-mobile">
-                    <button class="appointment-mobile__btn" @click="isMobileMenuActive = false; isCartActive = true">
-                        <div class="appointment-mobile__counter">{{sharedState.cart.items.length}}</div>
+                    <button class="appointment-mobile__btn" @click="toggleMobileCart">
+                        <div class="appointment-mobile__counter">{{ cartItems }}</div>
                         <svg width="22" height="28" fill="none"><path d="M18.5.5h-15a3 3 0 00-3 3v24L11 23l10.5 4.5v-24a3 3 0 00-3-3zm0 22.5L11 19.7 3.5 23V3.5h15V23z" fill="#000"/></svg> Запись
                     </button>
                 </div>
@@ -100,18 +98,11 @@
 
         <div class="cart-wrapper" :class="{ active: isCartActive }">
             <div class="cart cart_header" ref="cart">
-                <cart
-                    @add-to-cart="addToCart"
-                    @set-hair-length="setHairLength($event)"
-                    @cart-is-loading="setCartState"
-                    :cart-data="sharedState.cart"
-                    :salons="sharedState.salons"
-                    :is-loading="sharedState.isCartLoading"
-                />
+                <cart />
             </div>
         </div>
 
-        <div class="dimmer blurred" @click="closeMenus"></div>
+        <div class="dimmer darkening" @click="closeMenus"></div>
 	</header>
 
     <article class="main-article">

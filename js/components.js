@@ -1,329 +1,364 @@
 jQuery(function($){
     $(document).ready(function(){
-        let store = {
+        let store = new Vuex.Store({
             state: {
-                isPricelistLoading: false,
-                isCategoryActive: false,
-                isSalonActive: false,
-                isCartLoading: false,
-                salons: [],
-                categories: null,
-                pricelist: [],
-                activeCategory: false,
-                hairLengths: [
-                    {
-                        title: 'от 5-15 см',
-                        id: 0
-                    },
-                    {
-                        title: 'от 15 - 25 см (выше плеч, каре, боб)',
-                        id: 1
-                    },
-                    {
-                        title: 'от 25 - 40 см (ниже плеч/выше лопаток)',
-                        id: 2
-                    },
-                    {
-                        title: 'от 40 - 60 см (ниже лопаток)',
-                        id: 3
-                    }
-                ],
                 cart: {
-                    master_option: 0,
                     hair_length: 0,
+                    master_option: 0,
                     salon: false,
-                    items: [],
-                    total: 0
-                }
+                    items: []
+                },
+                salons: [],
+                categories: [],
+                pricelist: [],
+                activeCategory: false
             },
-            sendPostData: function(url, data){
-                let response = fetch(url,{
-                    method: 'POST',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
+            getters: {
+                cart: function(state){
+                    return state.cart
+                },
+                isServiceInCart(state){
+                    return function(service){
+                        if(state.cart.items.find(item => item.id === service.id)){
+                            return true
+                        }
+                        else{
+                            return false
+                        }
                     }
-                })
-            },
-            fetchSalons(){
-                fetch(`${pdpVueData.rest_url}/pdp/v1/salons/get_all`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        this.state.salons = data
-                        console.log(data)
-                    })
-            },
-            fetchCategories(){
-                fetch(`${pdpVueData.rest_url}/pdp/v1/services/get_categories`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        this.state.categories = data
-                    })
-            },
-            fetchPricelist(){
-                if(this.state.cart.salon){
-                    this.state.isPricelistLoading = true
-                    fetch(`${pdpVueData.rest_url}/pdp/v1/services/${this.state.cart.salon}`)
-                        .then((response) => response.json())
-                        .then((data) => {
-                            this.state.pricelist = data
-                            this.state.isPricelistLoading = false
-                            this.state.isCategoryActive = false
-                            this.setCategoryFromURL()
-                        })
+                },
+                cartTotal: function(state){
+                    return state.cart.items.reduce(function(prev, cur){
+                        if(cur.master && cur.prices.length == 1){
+                            return parseInt(prev) + parseInt(cur.prices[0][state.cart.master_option])
+                        }
+                        else if(!cur.master && cur.prices.length == 1){
+                            return parseInt(prev) + parseInt(cur.prices[0][0])
+                        }
+                        else if(!cur.master && cur.prices.length == 4){
+                            return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
+                        }
+                        else if(cur.master && cur.prices.length == 4){
+                            return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][state.cart.master_option])
+                        }
+                        else{
+                            return parseInt(prev) + parseInt(cur.price)
+                        }
+                    }, 0)
+                },
+                cartItems: function(state){
+                    return state.cart.items.length
+                },
+                hairLength: function(state){
+                    return state.cart.hair_length
+                },
+                masterOption: function(state){
+                    return state.cart.master_option
+                },
+                salons: function(state){
+                    return state.salons
+                },
+                activeSalon: function(state){
+                    return state.cart.salon
+                },
+                categories: function(state){
+                    return state.categories
+                },
+                pricelist: function(state){
+                    return state.pricelist
+                },
+                activeCategory: function(state){
+                    return state.activeCategory
                 }
             },
-            setActiveCategory(cat){
-                this.state.isCategoryActive = true
-                this.state.activeCategory = this.state.pricelist[cat]
-            },
-            setCurrentSalon(id){
-                if(this.state.cart.salon != id){
-                    this.state.cart.items = []
-                    this.state.cart.total = 0
-                }
-
-                this.state.cart.salon = id
-
-                this.state.isSalonActive = true
-
-                this.updateCart()
-                this.fetchPricelist()
-            },
-            setSalonFromUrl(){
-                let salon_id = new URL(window.location.href).searchParams.get('salonId')
-                if(salon_id){
-                    this.setCurrentSalon(salon_id)
-                }
-            },
-            setCategoryFromURL(){
-                let category = new URL(window.location.href).searchParams.get('cat')
-                if(category){
-                    this.setActiveCategory(category)
-                }
-            },
-            setHairLength(length){
-                console.log(length)
-                this.state.cart.hair_length = length
-                this.getTotal()
-            },
-            setMasterType(value){
-                this.state.cart.master_option = value ? 1 : 0
-                this.getTotal()
-            },
-            fetchCart(){
-                fetch(`${pdpVueData.rest_url}/pdp/v1/get_cart`)
-                    .then((response) => response.json())
-                    .then((data) => {
-                        this.state.cart = data
-                    })
-            },
-            updateCart(){
-                this.sendPostData(`${pdpVueData.rest_url}/pdp/v1/update_cart/`, { cart: this.state.cart })
-            },
-            isInCart(service){
-                if(this.state.cart.items.find(x => x.id === service.id)){
-                    return true
-                }
-                else{
-                    return false
-                }
-            },
-            addToCart(service){
-                if(!this.isInCart(service)){
-                    this.state.cart.items.push(service)
-                }
-                else{
-                    this.state.cart.items = this.state.cart.items.filter(t => t.id !== service.id)
-                }
-                this.getTotal()
-            },
-            setCartState(value){
-                this.state.isCartLoading = value
-            },
-            getTotal(){
-                let self = this
-                this.state.cart.total = this.state.cart.items.reduce(function(prev, cur){
-                    if(cur.master && cur.prices.length == 1){
-                        return parseInt(prev) + parseInt(cur.prices[0][self.state.cart.master_option])
-                    }
-                    else if(!cur.master && cur.prices.length == 1){
-                        return parseInt(prev) + parseInt(cur.prices[0][0])
-                    }
-                    else if(!cur.master && cur.prices.length == 4){
-                        return parseInt(prev) + parseInt(cur.prices[self.state.cart.hair_length][0])
-                    }
-                    else if(cur.master && cur.prices.length == 4){
-                        return parseInt(prev) + parseInt(cur.prices[self.state.cart.hair_length][self.state.cart.master_option])
+            mutations: {
+                setCart(state, data){
+                    state.cart = data
+                },
+                setActiveSalon(state, salon){
+                    state.cart.salon = salon
+                },
+                setHairLength(state, length){
+                    state.cart.hair_length = length
+                },
+                setMasterOption(state, option){
+                    state.cart.master_option = option
+                },
+                addToCart(state, service){
+                    if(state.cart.items.find(item => item.id === service.id)){
+                        state.cart.items = state.cart.items.filter(item => item.id != service.id)
                     }
                     else{
-                        return parseInt(prev) + parseInt(cur.price)
+                        state.cart.items.push(service)
                     }
-                }, 0)
-
-                this.updateCart()
-            },
-            isHairServiceInCart(){
-                return this.state.cart.items.filter((item) => item.prices.length >= 4)
-            }
-        }
-
-        Vue.component('pdp-select', {
-            props: ['name', 'placeholder', 'options', 'selected'],
-            data: function(){
-                return{
-                    selected: Vue.util.extend({}, this.selected)
+                },
+                clearCart(state){
+                    state.cart.items = []
+                },
+                setSalons(state, data){
+                    state.salons = data
+                },
+                setCategories(state, data){
+                    state.categories = data
+                },
+                setPricelist(state, data){
+                    state.pricelist = data
+                },
+                setActiveCategory(state, category){
+                    state.activeCategory = category
                 }
             },
-            mounted(){
-                let vm = this
-                $(this.$el).find('select').selectric().on('change', function(){
-                    vm.$emit('changed', this.value)
-                })
-            },
-            updated(){
-                $(this.$el).find('select').selectric('init')
-            },
+            actions: {
+                async fetchCart(ctx){
+                    const res = await fetch(`${pdpVueData.rest_url}/pdp/v1/get_cart`)
+                    const cart = await res.json()
+
+                    console.log(cart)
+
+                    ctx.commit('setCart', cart)
+                },
+                async addToCart(ctx, service){
+                    ctx.commit('addToCart', service)
+
+                    await fetch(`${pdpVueData.rest_url}/pdp/v1/update_cart/`, {
+                        method: 'POST',
+                        body: JSON.stringify({ cart: ctx.state.cart }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                },
+                async setActiveSalon(ctx, salon){
+                    ctx.commit('setActiveSalon', salon)
+                    ctx.commit('clearCart')
+
+                    ctx.dispatch('fetchPricelist', salon)
+                },
+                async setHairLength(ctx, length){
+                    ctx.commit('setHairLength', length)
+
+                    await fetch(`${pdpVueData.rest_url}/pdp/v1/update_cart/`, {
+                        method: 'POST',
+                        body: JSON.stringify({ cart: ctx.state.cart }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                },
+                async setMasterOption(ctx, value){
+                    ctx.commit('setMasterOption', value)
+
+                    await fetch(`${pdpVueData.rest_url}/pdp/v1/update_cart/`, {
+                        method: 'POST',
+                        body: JSON.stringify({ cart: ctx.state.cart }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                },
+                async fetchSalons(ctx){
+                    const res = await fetch(`${pdpVueData.rest_url}/pdp/v1/salons/get_all`)
+                    const salons = await res.json()
+
+                    ctx.commit('setSalons', salons)
+                },
+                async fetchCategories(ctx){
+                    const res = await fetch(`${pdpVueData.rest_url}/pdp/v1/services/get_categories`)
+                    const categories = await res.json()
+
+                    ctx.commit('setCategories', categories)
+                },
+                async fetchPricelist(ctx, salonId){
+                    const res = await fetch(`${pdpVueData.rest_url}/pdp/v1/services/${salonId}`)
+                    const pricelist = await res.json()
+
+                    ctx.commit('setPricelist', pricelist)
+                },
+                setActiveCategory(ctx, category){
+                    ctx.commit('setActiveCategory', category)
+                }
+            }
+        })
+
+
+        /**
+         *  Vue Components
+         */
+
+
+        /**
+         *  Salon Select Component
+         */
+        const SalonSelect = Vue.component('salon-select', {
             template: `
                 <div class="selectric-wrap">
-                    <select class="selectric_pdp" v-model="selected" :name="name">
-                        <option value="" disabled>{{placeholder}}</option>
-                        <option v-for="option of options" :key="option.id" :value="option.id" :disabled="option.pricelist == false">{{ option.title }}</option>
+                    <select name="salon" class="selectric_pdp" :value="activeSalon">
+                        <option
+                            v-for="salon of salons"
+                            :key="salon.id"
+                            :value="salon.id"
+                            :disabled="!salon.pricelist"
+                        >
+                            {{ salon.title }}
+                        </option>
                     </select>
                 </div>
-            `
-        })
-
-        let header = new Vue({
-            el: '.main-header',
-            data: {
-                isSubMenuActive: false,
-                isSalonsListActive: false,
-                isSalonsListMobileActive: false,
-                isCartActive: false,
-                isMobileMenuActive: false,
-                activeSubMenu: false,
-                sharedState: store.state
+            `,
+            mounted(){
+                this.fetchSalons()
             },
             methods: {
-                addToCart(id){
-                    store.addToCart(id)
-                },
-                updateTotal(){
-                    store.updateTotal()
-                },
-                setHairLength(length){
-                    store.setHairLength(length)
-                },
-                closeMenus(){
-                    this.isCartActive = false
-                    this.isMobileMenuActive = false
-                    this.isSalonsListMobileActive = false
+                fetchSalons(){
+                    let vm = this
+                    vm.$store.dispatch('fetchSalons').then(() => {
+                        let select = $(vm.$el).find('select').selectric()
 
-                    this.toggleDimmer()
-                },
-                togglePhonesList(){
-                    if(this.isCartActive){
-                        this.isCartActive = false
-                    }
-                    else if(this.isMobileMenuActive){
-                        this.isMobileMenuActive = false
-                    }
+                        let uri = window.location.search.substring(1);
+                        let params = new URLSearchParams(uri);
 
-                    this.isSalonsListMobileActive = !this.isSalonsListMobileActive
+                        if(params.get('salonId')){
+                            vm.setSalonOption(params.get('salonId'))
+                        }
+                        else if(vm.activeSalon){
+                            vm.setSalonOption(vm.activeSalon)
+                        }
+                        else{
+                            vm.setSalonOption(vm.salons[0].id)
+                        }
 
-                    this.toggleDimmer()
+                        if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
+                            select.on('change', function(){
+                                vm.$store.dispatch('setActiveSalon', $(this).val())
+                            })
+                        }
+                        else{
+                            select.on('selectric-change', function(event, element, selectric){
+                                vm.$store.dispatch('setActiveSalon', element.value)
+                            })
+                        }
+                    })
                 },
-                toggleMenu(){
-                    if(this.isSalonsListMobileActive){
-                        this.isSalonsListMobileActive = false
+                setSalonOption(value){
+                    if(value){
+                        $(this.$el).find('select').val(value).selectric('refresh')
+                        this.$store.dispatch('fetchPricelist', value)
                     }
-
-                    if(!this.isCartActive && !this.isMobileMenuActive){
-                        this.isMobileMenuActive = true
-                    }
-                    else if(!this.isCartActive && this.isMobileMenuActive){
-                        this.isMobileMenuActive = false
-                    }
-                    else if(this.isCartActive && !this.isMobileMenuActive){
-                        this.isCartActive = false
-                    }
-
-                    this.toggleDimmer()
-                },
-                toggleDimmer(){
-                    if(this.isCartActive || this.isMobileMenuActive || this.isSalonsListMobileActive){
-                        document.querySelector('body').style.overflow = 'hidden';
-                        document.querySelector('.dimmer').classList.add('active');
-                    }
-                    else{
-                        document.querySelector('body').style.overflow = 'auto';
-                        document.querySelector('.dimmer').classList.remove('active');
-                    }
-                },
-                showSubMenu(id){
-                    if(id == this.activeSubMenu){
-                        this.activeSubMenu = false
-                    }
-                    else{
-                        this.activeSubMenu = id
-                    }
-                },
-                setCartPosition(){
-                    if(window.matchMedia("(min-width: 1150px)").matches) {
-                        this.$refs.cart.style.left = this.$refs.cartToggler.getBoundingClientRect().left - 30 + 'px'
-                        this.$refs.cart.style.right = 'unset';
-                    }
-                    else if(window.matchMedia("(min-width: 800px)").matches && window.matchMedia("(max-width: 1150px)").matches){
-                        this.$refs.cart.style.left = 'unset'
-                        this.$refs.cart.style.right = '30px'
-                    }
-                },
-                setCartState(isLoading){
-                    store.setCartState(isLoading)
                 }
             },
-            mounted(){
-                window.addEventListener('resize', this.setCartPosition)
-
-                this.setCartPosition()
+            computed: {
+                salons: function(){
+                    return this.$store.getters.salons
+                },
+                activeSalon: function(){
+                    return this.$store.getters.activeSalon
+                }
             }
         })
 
-        let service_categories = new Vue({
-            el: '#service-categories',
-            data: {
-                isShowingWarning: false,
-                sharedState: store.state
-            },
-            methods: {
-                forceSelectSalon(){
-                    if(!this.sharedState.isSalonActive){
-                        this.isShowingWarning = true
-                    }
-                },
-                setActiveCategory(cat){
-                    store.setActiveCategory(cat)
 
-                    $([document.documentElement, document.body]).animate({
-                        scrollTop: $("#appointment-list").offset().top - 120
-                    }, 1000);
-                },
-                setActiveSalon(id){
-                    window.history.replaceState(null, null, '?salonId=' + id);
-                    store.setCurrentSalon(id)
-                    this.isShowingWarning = false
+        /**
+         *  Hair Length Select Component
+         */
+        const HairLengthSelect = Vue.component('hair-length-select', {
+            template: `
+                <div class="selectric-wrap">
+                    <select name="hair_length" class="selectric_pdp" :value="length">
+                        <option
+                            v-for="length of lengths"
+                            :key="length.id"
+                            :value="length.id"
+                        >
+                            {{ length.title }}
+                        </option>
+                    </select>
+                </div>
+            `,
+            mounted(){
+                let vm = this
+                let select = $(vm.$el).find('select').selectric('init')
+
+                if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
+                    select.on('change', function(){
+                        vm.$store.dispatch('setHairLength', $(this).val())
+                    })
+                }
+                else{
+                    select.on('selectric-change', function(event, element, selectric){
+                        vm.$store.dispatch('setHairLength', element.value)
+                    })
                 }
             },
-            mounted(){
-                store.fetchSalons()
-                store.setSalonFromUrl()
-                store.fetchCategories()
+            data: function(){
+                return {
+                    lengths: [
+                        {
+                            title: 'от 5-15 см',
+                            id: 0
+                        },
+                        {
+                            title: 'от 15 - 25 см (выше плеч, каре, боб)',
+                            id: 1
+                        },
+                        {
+                            title: 'от 25 - 40 см (ниже плеч/выше лопаток)',
+                            id: 2
+                        },
+                        {
+                            title: 'от 40 - 60 см (ниже лопаток)',
+                            id: 3
+                        }
+                    ]
+                }
+            },
+            computed: {
+                length: function(){
+                    return this.$store.getters.hairLength
+                }
+            },
+            watch: {
+                length: function(value){
+                    $(this.$el).find('select').val(value).selectric('refresh')
+                }
             }
         })
 
-        Vue.component('service-categories', {
-            props: ['isLoading', 'isSalonActive', 'categories', 'pricelist'],
+
+        /**
+         *  Service Categories
+         */
+        const ServiceCategories = Vue.component('service-categories', {
+            template: `
+                <div class="service-categories-wrap">
+                    <div class="service-categories">
+                        <div v-for="(category, index) of categories" :key="index">
+                            <div class="service-categories__category">
+                                <div v-html="category.img"></div>
+                                <div class="service-categories__title" @click="$emit('show-category', category.slug)">
+                                    {{ category.title }}
+                                    <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            mounted(){
+                this.fetchCategories()
+            },
+            methods: {
+                fetchCategories(){
+                    let vm = this
+                    this.$store.dispatch('fetchCategories').then(() => {
+                        $(vm.$el).find('.service-categories').slick(this.slickOptions)
+                        vm.stretchSlider()
+                        window.addEventListener('resize', vm.stretchSlider)
+                    })
+                },
+                stretchSlider(){
+                    let offset = $(this.$el).offset().left
+                    $(this.$el).width('calc(100vw - ' + offset + 'px)')
+                }
+            },
             data: function(){
                 return{
                     slickOptions: {
@@ -353,87 +388,18 @@ jQuery(function($){
                     }
                 }
             },
-            methods: {
-                stretchSlider(){
-                    let offset = $(this.$el).offset().left
-                    $(this.$el).width('calc(100vw - ' + offset + 'px)')
+            computed: {
+                categories: function(){
+                    return this.$store.getters.categories
                 }
-            },
-            mounted(){
-                this.stretchSlider()
-                $(this.$el).find('.service-categories').slick(this.slickOptions)
-            },
-            updated(){
-                $(this.$el).find('.service-categories').slick('unslick')
-                window.addEventListener("resize", this.stretchSlider)
-                $(this.$el).find('.service-categories').slick(this.slickOptions)
-            },
-            template: `
-                <div class="service-categories-wrap">
-                    <div class="backdrop" :class="{ active: isLoading }"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
-                    <div class="service-categories" v-if="isSalonActive">
-                        <div v-for="(category, name, index) of pricelist" :key="category">
-                            <div class="service-categories__category">
-                                <div v-html="category.image"></div>
-                                <div class="service-categories__title" @click="$emit('set-category', name)">
-                                    {{category.name}}
-                                    <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="service-categories" v-else>
-                        <div v-for="category of categories" :key="category.slug">
-                            <div class="service-categories__category">
-                                <div v-html="category.img"></div>
-                                <div class="service-categories__title" @click="$emit('force-select-salon')">
-                                    {{category.title}}
-                                    <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `
-        })
-
-        let service_list = new Vue({
-            el: '#appointment-list',
-            data(){
-                return {
-                    sharedState: store.state
-                }
-            },
-            methods: {
-                isInCart(id){
-                    return store.isInCart(id)
-                },
-                addToCart(service){
-                    store.addToCart(service)
-                },
-                setHairLength(length){
-                    store.setHairLength(length)
-                },
-                changeMasterType(e){
-                    store.setMasterType(e.target.checked)
-                },
-                updateTotal(){
-                    store.updateTotal()
-                },
-                setCartState(isLoading){
-                    store.setCartState(isLoading)
-                }
-            },
-            mounted() {
-                store.fetchCart()
             }
-        });
+        })
 
 
         /**
-         *  Price List Item Component
+         *  Price List Item
          */
-        Vue.component('pricelist-item', {
+        const PriceListItem = Vue.component('pricelist-item', {
             template: `
                 <div class="pricelist-item">
                     <div class="pricelist-item__info">
@@ -441,74 +407,37 @@ jQuery(function($){
                             {{data.name}}<span class="badge pro" v-if="data.pro"></span>
                         </div>
 
-                        <div class="pricelist-item__price" v-if="data.master == true && data.prices.length == 1">{{data.prices[0][masterOption]}}<span class="uah"></span></div>
+                        <div class="pricelist-item__price" v-if="data.master == true && data.prices.length == 1">{{data.prices[0][master_option]}}<span class="uah"></span></div>
                         <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 1">{{data.prices[0][0]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == true && data.prices.length == 3 && hair_length <= 3">{{data.prices[hairLength][masterOption]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 3 && hair_length <= 3">{{data.prices[hairLength][0]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == true && data.prices.length == 4">{{data.prices[hairLength][masterOption]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 4">{{data.prices[hairLength][0]}}<span class="uah"></span></div>
+                        <div class="pricelist-item__price" v-else-if="data.master == true && data.prices.length == 3 && hair_length <= 3">{{data.prices[hair_length][master_option]}}<span class="uah"></span></div>
+                        <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 3 && hair_length <= 3">{{data.prices[hair_length][0]}}<span class="uah"></span></div>
+                        <div class="pricelist-item__price" v-else-if="data.master == true && data.prices.length == 4">{{data.prices[hair_length][master_option]}}<span class="uah"></span></div>
+                        <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 4">{{data.prices[hair_length][0]}}<span class="uah"></span></div>
                     </div>
 
-                    <button class="pricelist-item__add-btn btn-icon" :data-added="isAdded" @click="$emit('add-to-cart', data)">
+                    <button class="pricelist-item__add-btn btn-icon"
+                        @click="addToCart(data)"
+                        :data-added="isInCart(data)"
+                    >
                         <span class="pricelist-item__icon"></span>
                     </button>
                 </div>
             `,
-            props: ['data', 'hairLength', 'masterOption', 'isAdded']
-        });
-
-
-        /**
-         *  Hair Length Select Component
-         */
-        Vue.component('hair-length-select', {
-            template: `
-                <div class="selectric-wrap">
-                    <select name="hair_length" class="selectric_pdp" :value="value">
-                        <option value="" disabled>Выберите длину</option>
-                        <option v-for="length of lengths":key="length.id" :value="length.id">{{ length.title }}</option>
-                    </select>
-                </div>
-            `,
-            props: ['value'],
-            data: function(){
-                return {
-                    lengths: [
-                        {
-                            title: 'от 5-15 см',
-                            id: 0
-                        },
-                        {
-                            title: 'от 15 - 25 см (выше плеч, каре, боб)',
-                            id: 1
-                        },
-                        {
-                            title: 'от 25 - 40 см (ниже плеч/выше лопаток)',
-                            id: 2
-                        },
-                        {
-                            title: 'от 40 - 60 см (ниже лопаток)',
-                            id: 3
-                        }
-                    ]
+            props: ['data'],
+            methods: {
+                addToCart(service){
+                    this.$store.dispatch('addToCart', service)
                 }
             },
-            mounted(){
-                let vm = this
-
-                let select = $(vm.$el).find('select').selectric('init')
-
-                if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
-                    select.on('change', function(){
-                        let length = $(this).val()
-                        vm.$emit('input', length)
-                    })
-                }
-                else{
-                    select.on('selectric-change', function(event, element, selectric){
-                        let length = element.value
-                        vm.$emit('input', length)
-                    })
+            computed: {
+                isInCart: function(){
+                    return this.$store.getters.isServiceInCart
+                },
+                hair_length: function(){
+                    return this.$store.getters.hairLength
+                },
+                master_option: function(){
+                    return this.$store.getters.masterOption
                 }
             }
         });
@@ -517,22 +446,24 @@ jQuery(function($){
         /**
          *  Cart Component
          */
-        Vue.component('cart', {
+        const Cart = Vue.component('cart', {
             template: `
                 <div>
-                    <div class="backdrop" :class="{ active: isLoading }"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+                    <preloader
+                        :is-active="isLoading"
+                    />
                     <form class="form cart-form cart__form" @submit.prevent="submitForm">
                         <div class="cart-form__header">
                             ваше бронирование
                         </div>
                 
-                        <div v-if="cartData.items.length">
+                        <div v-if="cart.items.length">
                             <div class="cart-form__list">
-                                <div v-for="(service, index) in cartData.items" :key="index">
-                                    <button type="button" class="pricelist-item__add-btn btn-icon" :data-id="service.id" @click="$emit('add-to-cart', service)" data-added>
+                                <div v-for="(service, index) in cart.items" :key="index">
+                                    <button type="button" class="pricelist-item__add-btn btn-icon" @click="removeFromCart(service)" data-added>
                                         <span class="pricelist-item__icon"></span>
                                     </button>
-                                    {{service.name}}
+                                    {{ service.name }}
                                 </div>
                             </div>
                         </div>
@@ -543,16 +474,8 @@ jQuery(function($){
                             </div>
                         </div>
                         
-                        <div v-show="isHairServiceInCart">
-                            <hair-length-select
-                                @input="setHairLength($event)"
-                                :value="cartData.hair_length"
-                            />
-                        </div>
-                        
-                        <div class="cart-form__salon-wrap" v-if="cartData.salon">
-                            <div class="cart-for__label">салон:</div>
-                            <div class="cart-form__salon-title">{{ currentSalon }}</div>
+                        <div class="cart-form__hair-length" v-show="isHairServiceInCart">
+                            <hair-length-select />
                         </div>
                 
                         <div class="cart-form__title">заполните форму</div>
@@ -609,21 +532,19 @@ jQuery(function($){
                             <div class="cart-form__total">
                                 стоимость услуг
                                 <div class="cart-form__total-price">
-                                    <div class="cart-form__price">{{ cartData.total }}</div>
+                                    <div class="cart-form__price">{{ cartTotal }}</div>
                                     <div class="cart-form__currency"><span class="uah"></span></div>
                                 </div>
                             </div>
                         </div>
                 
                         <input type="hidden" name="action" value="appointment">
-                        <input type="hidden" name="salon" :value="cartData.salon">
-                        <input type="hidden" name="cart" :value="JSON.stringify(cartData)">
                     </form>
                 </div>
             `,
-            props: ['cartData', 'salons', 'isLoading'],
             data: function(){
                 return {
+                    isLoading: false,
                     formErrors: [],
                     name: '',
                     phone: '',
@@ -631,19 +552,24 @@ jQuery(function($){
                 }
             },
             computed: {
-                currentSalon: function(){
-                    if(this.salons.length){
-                        let self = this
-                        return self.salons.find((salon) => salon.id == self.cartData.salon).title
-                    }
+                cart: function(){
+                    return this.$store.getters.cart
                 },
                 isHairServiceInCart: function(){
-                    return this.cartData.items.filter((item) => item.prices.length > 1).length
+                    if(this.cart.items.filter((item) => item.prices.length >= 3).length){
+                        return  true
+                    }
+                    else{
+                        return false
+                    }
+                },
+                cartTotal: function(){
+                    return this.$store.getters.cartTotal
                 }
             },
             methods: {
-                setHairLength(length){
-                    this.$emit('set-hair-length', length)
+                removeFromCart(service){
+                    this.$store.dispatch('addToCart', service)
                 },
                 submitForm(){
                     let isValid = true
@@ -659,7 +585,7 @@ jQuery(function($){
                         isValid = false
                     }
 
-                    if(!this.cartData.items.length){
+                    if(!this.cart.items.length){
                         this.formErrors.push('Вы не выбрали услуги')
                         isValid = false
                     }
@@ -667,6 +593,8 @@ jQuery(function($){
                     if(isValid){
                         let self = this;
                         let form_data = new FormData(event.target)
+                        form_data.append('cart', JSON.stringify(this.cart))
+
                         $.ajax({
                             method: 'POST',
                             url: pdpVueData.ajax_url,
@@ -674,19 +602,197 @@ jQuery(function($){
                             contentType: false,
                             data: form_data,
                             beforeSend: function(){
-                                self.$emit('cart-is-loading', true)
+                                self.isLoading = true
                             },
                             success: function(res){
-                                self.$emit('cart-is-loading', false)
+                                self.isLoading = false
                                 self.name = self.phone = self.email = ''
                             }
                         })
                     }
                 }
-            },
-            mounted(){
-                store.fetchCart()
             }
-        });
+        })
+
+
+        /**
+         *  Preloader Component
+         */
+        const Preloader = Vue.component('preloader', {
+            template: `
+                <div class="backdrop" :class="{ active: isActive }"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+            `,
+            props: ['isActive']
+        })
+
+
+        /**
+         *  Header App
+         */
+        new Vue({
+            el: '#header-app',
+            components: {
+                'cart': Cart,
+                'salon-select': SalonSelect,
+                'hair-length-select': HairLengthSelect,
+                'preloader': Preloader
+            },
+            store: store,
+            mounted(){
+                this.fetchCart()
+                this.setCartPosition()
+                window.addEventListener('resize', this.setCartPosition)
+            },
+            methods: {
+                fetchCart(){
+                    return this.$store.dispatch('fetchCart')
+                },
+                closeMenus(){
+                    this.isCartActive = false
+                    this.isMobileMenuActive = false
+                    this.isMobileSalonsListActive = false
+
+                    this.toggleDimmer()
+                },
+                togglePhonesList(){
+                    if(this.isCartActive){
+                        this.isCartActive = false
+                    }
+                    else if(this.isMobileMenuActive){
+                        this.isMobileMenuActive = false
+                    }
+
+                    this.isMobileSalonsListActive = !this.isMobileSalonsListActive
+
+                    this.toggleDimmer()
+                },
+                toggleMenu(){
+                    if(this.isMobileSalonsListActive){
+                        this.isMobileSalonsListActive = false
+                    }
+
+                    if(!this.isCartActive && !this.isMobileMenuActive){
+                        this.isMobileMenuActive = true
+                    }
+                    else if(!this.isCartActive && this.isMobileMenuActive){
+                        this.isMobileMenuActive = false
+                    }
+                    else if(this.isCartActive && !this.isMobileMenuActive){
+                        this.isCartActive = false
+                    }
+
+                    this.toggleDimmer()
+                },
+                toggleMobileCart(){
+                    this.isMobileMenuActive = false
+                    this.isMobileSalonsListActive = false
+                    this.isCartActive = !this.isCartActive
+
+                    this.toggleDimmer()
+                },
+                toggleDimmer(){
+                    if(this.isCartActive || this.isMobileMenuActive || this.isMobileSalonsListActive){
+                        document.querySelector('body').style.overflow = 'hidden';
+                        document.querySelector('.dimmer').classList.add('active');
+                    }
+                    else{
+                        document.querySelector('body').style.overflow = 'auto';
+                        document.querySelector('.dimmer').classList.remove('active');
+                    }
+                },
+                showSubMenu(id){
+                    if(id == this.activeSubMenu){
+                        this.activeSubMenu = false
+                    }
+                    else{
+                        this.activeSubMenu = id
+                    }
+                },
+                setCartPosition(){
+                    if(window.matchMedia("(min-width: 1150px)").matches) {
+                        this.$refs.cart.style.left = Math.floor(this.$refs.cartToggler.getBoundingClientRect().left - 30) + 'px'
+                        this.$refs.cart.style.right = 'unset';
+                    }
+                    else if(window.matchMedia("(min-width: 800px)").matches && window.matchMedia("(max-width: 1150px)").matches){
+                        this.$refs.cart.style.left = 'unset'
+                        this.$refs.cart.style.right = '30px'
+                    }
+                },
+            },
+            data: {
+                isSubMenuActive: false,
+                isCartActive: false,
+                isMobileMenuActive: false,
+                isMobileSalonsListActive: false,
+                activeSubMenu: false
+            },
+            computed: {
+                cartItems: function(){
+                    return this.$store.getters.cartItems
+                }
+            }
+        })
+
+
+        /**
+         *  Appointment App
+         */
+        new Vue({
+            el: '#appointment-app',
+            components: {
+                'cart': Cart,
+                'salon-select': SalonSelect,
+                'hair-length-select': HairLengthSelect,
+                'service-categories': ServiceCategories,
+                'pricelist-item': PriceListItem,
+                'preloader': Preloader
+            },
+            store: store,
+            mounted(){
+                this.setActiveCategoryFromURI()
+            },
+            methods: {
+                fetchSalons(){
+                    return this.$store.dispatch('fetchSalons')
+                },
+                fetchCategories(){
+                    return this.$store.dispatch('fetchCategories')
+                },
+                setActiveCategory(cat){
+                    this.$store.dispatch('setActiveCategory', cat)
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#appointment-list").offset().top - 140
+                    }, 1000)
+                },
+                setActiveCategoryFromURI(){
+                    let uri = window.location.search.substring(1)
+                    let params = new URLSearchParams(uri)
+
+                    if(params.get('cat')){
+                        this.$store.dispatch('setActiveCategory', params.get('cat'))
+                    }
+                },
+                setMasterOption($event){
+                    this.$store.dispatch('setMasterOption', $event.target.checked ? 1 : 0)
+                }
+            },
+            data: {
+                isPricelistLoading: false
+            },
+            computed: {
+                pricelist: function(){
+                    return this.$store.getters.pricelist
+                },
+                activeCategory: function(){
+                    return this.$store.getters.activeCategory
+                },
+                activeCategoryServices: function(){
+                    return this.pricelist[this.activeCategory]
+                },
+                masterOption: function(){
+                    return this.$store.getters.masterOption
+                }
+            }
+        })
     });
 });
