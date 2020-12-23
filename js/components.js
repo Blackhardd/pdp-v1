@@ -241,7 +241,7 @@ jQuery(function($){
                 setSalonOption(value){
                     if(value){
                         $(this.$el).find('select').val(value).selectric('refresh')
-                        this.$store.dispatch('fetchPricelist', value)
+                        this.$store.dispatch('setActiveSalon', value)
                     }
                 }
             },
@@ -520,10 +520,13 @@ jQuery(function($){
                             </div>
                         </div>
                 
-                        <div class="form__response active error" v-if="formErrors.length">
+                        <div class="form__response active error" v-if="formErrors.length && !isSubmitSuccess">
                             <ul>
                                 <li v-for="(error, index) in formErrors" :key="index">{{ error }}</li>
                             </ul>
+                        </div>
+                        <div class="form__response active success" v-else-if="isSubmitSuccess">
+                            {{ submitResponse }}
                         </div>
                 
                         <div class="cart-form__footer">
@@ -545,6 +548,8 @@ jQuery(function($){
             data: function(){
                 return {
                     isLoading: false,
+                    isSubmitSuccess: false,
+                    submitResponse: '',
                     formErrors: [],
                     name: '',
                     phone: '',
@@ -609,6 +614,8 @@ jQuery(function($){
                             success: function(res){
                                 self.isLoading = false
                                 self.name = self.phone = self.email = ''
+                                self.isSubmitSuccess = true
+                                self.submitResponse = JSON.parse(res).message
                             }
                         })
                     }
