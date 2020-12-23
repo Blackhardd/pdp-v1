@@ -1,3 +1,19 @@
+<?php
+    $main_salon = get_posts( array(
+	    'post_type'         => 'salon',
+	    'post_status'       => 'publish',
+	    'posts_per_page'    => 1,
+	    'orderby'           => 'rand',
+	    'tax_query'         => array(
+		    array(
+			    'taxonomy'  => 'city',
+			    'field'     => 'slug',
+			    'terms'     => 'kiev'
+		    )
+	    )
+    ) );
+?>
+
 <div class="phonesList">
     <div class="phonesList__icon">
         <svg width="24" height="24" fill="none">
@@ -5,9 +21,9 @@
         </svg>
     </div>
     <div class="phonesList__placeholder">
-        <a href="tel:+380979715151">
-            <address class="phonesList__address">ул. Богдана Хмельницкого 19/21</address>
-            <div class="phonesList__phone">+380 (97) 971 51 51</div>
+        <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', carbon_get_post_meta( $main_salon[0]->ID, 'phone' ) ); ?>">
+            <address class="phonesList__address"><?=$main_salon[0]->post_title; ?></address>
+            <div class="phonesList__phone"><?=carbon_get_post_meta( $main_salon[0]->ID, 'phone' ); ?></div>
         </a>
     </div>
     <div class="phonesList__dropdown">
