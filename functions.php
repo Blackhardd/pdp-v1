@@ -259,9 +259,9 @@ function pdp_scripts() {
     wp_enqueue_script( 'pdp-components', get_template_directory_uri() . '/js/components.js', array(), _S_VERSION, true );
 
     wp_localize_script( 'pdp-components', 'pdpVueData', array(
-        'rest_url'  => untrailingslashit( esc_url_raw( rest_url() ) ),
-        'ajax_url'  => admin_url( 'admin-ajax.php' ),
-	    'salons'    => PDP_Core_Salon::get_all()
+        'rest_url'          => untrailingslashit( esc_url_raw( rest_url() ) ),
+        'ajax_url'          => admin_url( 'admin-ajax.php' ),
+	    'gift_cards_url'    => get_permalink( 366 )
     ) );
 
     wp_localize_script( 'pdp-forms', 'pdpData', array(

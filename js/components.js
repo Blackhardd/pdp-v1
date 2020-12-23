@@ -759,10 +759,15 @@ jQuery(function($){
                     return this.$store.dispatch('fetchCategories')
                 },
                 setActiveCategory(cat){
-                    this.$store.dispatch('setActiveCategory', cat)
-                    $([document.documentElement, document.body]).animate({
-                        scrollTop: $("#appointment-list").offset().top - 140
-                    }, 1000)
+                    if(cat == 'sertifikati'){
+                        window.open(pdpVueData.gift_cards_url,'_blank')
+                    }
+                    else{
+                        this.$store.dispatch('setActiveCategory', cat)
+                        $([document.documentElement, document.body]).animate({
+                            scrollTop: $("#appointment-list").offset().top - 140
+                        }, 1000)
+                    }
                 },
                 setActiveCategoryFromURI(){
                     let uri = window.location.search.substring(1)
