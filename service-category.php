@@ -43,7 +43,7 @@
                             <h2 class="service-row__title"><?=$section['title']; ?></h2>
                         <?php } ?>
 
-                        <div class="service-row__desc"><?=$section['content']; ?></div>
+                        <div class="service-row__desc"><?=do_shortcode( $section['content'] ); ?></div>
 
                         <?php if( $section['details'] ){ ?>
                             <a href="<?=get_permalink( $section['details']['id'] ); ?>" class="service-row__read-more btn-default">подробнее</a>

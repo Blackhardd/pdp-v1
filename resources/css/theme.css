@@ -2463,7 +2463,6 @@ input.search-form__input:focus {
 .title h2 {
     font-size: 42px;
     line-height: 1;
-    text-transform: lowercase;
 }
 
 .title h3 {
@@ -4245,6 +4244,46 @@ input.search-form__input:focus {
 .logos-grid.logos-grid_style-02 .logos-grid__item img {
     display: block;
     max-width: 100%;
+}
+
+
+/**
+ *  List Grid
+ */
+
+.list-grid {
+    display: grid;
+    grid-gap: 34px;
+}
+
+.list-grid.list-grid_ordered {
+    counter-reset: orderedCounter;
+    margin: 0;
+    padding: 0;
+}
+
+.list-grid.list-grid_ordered li {
+    list-style: none;
+    display: flex;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 17px;
+}
+
+.list-grid.list-grid_ordered li:before {
+    counter-increment: orderedCounter;
+    content: counter(orderedCounter, decimal-leading-zero);
+    display: block;
+    flex-shrink: 0;
+    width: 52px;
+    color: #C4C4C4;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 34px;
+}
+
+.list-grid.list-grid_ordered li > div {
+    margin-top: 12px;
 }
 
 

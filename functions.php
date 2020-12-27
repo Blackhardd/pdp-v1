@@ -7,9 +7,9 @@
  * @package Pied-de-Poul
  */
 
-if ( ! defined( '_S_VERSION' ) ) {
+if( !defined( '_S_VERSION' ) ){
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.12' );
+	define( '_S_VERSION', '1.0.13' );
 }
 
 if ( ! function_exists( 'pdp_setup' ) ) :
