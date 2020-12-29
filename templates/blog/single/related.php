@@ -9,8 +9,8 @@ if( $related_query->have_posts() ){ ?>
 			while( $related_query->have_posts() ){
 				$related_query->the_post();
 
-				get_template_part( 'templates/blog/archive/item' );
+				get_template_part( 'templates/blog/archive/loop-item' );
 			} ?>
 		</div>
 	</div>
-<?php } ?>
+<?php }
