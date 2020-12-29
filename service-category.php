@@ -65,6 +65,10 @@
                         <div class="service-row__image"><?=wp_get_attachment_image( $section['image'], 'full' ); ?></div>
                     <?php } ?>
                 </div>
+
+                <?php if( $section['after_content'] ){ ?>
+                    <div class="service-row-after"><?=do_shortcode( $section['after_content'] ); ?></div>
+	            <?php } ?>
             <?php
                 $sections_counter++;
             } ?>
