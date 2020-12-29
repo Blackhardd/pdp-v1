@@ -3977,7 +3977,6 @@ input.search-form__input:focus {
 .post-header__excerpt {
     margin-bottom: 80px;
     font-size: 18px;
-    line-height: 17px;
 }
 
 .post-header__excerpt p {
@@ -3997,6 +3996,10 @@ input.search-form__input:focus {
 /**
  *  Single Post - Body
  */
+
+.post-body {
+    font-size: 18px;
+}
 
 .post-body h2 {
     font-size: 24px;
