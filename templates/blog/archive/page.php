@@ -37,10 +37,8 @@
 			} ?>
 		</div>
 
-		<?php if( is_paged() ){ ?>
-			<div class="blog-pagination">
-				<?php the_posts_pagination(); ?>
-			</div>
-		<?php } ?>
+        <div class="blog-pagination">
+            <?php the_posts_pagination(); ?>
+        </div>
 	</div>
 </section>
