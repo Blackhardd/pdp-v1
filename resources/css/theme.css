@@ -1348,7 +1348,7 @@ header.main-header.fixed.active {
  */
 
 .appointment-mobile {
-    margin: 140px 60px 30px 60px;
+    margin: 140px 0 60px 60px;
 }
 
 .appointment-mobile__btn {
@@ -1411,10 +1411,11 @@ header.main-header.fixed.active {
 }
 
 .mobile-navigation .socials {
-    margin: 30px 0 30px 60px;
+    margin: 60px 0 30px 60px;
 }
 
 .mobile-navigation__back {
+    display: none;
     margin-bottom: 28px;
     padding: 0 30px;
 }

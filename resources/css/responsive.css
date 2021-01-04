@@ -228,6 +228,12 @@
         display: block;
     }
     /**
+     *  Mobile Navigation
+     */
+    .mobile-navigation__back {
+        display: block;
+    }
+    /**
      *  Phones List - Mobile
      */
     .phones-list.phones-list_mobile {
