@@ -1,18 +1,17 @@
 <?php
-    $main_salon = get_posts( array(
-	    'post_type'         => 'salon',
-	    'post_status'       => 'publish',
-	    'posts_per_page'    => 1,
-	    'orderby'           => 'rand',
-	    'tax_query'         => array(
-		    array(
-			    'taxonomy'  => 'city',
-			    'field'     => 'slug',
-			    'terms'     => 'kiev'
-		    )
-	    )
-    ) );
-?>
+$main_salon = get_posts( array(
+    'post_type'         => 'salon',
+    'post_status'       => 'publish',
+    'posts_per_page'    => 1,
+    'orderby'           => 'rand',
+    'tax_query'         => array(
+        array(
+            'taxonomy'  => 'city',
+            'field'     => 'slug',
+            'terms'     => 'kharkov'
+        )
+    )
+) ); ?>
 
 <div class="phonesList">
     <div class="phonesList__icon">
