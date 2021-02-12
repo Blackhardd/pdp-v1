@@ -27,19 +27,9 @@ $phone_marketing = carbon_get_theme_option( 'phone_marketing' ); ?>
 		<div class="container">
 			<div class="row row_1-1-1 mb_60px mb_50px_m">
 				<div class="col">
-					<?php get_template_part( 'templates/contacts/kiev' ); ?>
-				</div>
-
-				<div class="col">
                     <?php get_template_part( 'templates/contacts/kharkov' ); ?>
 				</div>
 			</div>
-
-            <div class="row row_2-1 mb_60px mb_50px_m">
-                <div class="col">
-	                <?php get_template_part( 'templates/contacts/vladimir-volynskiy' ); ?>
-                </div>
-            </div>
 
             <div class="row row_1-1-1">
                 <div class="col">

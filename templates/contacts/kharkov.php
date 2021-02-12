@@ -23,7 +23,7 @@ $kharkov_salons = get_posts(
 		$maps_link = carbon_get_post_meta( $salon->ID, 'google_maps' );
 		$email = carbon_get_post_meta( $salon->ID, 'email' );
 		$phone = carbon_get_post_meta( $salon->ID, 'phone' ); ?>
-		<div class="accordion__item <?php echo ( $key == 0 ) ? 'active' : ''; ?>">
+		<div class="accordion__item <?php echo 'active'; ?>">
 			<div class="accordion__item-header">
 				<div class="accordion__icon"><svg width="10" height="10" fill="none"><path d="M5 10V0M0 5h10" stroke="#000" stroke-width="1.1"/></svg></div>
 				<div class="accordion__title"><span>PIED-DE-POULE</span> <?=$short_title; ?></div>
