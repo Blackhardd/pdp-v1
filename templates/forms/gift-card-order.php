@@ -50,9 +50,9 @@
                     <div class="inputWrap__input">
                         <select name="card" class="selectric selectric_pdp iconed iconed_service">
                             <option value="">Выберите сертификат</option>
-                            <option value="3">3 месяца</option>
-                            <option value="6">6 месяцев</option>
-                            <option value="12">1 год</option>
+                            <option value="3 месяца">3 месяца</option>
+                            <option value="6 месяцев">6 месяцев</option>
+                            <option value="1 год">1 год</option>
                         </select>
                     </div>
                     <div class="inputWrap__errors"></div>
