@@ -50,11 +50,9 @@
                     <div class="inputWrap__input">
                         <select name="card" class="selectric selectric_pdp iconed iconed_service">
                             <option value="">Выберите сертификат</option>
-                            <option value="500">Номиналом 500 грн.</option>
-                            <option value="1000">Номиналом 1 000 грн.</option>
-                            <option value="3000">Номиналом 3 000 грн.</option>
-                            <option value="5000">Номиналом 5 000 грн.</option>
-                            <option value="10000">Номиналом 10 000 грн.</option>
+                            <option value="3">3 месяца</option>
+                            <option value="6">6 месяцев</option>
+                            <option value="12">1 год</option>
                         </select>
                     </div>
                     <div class="inputWrap__errors"></div>
