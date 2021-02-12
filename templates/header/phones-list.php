@@ -8,7 +8,7 @@ $main_salon = get_posts( array(
         array(
             'taxonomy'  => 'city',
             'field'     => 'slug',
-            'terms'     => 'kharkov'
+            'terms'     => 'harkov'
         )
     )
 ) ); ?>
