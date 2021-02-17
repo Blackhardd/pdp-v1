@@ -1,4 +1,6 @@
 <?php
+$city_term = carbon_get_theme_option( 'phones_list_hero_city' );
+
 $main_salon = get_posts( array(
     'post_type'         => 'salon',
     'post_status'       => 'publish',
@@ -7,8 +9,8 @@ $main_salon = get_posts( array(
     'tax_query'         => array(
         array(
             'taxonomy'  => 'city',
-            'field'     => 'slug',
-            'terms'     => 'harkov'
+            'field'     => 'id',
+            'terms'     => $city_term[0]['id']
         )
     )
 ) ); ?>
