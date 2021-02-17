@@ -1,6 +1,6 @@
 <?php
 /**
- * Pied-de-Poul functions and definitions
+ * PIED-DE-POULE functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
@@ -24,7 +24,7 @@ if ( ! function_exists( 'pdp_setup' ) ) :
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Pied-de-Poul, use a find and replace
+		 * If you're building a theme based on PIED-DE-POULE, use a find and replace
 		 * to change 'pdp' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'pdp', get_template_directory() . '/languages' );
