@@ -11,6 +11,7 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
+add_filter( 'body_class', 'pdp_body_classes' );
 function pdp_body_classes( $classes ) {
 	// Adds a class of hfeed to non-singular pages.
 	if ( ! is_singular() ) {
@@ -24,33 +25,57 @@ function pdp_body_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'pdp_body_classes' );
+
 
 /**
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
  */
+add_action( 'wp_head', 'pdp_pingback_header' );
 function pdp_pingback_header() {
 	if ( is_singular() && pings_open() ) {
 		printf( '<link rel="pingback" href="%s">', esc_url( get_bloginfo( 'pingback_url' ) ) );
 	}
 }
-add_action( 'wp_head', 'pdp_pingback_header' );
 
 
 /**
  * Add analytics
  */
+add_action( 'wp_head', 'pdp_add_analytics' );
 function pdp_add_analytics(){
 	echo carbon_get_theme_option( 'analytics_code' );
 }
-add_action( 'wp_head', 'pdp_add_analytics' );
+
+
+/**
+ * Add gtag.js actions
+ */
+add_action( 'wp_footer', 'pdp_add_gtag_actions', 100 );
+function pdp_add_gtag_actions(){
+    if( $actions = carbon_get_theme_option( 'gtag_actions' ) ){
+        echo "
+            <script>
+                jQuery(function($){
+                    $(document).ready(function(){
+        ";
+
+        foreach( $actions as $action ){
+            echo "$('{$action['selector']}').on('{$action['event']}', () => gtag('event', '{$action['gtag_event']}', { 'event_category': '{$action['gtag_category']}', 'event_action': '{$action['gtag_action']}' }));\n";
+        }
+
+        echo "
+                    });
+                });
+            </script>
+        ";
+    }
+}
 
 
 /**
  * Add appointment button to main menu.
  */
 add_filter( 'wp_nav_menu_items', 'pdp_menu_add_appointments', 10, 2 );
-
 function pdp_menu_add_appointments( $items, $args ){
 	if( 'header-menu' == $args->theme_location ){
 		ob_start(); ?>
@@ -74,7 +99,6 @@ function pdp_menu_add_appointments( $items, $args ){
  * Add right appointment button.
  */
 add_action( 'wp_footer', 'pdp_add_right_appointment_button' );
-
 function pdp_add_right_appointment_button(){
 	global $post;
 	if( $post->ID != 66 ){ ?>
@@ -89,9 +113,7 @@ function pdp_add_right_appointment_button(){
 /**
  * Add appointment modal
  */
-
 add_action( 'wp_footer', 'pdp_add_appointment_modal' );
-
 function pdp_add_appointment_modal(){ ?>
     <div class="modal" id="modal-appointment" aria-hidden="true">
         <div class="modal__dimmer" data-micromodal-close>
@@ -113,9 +135,7 @@ function pdp_add_appointment_modal(){ ?>
 /**
  * Add appointment modal
  */
-
 add_action( 'wp_footer', 'pdp_add_service_category_appointment_modal' );
-
 function pdp_add_service_category_appointment_modal(){
 	if( is_page_template( 'service-category.php' ) ){ ?>
         <div class="modal" id="modal-service-category-appointment" aria-hidden="true">
@@ -139,9 +159,7 @@ function pdp_add_service_category_appointment_modal(){
 /**
  * Add post share modal
  */
-
 add_action( 'wp_footer', 'pdp_add_share_post_modal' );
-
 function pdp_add_share_post_modal(){
 	if( is_single() ){ ?>
         <div class="modal" id="modal-share-post" aria-hidden="true">
@@ -173,7 +191,6 @@ function pdp_add_share_post_modal(){
 /**
  *  Add promotion details modal
  */
-
 function pdp_add_promotions_modal( $promotions = array() ){
 	$html = '<div class="promotion-details-wrap">';
 
@@ -213,9 +230,7 @@ function pdp_add_promotions_modal( $promotions = array() ){
 /**
  * Remove title from pagination
  */
-
 add_filter( 'navigation_markup_template', 'pdp_pagination_template', 10, 2 );
-
 function pdp_pagination_template( $template, $class ){
 	return '
         <nav class="navigation %1$s" role="navigation">
@@ -228,7 +243,6 @@ function pdp_pagination_template( $template, $class ){
 /**
  * Registration of image sizes for theme.
  */
-
 function pdp_register_image_sizes(){
 	if( function_exists( 'add_image_size' ) ){
 		add_image_size( 'testimonial', 160, 160, true );
@@ -245,16 +259,13 @@ function pdp_register_image_sizes(){
 		add_image_size( 'blog-thumbnail', 300, 300, true );
 	}
 }
-
 pdp_register_image_sizes();
 
 
 /**
  *  Allow to search only posts
  */
-
 add_filter( 'pre_get_posts', 'pdp_search_posts_filter' );
-
 function pdp_search_posts_filter( $query ){
 	if( $query->is_search ){
 		$query->set( 'post_type', 'post' );
@@ -267,7 +278,6 @@ function pdp_search_posts_filter( $query ){
 /**
  *  Generate and output posts sort order
  */
-
 function pdp_posts_sort_toggler(){
 	$order = 'asc';
 
@@ -282,7 +292,6 @@ function pdp_posts_sort_toggler(){
 /**
  *  Generate and output tags cloud
  */
-
 function pdp_tags_cloud(){
 	$tags = get_tags();
 	$current_tag = get_queried_object();
@@ -307,21 +316,18 @@ function pdp_tags_cloud(){
 /**
  *  Getting post likes
  */
-
 function pdp_get_post_likes(){
 	if( get_post_meta( get_the_ID(), '_likes', true ) ){
 		return get_post_meta( get_the_ID(), '_likes', true );
 	}
-	else{
-		return 0;
-	}
+
+	return 0;
 }
 
 
 /**
  *  Get salon related masters
  */
-
 function pdp_get_salon_masters( $salon_term_id ){
 	return get_posts(
 		array(
@@ -342,7 +348,6 @@ function pdp_get_salon_masters( $salon_term_id ){
 /**
  *  Getting related service pages
  */
-
 function pdp_get_related_pages( $post = false ){
 	if( !$post ){
 		return false;
