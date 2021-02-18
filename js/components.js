@@ -413,12 +413,7 @@ jQuery(function($){
                             {{data.name}}<span class="badge pro" v-if="data.pro"></span>
                         </div>
 
-                        <div class="pricelist-item__price" v-if="data.master == true && data.prices.length == 1">{{data.prices[0][master_option]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 1">{{data.prices[0][0]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == true && data.prices.length == 3 && hair_length <= 3">{{data.prices[hair_length][master_option]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 3 && hair_length <= 3">{{data.prices[hair_length][0]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == true && data.prices.length == 4">{{data.prices[hair_length][master_option]}}<span class="uah"></span></div>
-                        <div class="pricelist-item__price" v-else-if="data.master == false && data.prices.length == 4">{{data.prices[hair_length][0]}}<span class="uah"></span></div>
+                        <div class="pricelist-item__price">{{price}}<span class="uah"></span></div>
                     </div>
 
                     <button class="pricelist-item__add-btn btn-icon"
@@ -444,6 +439,33 @@ jQuery(function($){
                 },
                 master_option: function(){
                     return this.$store.getters.masterOption
+                },
+                price: function(){
+                    let service = this.data
+
+                    if(service.prices.length == 1){
+                        if(service.master){
+                            return service.prices[0][this.master_option]
+                        }
+
+                        return service.prices[0][0]
+                    }
+                    else if(service.prices.length == 3){
+                        let h_length = this.hair_length < 3 ? this.hair_length : 2
+
+                        if(service.master){
+                            return service.prices[h_length][this.master_option]
+                        }
+
+                        return service.prices[h_length][0]
+                    }
+                    else if(service.prices.length == 4){
+                        if(service.master){
+                            return service.prices[this.hair_length][this.master_option]
+                        }
+
+                        return service.prices[this.hair_length][0]
+                    }
                 }
             }
         });
