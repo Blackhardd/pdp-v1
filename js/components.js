@@ -35,6 +35,12 @@ jQuery(function($){
                         else if(!cur.master && cur.prices.length == 1){
                             return parseInt(prev) + parseInt(cur.prices[0][0])
                         }
+                        else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length < 3){
+                            return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
+                        }
+                        else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length == 3){
+                            return parseInt(prev) + parseInt(cur.prices[2][0])
+                        }
                         else if(!cur.master && cur.prices.length == 4){
                             return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
                         }
