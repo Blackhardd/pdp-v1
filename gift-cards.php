@@ -80,11 +80,6 @@ get_header(); ?>
                     </div>
 
                     <div class="iconBox">
-                        <svg width="28" height="28" fill="none"><path d="M22 8c-3.1 0-6.5 3-8 4.5C12.5 11 9.1 8 6 8c-3.8 0-6 2.2-6 6s2.2 6 6 6c3.1 0 6.5-3 8-4.5 1.5 1.5 4.9 4.5 8 4.5 3.8 0 6-2.2 6-6s-2.2-6-6-6zM6 18c-2.7 0-4-1.3-4-4s1.3-4 4-4c2.2 0 5.1 2.5 6.6 4-1.5 1.5-4.4 4-6.6 4zm16 0c-2.2 0-5.1-2.5-6.6-4 1.5-1.5 4.4-4 6.6-4 2.7 0 4 1.3 4 4s-1.3 4-4 4z" fill="#392BDF"/></svg>
-                        <div class="iconBox__title txt_fs-16px txt_lh-16px">Безлимит на день</div>
-                    </div>
-
-                    <div class="iconBox">
                         <svg width="24" height="24" fill="none"><path d="M23 11H6.9a1 1 0 100 2H23a1 1 0 100-2zM23 4H6.9a1 1 0 100 2H23a1 1 0 100-2zM23 18H6.9a1 1 0 100 2H23a1 1 0 000-2zM1.3 6.2a1.3 1.3 0 100-2.5 1.3 1.3 0 000 2.5zM1.3 13.3a1.3 1.3 0 100-2.6 1.3 1.3 0 000 2.6zM1.3 20.3a1.3 1.3 0 100-2.5 1.3 1.3 0 000 2.5z" fill="#392BDF"/></svg>
                         <div class="iconBox__title txt_fs-16px txt_lh-16px">Любая услуга</div>
                     </div>
