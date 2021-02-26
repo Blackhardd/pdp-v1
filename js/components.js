@@ -563,7 +563,7 @@ jQuery(function($){
                             </ul>
                         </div>
                         <div class="form__response active success" v-else-if="isSubmitSuccess">
-                            {{ submitResponse }}
+                            {{{ submitResponse }}}
                         </div>
                 
                         <div class="cart-form__footer">
