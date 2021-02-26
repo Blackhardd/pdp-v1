@@ -56,7 +56,7 @@ $gallery = carbon_get_post_meta( get_the_ID(), 'gallery' ); ?>
                             <?php } ?>
                         </ul>
 
-                        <a href="<?=get_permalink( 66 ) . '?salonId=' . get_the_ID(); ?>" class="btn-default">список услуг</a>
+                        <a href="<?=get_permalink( 66 ) . '?salonId=' . get_the_ID(); ?>" class="btn-default"><?=__( 'Список услуг', 'pdp' ); ?></a>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@ $gallery = carbon_get_post_meta( get_the_ID(), 'gallery' ); ?>
     <section id="salon-other">
         <div class="container">
             <div class="title mt_40px mb_40px">
-                <h2 class="title__heading txt_lower-case">Наши салоны</h2>
+                <h2 class="title__heading txt_lower-case"><?=__( 'Наши салоны', 'pdp' ); ?></h2>
             </div>
 
             <div class="title mb_30px">

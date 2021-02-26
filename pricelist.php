@@ -36,20 +36,20 @@ get_header(); ?>
                         <div class="pricelist__header">
                             <div class="pricelist__filters">
                                 <div class="pricelist__hair-filter" :class="{ active: activeCategoryServices.is_hair_services }">
-                                    <div class="mb_20px txt_fw-600 txt_fs-24px txt_lh-24px">ваша длина волос</div>
+                                    <div class="mb_20px txt_fw-600 txt_fs-24px txt_lh-24px"><?=__( 'Ваша длина волос', 'pdp' ); ?></div>
 
                                     <hair-length-select />
                                 </div>
 
                                 <div class="toggle pricelist__master-filter" :class="{ active: activeCategoryServices.is_master_option }">
-                                    <span class="toggle__label">Мастер</span>
+                                    <span class="toggle__label"><?=__( 'Мастер', 'pdp' ); ?></span>
 
                                     <label class="toggle__input-wrap">
                                         <input type="checkbox" name="master" class="toggle__input" value="1" @input="setMasterOption" :checked="masterOption">
                                         <span class="toggle__slider"></span>
                                     </label>
 
-                                    <span class="toggle__label">Старший мастер</span>
+                                    <span class="toggle__label"><?=__( 'Старший мастер', 'pdp' ); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@ get_header(); ?>
                                     <div class="pricelist-category__title">{{ subcategory.name }}</div>
 
                                     <div class="pricelist-category__info">
-                                        <span class="badge pro"></span> только старший мастер
+                                        <span class="badge pro"></span> <?=__( 'только старший мастер', 'pdp' ); ?>
                                     </div>
                                 </div>
 

@@ -4,10 +4,10 @@ $list = $args['pricelist']; ?>
 <div class="service-row__pricelist services-pricelist services-pricelist_complex">
 	<div class="services-pricelist__header">
 		<div class="services-pricelist__category"><?=$list['category']; ?></div>
-		<div class="services-pricelist__length-label"><b>1</b> <?=__( 'длина', 'pdp_core' ); ?></div>
-		<div class="services-pricelist__length-label"><b>2</b> <?=__( 'длина', 'pdp_core' ); ?></div>
-		<div class="services-pricelist__length-label"><b>3</b> <?=__( 'длина', 'pdp_core' ); ?></div>
-		<div class="services-pricelist__length-label"><b>4</b> <?=__( 'длина', 'pdp_core' ); ?></div>
+		<div class="services-pricelist__length-label"><b>1</b> <?=__( 'длина', 'pdp' ); ?></div>
+		<div class="services-pricelist__length-label"><b>2</b> <?=__( 'длина', 'pdp' ); ?></div>
+		<div class="services-pricelist__length-label"><b>3</b> <?=__( 'длина', 'pdp' ); ?></div>
+		<div class="services-pricelist__length-label"><b>4</b> <?=__( 'длина', 'pdp' ); ?></div>
 	</div>
 
 	<div class="services-pricelist__items-wrap">

@@ -45,7 +45,7 @@
 		        <?php the_content(); ?>
 
                 <div class="post-relink" style="display: none;">
-                    <div class="post-relink__title">читайте также:</div>
+                    <div class="post-relink__title"><?=__( 'Читайте также:', 'pdp' ); ?></div>
                     <a href="#" class="post-relink__link">10 шагов к превращению нового клиента в фаната вашего салона</a>
                 </div>
             </div>

@@ -37,7 +37,7 @@ $details_html = ''; ?>
                                     <button class="vacancies__item-btn" data-vacancy="<?=$vacancy->ID; ?>" data-title="<?=$vacancy->post_title; ?>">
                                         <?=$vacancy->post_title; ?>
                                         <?php if( carbon_get_post_meta( $vacancy->ID, 'actual' ) == 'true' ){ ?>
-                                            <span class="vacancies__item-badge">Актуально!</span>
+                                            <span class="vacancies__item-badge"><?=__( 'Актуально!', 'pdp' ); ?></span>
                                         <?php } ?>
                                     </button>
                                 </li>

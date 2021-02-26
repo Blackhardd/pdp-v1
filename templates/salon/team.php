@@ -1,11 +1,11 @@
 <?php $team = pdp_get_salon_masters( carbon_get_post_meta( get_the_ID(), 'masters_term' )[0]['id'] ); ?>
 
 <div class="title mb_10px">
-	<h2 class="title__heading txt_fs-36px txt_lh-36px">Наша команда</h2>
+	<h2 class="title__heading txt_fs-36px txt_lh-36px"><?=__( 'Наша команда', 'pdp' ); ?></h2>
 </div>
 
 <div class="textBlock mw_550px mb_60px txt_fs-18px txt_lh-24px">
-	<p>Высокое качество услуг вы получаете благодаря сплоченной команде наших профессионалов.</p>
+	<p><?=__( 'Высокое качество услуг вы получаете благодаря сплоченной команде наших профессионалов.', 'pdp' ); ?></p>
 </div>
 
 <div class="team-slider">
@@ -21,7 +21,7 @@
 					<div class="masterCard__title"><?=$title; ?></div>
 					<div class="masterCard__expirience"><?=$experience; ?></div>
 
-					<button class="masterCard__btn btn-default" data-master="<?=$master->ID; ?>">записаться</button>
+					<button class="masterCard__btn btn-default" data-master="<?=$master->ID; ?>"><?=__( 'Записаться', 'pdp' ); ?></button>
 				</div>
 			</div>
 		</div>
@@ -42,7 +42,7 @@
 			<div class="master-details__right">
 				<div class="master-details__name"><?=$name; ?></div>
 				<div class="master-details__title"><?=$title; ?></div>
-				<div class="master-details__experience">Опыт <?=$experience; ?></div>
+				<div class="master-details__experience"><?=__( 'Опыт', 'pdp' ); ?> <?=$experience; ?></div>
 				<div class="master-details__info"><?=$info; ?></div>
 			</div>
 		</div>

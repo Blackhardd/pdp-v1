@@ -18,11 +18,6 @@ function pdp_body_classes( $classes ) {
 		$classes[] = 'hfeed';
 	}
 
-	// Adds a class of no-sidebar when there is no sidebar present.
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[] = 'no-sidebar';
-	}
-
 	return $classes;
 }
 
@@ -81,7 +76,7 @@ function pdp_menu_add_appointments( $items, $args ){
 		ob_start(); ?>
         <li class="menu-item menu-item_appointment" ref="cartToggler">
             <button class="oce-cart" @click="isCartActive = !isCartActive">
-                запись
+                <?=__( 'Запись', 'pdp' ); ?>
                 <div class="servicesCounter">
                     <div class="servicesCounter__number">{{ cartItems }}</div>
                 </div>
@@ -103,7 +98,7 @@ function pdp_add_right_appointment_button(){
 	global $post;
 	if( $post->ID != 66 ){ ?>
         <div class="sticky-btns">
-            <button class="btn-sticky-right sticky-btns__btn" data-micromodal-trigger="modal-appointment">online запись</button>
+            <button class="btn-sticky-right sticky-btns__btn" data-micromodal-trigger="modal-appointment"><?=__( 'Online запись', 'pdp' ); ?></button>
         </div>
 		<?php
 	}
@@ -165,9 +160,7 @@ function pdp_add_share_post_modal(){
         <div class="modal" id="modal-share-post" aria-hidden="true">
             <div class="modal__dimmer" data-micromodal-close>
                 <div class="modal__inner">
-                    <div class="modal__header">
-                        Поделиться статьей
-                    </div>
+                    <div class="modal__header"><?=__( 'Поделиться статьей', 'pdp' ); ?></div>
                     <div class="modal__content">
                         <div class="inputWrap inputWrap_iconed">
                             <div class="inputWrap__input">

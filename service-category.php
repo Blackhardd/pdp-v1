@@ -79,7 +79,7 @@
         <section id="service-related">
             <div class="container">
                 <div class="title mb_40px">
-                    <h2 class="title__heading txt_fs-24px_m">обратите внимание на другие услуги</h2>
+                    <h2 class="title__heading txt_fs-24px_m"><?=__( 'Обратите внимание на другие услуги', 'pdp' ); ?></h2>
                 </div>
 
                 <div class="related-pages">

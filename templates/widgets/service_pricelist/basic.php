@@ -4,7 +4,7 @@ $list = $args['pricelist']; ?>
 <div class="service-row__pricelist serviceList">
     <div class="serviceList__header">
         <div class="serviceList__category"><?=$list['category']; ?></div>
-        <div class="serviceList__desc"><?=__( '*Мастер / Старший мастер', 'pdp_core' ); ?></div>
+        <div class="serviceList__desc"><?=__( '*Мастер / Старший мастер', 'pdp' ); ?></div>
     </div>
 
     <div class="serviceList__services">

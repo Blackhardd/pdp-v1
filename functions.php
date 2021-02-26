@@ -231,11 +231,29 @@ function pdp_scripts() {
     wp_enqueue_script( 'pdp-front', get_template_directory_uri() . '/js/script.js', array(), _S_VERSION, true );
     wp_enqueue_script( 'pdp-components', get_template_directory_uri() . '/js/components.js', array(), _S_VERSION, true );
 
-    wp_localize_script( 'pdp-components', 'pdpVueData', array(
+    wp_localize_script( 'pdp-components', 'pdp_vue_data', array(
         'rest_url'          => untrailingslashit( esc_url_raw( rest_url() ) ),
         'ajax_url'          => admin_url( 'admin-ajax.php' ),
 	    'gift_cards_url'    => get_permalink( 366 )
     ) );
+
+	wp_localize_script( 'pdp-components', 'pdp_vue_lang', array(
+		'your_booking'      => __( 'Ваше бронирование', 'pdp' ),
+		'select_service'    => __( 'Выберите услуги', 'pdp' ),
+		'fill_the_form'     => __( 'Заполните форму', 'pdp' ),
+		'how_call_you'      => __( 'Как к вам обращаться?', 'pdp' ),
+		'phone_number'      => __( 'Номер телефона', 'pdp' ),
+		'email'             => __( 'Электронная почта', 'pdp' ),
+		'book_now'          => __( 'Забронировать', 'pdp' ),
+		'cost_of_services'  => __( 'Стоимость услуг', 'pdp' ),
+		'enter_a_name'      => __( 'Укажите имя', 'pdp' ),
+		'enter_a_phone'     => __( 'Укажите номер телефона', 'pdp' ),
+		'no_services'       => __( 'Вы не выбрали услуги', 'pdp' ),
+		'hair_length_1st'   => __( 'от 5-15 см', 'pdp' ),
+		'hair_length_2nd'   => __( 'от 15 - 25 см (выше плеч, каре, боб)', 'pdp' ),
+		'hair_length_3rd'   => __( 'от 25 - 40 см (ниже плеч/выше лопаток)', 'pdp' ),
+		'hair_length_4th'   => __( 'от 40 - 60 см (ниже лопаток)', 'pdp' )
+	) );
 
     wp_localize_script( 'pdp-forms', 'pdpData', array(
         'ajaxurl' => admin_url( 'admin-ajax.php' )
@@ -244,10 +262,6 @@ function pdp_scripts() {
 	wp_localize_script( 'pdp-post', 'pdpData', array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' )
 	) );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
 }
 add_action( 'wp_enqueue_scripts', 'pdp_scripts' );
 
