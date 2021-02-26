@@ -38,21 +38,31 @@
             </div>
         </div>
 
-        <div class="form__row">
-            <div class="form__col_full">
-                <div class="inputWrap">
-                    <div class="inputWrap__input">
-                        <select name="salon" class="selectric selectric_pdp iconed iconed_salon">
-                            <option value=""><?=__( 'Выберите салон', 'pdp' ); ?></option>
-                            <?php foreach( $salons as $salon ){ ?>
-                                <option value="<?=$salon->ID; ?>"><?=$salon->post_title; ?></option>
-                            <?php } ?>
-                        </select>
+	    <?php if( carbon_get_theme_option( 'forms_show_salon_select' ) ) : ?>
+            <div class="form__row">
+                <div class="form__col_full">
+                    <div class="inputWrap">
+                        <div class="inputWrap__input">
+                            <select name="salon" class="selectric selectric_pdp iconed iconed_salon">
+                                <option value=""><?=__( 'Выберите салон', 'pdp' ); ?></option>
+							    <?php
+							    foreach( pdp_get_salons() as $salon ){
+								    if( isset( $_GET['salon_pricelist'] ) && $_GET['salon_pricelist'] == $salon->ID ){ ?>
+                                        <option value="<?=$salon->ID; ?>" selected><?=$salon->post_title; ?></option>
+								    <?php } else { ?>
+                                        <option value="<?=$salon->ID; ?>"><?=$salon->post_title; ?></option>
+									    <?php
+								    }
+							    } ?>
+                            </select>
+                        </div>
+                        <div class="inputWrap__errors"></div>
                     </div>
-                    <div class="inputWrap__errors"></div>
                 </div>
             </div>
-        </div>
+	    <?php else : ?>
+            <input type="hidden" name="salon" value="<?=carbon_get_theme_option( 'forms_default_salon' ); ?>">
+	    <?php endif; ?>
 
         <div class="form__response"></div>
 

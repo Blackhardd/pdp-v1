@@ -119,8 +119,6 @@ jQuery(function($){
                     const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/get_cart`)
                     const cart = await res.json()
 
-                    console.log(cart)
-
                     ctx.commit('setCart', cart)
                 },
                 async addToCart(ctx, service){

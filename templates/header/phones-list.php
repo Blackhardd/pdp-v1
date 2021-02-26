@@ -1,66 +1,83 @@
 <?php
-$hero_city = carbon_get_theme_option( 'phones_list_hero_city' );
 
-$main_salon = get_posts( array(
-    'post_type'         => 'salon',
-    'post_status'       => 'publish',
-    'posts_per_page'    => 1,
+$is_show_dropdown = carbon_get_theme_option( 'header_show_salons_dropdown' );
+$main_city = carbon_get_theme_option( 'header_main_city' );
+
+$main_salon_args = array(
+	'post_type'         => 'salon',
     'orderby'           => 'rand',
-    'tax_query'         => array(
-        array(
-            'taxonomy'  => 'city',
-            'field'     => 'id',
-            'terms'     => $hero_city[0]['id']
-        )
-    )
-) ); ?>
+	'posts_per_page'    => 1,
+);
+
+if( $main_city ){
+    $main_city_id = array_shift( $main_city )['id'];
+	$main_salon_args['tax_query'] = array(
+		array(
+			'taxonomy'  => 'city',
+			'field'     => 'id',
+			'terms'     => $main_city_id
+		)
+	);
+}
+
+$main_salon = get_posts( $main_salon_args );
+$main_salon = array_shift( $main_salon );
+$main_salon_phone = carbon_get_post_meta( $main_salon->ID, 'phone' );
+
+?>
 
 <div class="phonesList">
-    <div class="phonesList__icon">
-        <svg width="24" height="24" fill="none">
-            <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 12l-4-4h8l-4 4z" fill="#000"/>
-        </svg>
-    </div>
+    <?php if( $is_show_dropdown ): ?>
+        <div class="phonesList__icon">
+            <svg width="24" height="24" fill="none">
+                <path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 12l-4-4h8l-4 4z" fill="#000"/>
+            </svg>
+        </div>
+    <?php endif; ?>
+
     <div class="phonesList__placeholder">
-        <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', carbon_get_post_meta( $main_salon[0]->ID, 'phone' ) ); ?>">
-            <address class="phonesList__address"><?=$main_salon[0]->post_title; ?></address>
-            <div class="phonesList__phone"><?=carbon_get_post_meta( $main_salon[0]->ID, 'phone' ); ?></div>
+        <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', $main_salon_phone ); ?>">
+            <div class="phonesList__address"><?=$main_salon->post_title; ?></div>
+            <div class="phonesList__phone"><?=$main_salon_phone; ?></div>
         </a>
     </div>
-    <div class="phonesList__dropdown">
-        <div class="phonesList__dropdownInner">
-            <?php
-            $cat_args = array(
-                'taxonomy'      => 'city',
-                'child_of'      => 0,
-                'hide_empty'    => 1
-            );
 
-            foreach( get_categories( $cat_args ) as $tax ){ ?>
-                <div class="phonesList__dropdownGroup">
-                    <div class="phonesList__dropdownLabel"><?=$tax->name; ?></div>
-                    <?php
-                    $posts_args = array(
-                        'post_type'         => 'salon',
-                        'post_status'       => 'publish',
-                        'posts_per_page'    => -1,
-                        'tax_query'         => array(
-                            array(
-                                'taxonomy'  => 'city',
-                                'field'     => 'slug',
-                                'terms'     => $tax->slug
+    <?php if( $is_show_dropdown ): ?>
+        <div class="phonesList__dropdown">
+            <div class="phonesList__dropdownInner">
+                <?php
+                $terms = get_terms( array(
+	                'taxonomy'      => 'city',
+	                'child_of'      => 0,
+	                'hide_empty'    => 1
+                ) );
+
+                foreach( $terms as $term ){ ?>
+                    <div class="phonesList__dropdownGroup">
+                        <div class="phonesList__dropdownLabel"><?=$term->name; ?></div>
+                        <?php
+                        $posts_args = array(
+                            'post_type'         => 'salon',
+                            'post_status'       => 'publish',
+                            'posts_per_page'    => -1,
+                            'tax_query'         => array(
+                                array(
+                                    'taxonomy'  => 'city',
+                                    'field'     => 'slug',
+                                    'terms'     => $term->slug
+                                )
                             )
-                        )
-                    );
+                        );
 
-                    foreach( get_posts( $posts_args ) as $salon ){ ?>
-                        <div class="phonesList__dropdownItem">
-                            <div class="phonesList__dropdownItemAddress"><?=$salon->post_title; ?></div>
-                            <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', carbon_get_post_meta( $salon->ID, 'phone' ) ); ?>" class="phonesList__dropdownItemPhone"><?=carbon_get_post_meta( $salon->ID, 'phone' ); ?></a>
-                        </div>
-                    <?php } ?>
-                </div>
-            <?php } ?>
+                        foreach( get_posts( $posts_args ) as $salon ) : $salon_phone = carbon_get_post_meta( $salon->ID, 'phone' ); ?>
+                            <div class="phonesList__dropdownItem">
+                                <div class="phonesList__dropdownItemAddress"><?=$salon->post_title; ?></div>
+                                <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', $salon_phone ); ?>" class="phonesList__dropdownItemPhone"><?=$salon_phone; ?></a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 </div>

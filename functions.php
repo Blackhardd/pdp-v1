@@ -266,21 +266,16 @@ function pdp_scripts() {
 add_action( 'wp_enqueue_scripts', 'pdp_scripts' );
 
 /**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
- * Customizer additions.
+ * Template shortcodes.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/template-shortcodes.php';
+
+/**
+ * Template options.
+ */
+require get_template_directory() . '/inc/template-options.php';
