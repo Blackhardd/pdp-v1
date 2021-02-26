@@ -2319,18 +2319,20 @@ input.search-form__input:focus {
     max-width: 480px;
 }
 
-.service-header__description p {
+.service-header__description p:not(:last-child) {
     margin-bottom: 40px;
 }
 
-.service-header__description p:last-child {
-    margin-bottom: 0;
+.service-header__description ol,
+.service-header__description ul {
+    margin: 0 0 40px;
+    padding: 0 0 0 16px;
 }
 
 
-/**
- *  Homepage services slider
- */
+    /**
+     *  Homepage services slider
+     */
 
 .service-categories__salon-switcher {
     margin-bottom: 20px;
