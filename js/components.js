@@ -326,522 +326,522 @@ jQuery(function($){
     })
 
 
-        /**
-         *  Service Categories
-         */
-        const ServiceCategories = Vue.component('service-categories', {
-            template: `
-                <div class="service-categories-wrap">
-                    <div class="service-categories">
-                        <div v-for="(category, index) of categories" :key="index">
-                            <div class="service-categories__category">
-                                <div v-html="category.img"></div>
-                                <div class="service-categories__title" @click="$emit('show-category', category.slug)">
-                                    {{ category.title }}
-                                    <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
-                                </div>
-                            </div>
+    /**
+     *  Service Categories
+     */
+    const ServiceCategories = Vue.component('service-categories', {
+        template: `
+            <div class="service-categories-wrap">
+                <div class="service-categories">
+                    <div v-for="(category, index) of categories" :key="index">
+                        <div class="service-categories__category">
+                            <div v-html="category.img"></div>
+                            <div class="service-categories__title" @click="$emit('show-category', category.slug)">
+                                {{ category.title }}
+                            <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
                         </div>
                     </div>
                 </div>
-            `,
-            mounted(){
-                this.fetchCategories()
+            </div>
+        </div>
+        `,
+        mounted(){
+            this.fetchCategories()
+        },
+        methods: {
+            fetchCategories(){
+                let vm = this
+                this.$store.dispatch('fetchCategories').then(() => {
+                    $(vm.$el).find('.service-categories').slick(this.slickOptions)
+                    vm.stretchSlider()
+                    window.addEventListener('resize', vm.stretchSlider)
+                })
             },
-            methods: {
-                fetchCategories(){
-                    let vm = this
-                    this.$store.dispatch('fetchCategories').then(() => {
-                        $(vm.$el).find('.service-categories').slick(this.slickOptions)
-                        vm.stretchSlider()
-                        window.addEventListener('resize', vm.stretchSlider)
-                    })
-                },
-                stretchSlider(){
-                    let offset = $(this.$el).offset().left
-                    $(this.$el).width('calc(100vw - ' + offset + 'px)')
-                }
-            },
-            data: function(){
-                return{
-                    slickOptions: {
-                        infinite: false,
-                        slidesToShow: 4,
-                        slidesToScroll: 1,
-                        variableWidth: true,
-                        autoplay: false,
-                        swipeToSlide: true,
-                        arrows: false,
-                        responsive: [
-                            {
-                                breakpoint: 1024,
-                                settings: {
-                                    slidesToShow: 2,
-                                    arrows: false
-                                }
-                            },
-                            {
-                                breakpoint: 550,
-                                settings: {
-                                    slidesToShow: 1,
-                                    arrows: false
-                                }
+            stretchSlider(){
+                let offset = $(this.$el).offset().left
+                $(this.$el).width('calc(100vw - ' + offset + 'px)')
+            }
+        },
+        data: function(){
+            return{
+                slickOptions: {
+                    infinite: false,
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    variableWidth: true,
+                    autoplay: false,
+                    swipeToSlide: true,
+                    arrows: false,
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 2,
+                                arrows: false
                             }
-                        ]
-                    }
-                }
-            },
-            computed: {
-                categories: function(){
-                    return this.$store.getters.categories
+                        },
+                        {
+                            breakpoint: 550,
+                            settings: {
+                                slidesToShow: 1,
+                                arrows: false
+                            }
+                        }
+                    ]
                 }
             }
-        })
+        },
+        computed: {
+            categories: function(){
+                return this.$store.getters.categories
+            }
+        }
+    })
 
 
-        /**
-         *  Price List Item
-         */
-        const PriceListItem = Vue.component('pricelist-item', {
-            template: `
-                <div class="pricelist-item">
-                    <div class="pricelist-item__info">
-                        <div class="pricelist-item__name">
-                            {{data.name}}<span class="badge pro" v-if="data.pro"></span>
-                        </div>
-
-                        <div class="pricelist-item__price">{{price}}<span class="uah"></span></div>
+    /**
+     *  Price List Item
+     */
+    const PriceListItem = Vue.component('pricelist-item', {
+        template: `
+            <div class="pricelist-item">
+                <div class="pricelist-item__info">
+                    <div class="pricelist-item__name">
+                        {{data.name}}<span class="badge pro" v-if="data.pro"></span>
                     </div>
 
-                    <button class="pricelist-item__add-btn btn-icon"
-                        @click="addToCart(data)"
-                        :data-added="isInCart(data)"
-                    >
-                        <span class="pricelist-item__icon"></span>
-                    </button>
+                    <div class="pricelist-item__price">{{price}}<span class="uah"></span></div>
                 </div>
+
+                <button class="pricelist-item__add-btn btn-icon"
+                    @click="addToCart(data)"
+                    :data-added="isInCart(data)"
+                >
+                    <span class="pricelist-item__icon"></span>
+                </button>
+            </div>
             `,
-            props: ['data'],
-            methods: {
-                addToCart(service){
-                    this.$store.dispatch('addToCart', service)
-                }
+        props: ['data'],
+        methods: {
+            addToCart(service){
+                this.$store.dispatch('addToCart', service)
+            }
+        },
+        computed: {
+            isInCart: function(){
+                return this.$store.getters.isServiceInCart
             },
-            computed: {
-                isInCart: function(){
-                    return this.$store.getters.isServiceInCart
-                },
-                hair_length: function(){
-                    return this.$store.getters.hairLength
-                },
-                master_option: function(){
-                    return this.$store.getters.masterOption
-                },
-                price: function(){
-                    let service = this.data
+            hair_length: function(){
+                return this.$store.getters.hairLength
+            },
+            master_option: function(){
+                return this.$store.getters.masterOption
+            },
+            price: function(){
+                let service = this.data
 
-                    if(service.prices.length == 1){
-                        if(service.master){
-                            return service.prices[0][this.master_option]
-                        }
-
-                        return service.prices[0][0]
+                if(service.prices.length == 1){
+                    if(service.master){
+                        return service.prices[0][this.master_option]
                     }
-                    else if(service.prices.length == 3){
-                        let h_length = this.hair_length < 3 ? this.hair_length : 2
 
-                        if(service.master){
-                            return service.prices[h_length][this.master_option]
-                        }
+                    return service.prices[0][0]
+                }
+                else if(service.prices.length == 3){
+                    let h_length = this.hair_length < 3 ? this.hair_length : 2
 
-                        return service.prices[h_length][0]
+                    if(service.master){
+                        return service.prices[h_length][this.master_option]
                     }
-                    else if(service.prices.length == 4){
-                        if(service.master){
-                            return service.prices[this.hair_length][this.master_option]
-                        }
 
-                        return service.prices[this.hair_length][0]
+                    return service.prices[h_length][0]
+                }
+                else if(service.prices.length == 4){
+                    if(service.master){
+                        return service.prices[this.hair_length][this.master_option]
                     }
+
+                    return service.prices[this.hair_length][0]
                 }
             }
-        });
+        }
+    })
 
 
-        /**
-         *  Cart Component
-         */
-        const Cart = Vue.component('cart', {
-            template: `
-                <div>
-                    <preloader
-                        :is-active="isLoading"
-                    />
-                    <form class="form cart-form cart__form" @submit.prevent="submitForm">
-                        <div class="cart-form__header">{{ pdp_vue_lang.your_booking }}</div>
+    /**
+     *  Cart Component
+     */
+    const Cart = Vue.component('cart', {
+        template: `
+            <div>
+                <preloader
+                    :is-active="isLoading"
+                />
+                <form class="form cart-form cart__form" @submit.prevent="submitForm">
+                    <div class="cart-form__header">{{ pdp_vue_lang.your_booking }}</div>
                 
-                        <div v-if="cart.items.length">
-                            <div class="cart-form__list">
-                                <div v-for="(service, index) in cart.items" :key="index">
-                                    <button type="button" class="pricelist-item__add-btn btn-icon" @click="removeFromCart(service)" data-added>
-                                        <span class="pricelist-item__icon"></span>
-                                    </button>
-                                    {{ service.name }}
-                                </div>
+                    <div v-if="cart.items.length">
+                        <div class="cart-form__list">
+                            <div v-for="(service, index) in cart.items" :key="index">
+                                <button type="button" class="pricelist-item__add-btn btn-icon" @click="removeFromCart(service)" data-added>
+                                    <span class="pricelist-item__icon"></span>
+                                </button>
+                                {{ service.name }}
                             </div>
                         </div>
-                        <div v-else>
-                            <div class="alert mb_60px mt_50px">
-                                <div class="alert__icon">!</div>
-                                <div class="alert__content">{{ pdp_vue_lang.select_service }}</div>
-                            </div>
+                    </div>
+                    <div v-else>
+                        <div class="alert mb_60px mt_50px">
+                            <div class="alert__icon">!</div>
+                            <div class="alert__content">{{ pdp_vue_lang.select_service }}</div>
                         </div>
+                    </div>
                         
-                        <div class="cart-form__hair-length" v-show="isHairServiceInCart">
-                            <hair-length-select />
-                        </div>
+                    <div class="cart-form__hair-length" v-show="isHairServiceInCart">
+                        <hair-length-select />
+                    </div>
                 
-                        <div class="cart-form__title">{{ pdp_vue_lang.fill_the_form }}</div>
+                    <div class="cart-form__title">{{ pdp_vue_lang.fill_the_form }}</div>
                 
-                        <div class="form__row">
-                            <div class="form__col_full">
-                                <div class="inputWrap inputWrap_iconed">
-                                    <div class="inputWrap__icon">
-                                        <svg width="14" height="14" fill="none">
-                                            <path d="M10.8 9.4C9.1 8.7 8.5 9 8.5 7.9v-.2h2.7c.4-.3-1-.8-1-4.5C10.2 1.3 9 0 7.1 0H7h-.1C5 0 3.8 1.3 3.8 3.2c0 3.7-1.4 4.2-1 4.5h2.6v.2c0 1.2-.5.8-2.2 1.5C1.4 10 .9 10.7.9 11V14h12.2v-2.9c0-.4-.5-1-2.3-1.7z" fill="#000"/>
-                                        </svg>
-                                    </div>
-                                    <input type="text" name="name" class="input input_text"
-                                        :placeholder="pdp_vue_lang.how_call_you"
-                                        v-model="name" 
-                                        required
-                                    />
+                    <div class="form__row">
+                        <div class="form__col_full">
+                            <div class="inputWrap inputWrap_iconed">
+                                <div class="inputWrap__icon">
+                                    <svg width="14" height="14" fill="none">
+                                        <path d="M10.8 9.4C9.1 8.7 8.5 9 8.5 7.9v-.2h2.7c.4-.3-1-.8-1-4.5C10.2 1.3 9 0 7.1 0H7h-.1C5 0 3.8 1.3 3.8 3.2c0 3.7-1.4 4.2-1 4.5h2.6v.2c0 1.2-.5.8-2.2 1.5C1.4 10 .9 10.7.9 11V14h12.2v-2.9c0-.4-.5-1-2.3-1.7z" fill="#000"/>
+                                    </svg>
                                 </div>
+                                <input type="text" name="name" class="input input_text"
+                                    :placeholder="pdp_vue_lang.how_call_you"
+                                    v-model="name" 
+                                    required
+                                />
                             </div>
                         </div>
+                    </div>
                 
-                        <div class="form__row">
-                            <div class="form__col_full">
-                                <div class="inputWrap inputWrap_iconed">
-                                    <div class="inputWrap__icon">
-                                        <svg width="14" height="14" fill="none">
-                                            <path d="M13.7 11L11.5 9c-.4-.4-1.1-.4-1.6 0L9 10l-.3-.1C8 9.5 7 9 6 8 5 7 4.5 6 4.1 5.4L4 5.2l.7-.8.4-.3c.4-.5.4-1.2 0-1.6L3 .3C2.5 0 1.8 0 1.4.3L.8 1A3.5 3.5 0 000 2.8c-.2 2.3.8 4.5 3.8 7.4 4 4 7.3 3.8 7.4 3.8a3.7 3.7 0 001.8-.8l.7-.5c.4-.5.4-1.2 0-1.6z" fill="#000"/>
-                                        </svg>
-                                    </div>
-                                    <input type="tel" name="phone" class="input input_tel"
-                                        :placeholder="pdp_vue_lang.phone_number"
-                                        v-model="phone"
-                                        required
-                                    />
+                    <div class="form__row">
+                        <div class="form__col_full">
+                            <div class="inputWrap inputWrap_iconed">
+                                <div class="inputWrap__icon">
+                                    <svg width="14" height="14" fill="none">
+                                        <path d="M13.7 11L11.5 9c-.4-.4-1.1-.4-1.6 0L9 10l-.3-.1C8 9.5 7 9 6 8 5 7 4.5 6 4.1 5.4L4 5.2l.7-.8.4-.3c.4-.5.4-1.2 0-1.6L3 .3C2.5 0 1.8 0 1.4.3L.8 1A3.5 3.5 0 000 2.8c-.2 2.3.8 4.5 3.8 7.4 4 4 7.3 3.8 7.4 3.8a3.7 3.7 0 001.8-.8l.7-.5c.4-.5.4-1.2 0-1.6z" fill="#000"/>
+                                    </svg>
                                 </div>
+                                <input type="tel" name="phone" class="input input_tel"
+                                    :placeholder="pdp_vue_lang.phone_number"
+                                    v-model="phone"
+                                    required
+                                />
                             </div>
                         </div>
+                    </div>
                 
-                        <div class="form__row">
-                            <div class="form__col_full">
-                                <div class="inputWrap inputWrap_iconed">
-                                    <div class="inputWrap__icon">
-                                        <svg width="14" height="12" fill="none">
-                                            <path d="M1.34 3.9A361.82 361.82 0 005 6.42a36.7 36.7 0 01.76.53c.1.08.24.17.4.26.16.1.31.16.45.21.14.05.27.07.4.07s.26-.02.4-.07.29-.12.45-.21A8.25 8.25 0 009 6.43l3.65-2.54c.38-.26.7-.59.96-.96.25-.38.38-.77.38-1.18 0-.34-.12-.64-.37-.88a1.2 1.2 0 00-.88-.37H1.25C.85.5.54.64.32.9.11 1.19 0 1.53 0 1.93c0 .33.14.69.43 1.07.29.38.6.68.91.9z" fill="#000"/>
-                                            <path d="M13.22 4.73a162.38 162.38 0 00-4.61 3.2c-.19.13-.44.25-.74.38-.31.13-.6.19-.86.19H7c-.27 0-.56-.06-.87-.2-.3-.12-.55-.24-.74-.37l-.72-.5c-.7-.52-2-1.42-3.88-2.7-.3-.2-.56-.43-.79-.68v6.2c0 .34.12.64.37.88.24.25.54.37.88.37h11.5c.34 0 .64-.12.88-.37.25-.24.37-.54.37-.88v-6.2a4.3 4.3 0 01-.78.68z" fill="#000"/>
-                                        </svg>
-                                    </div>
-                                    <input type="email" name="email" class="input input_email"
-                                        :placeholder="pdp_vue_lang.email"
-                                        v-model="email"
-                                    />
+                    <div class="form__row">
+                        <div class="form__col_full">
+                            <div class="inputWrap inputWrap_iconed">
+                                <div class="inputWrap__icon">
+                                    <svg width="14" height="12" fill="none">
+                                        <path d="M1.34 3.9A361.82 361.82 0 005 6.42a36.7 36.7 0 01.76.53c.1.08.24.17.4.26.16.1.31.16.45.21.14.05.27.07.4.07s.26-.02.4-.07.29-.12.45-.21A8.25 8.25 0 009 6.43l3.65-2.54c.38-.26.7-.59.96-.96.25-.38.38-.77.38-1.18 0-.34-.12-.64-.37-.88a1.2 1.2 0 00-.88-.37H1.25C.85.5.54.64.32.9.11 1.19 0 1.53 0 1.93c0 .33.14.69.43 1.07.29.38.6.68.91.9z" fill="#000"/>
+                                        <path d="M13.22 4.73a162.38 162.38 0 00-4.61 3.2c-.19.13-.44.25-.74.38-.31.13-.6.19-.86.19H7c-.27 0-.56-.06-.87-.2-.3-.12-.55-.24-.74-.37l-.72-.5c-.7-.52-2-1.42-3.88-2.7-.3-.2-.56-.43-.79-.68v6.2c0 .34.12.64.37.88.24.25.54.37.88.37h11.5c.34 0 .64-.12.88-.37.25-.24.37-.54.37-.88v-6.2a4.3 4.3 0 01-.78.68z" fill="#000"/>
+                                    </svg>
                                 </div>
+                                <input type="email" name="email" class="input input_email"
+                                    :placeholder="pdp_vue_lang.email"
+                                    v-model="email"
+                                />
                             </div>
                         </div>
+                    </div>
                 
-                        <div class="form__response active error" v-if="formErrors.length && !isSubmitSuccess">
-                            <ul>
-                                <li v-for="(error, index) in formErrors" :key="index">{{ error }}</li>
-                            </ul>
-                        </div>
-                        <div class="form__response active success" v-else-if="isSubmitSuccess">
-                            {{{ submitResponse }}}
-                        </div>
+                    <div class="form__response active error" v-if="formErrors.length && !isSubmitSuccess">
+                        <ul>
+                            <li v-for="(error, index) in formErrors" :key="index">{{ error }}</li>
+                        </ul>
+                    </div>
+                    <div class="form__response active success" v-else-if="isSubmitSuccess">
+                        {{{ submitResponse }}}
+                    </div>
                 
-                        <div class="cart-form__footer">
-                            <input type="submit" class="btn-default"
-                                :value="pdp_vue_lang.book_now"
-                            />
+                    <div class="cart-form__footer">
+                        <input type="submit" class="btn-default"
+                            :value="pdp_vue_lang.book_now"
+                        />
                 
-                            <div class="cart-form__total">
-                                {{ pdp_vue_lang.cost_of_services }}
-                                <div class="cart-form__total-price">
-                                    <div class="cart-form__price">{{ cartTotal }}</div>
-                                    <div class="cart-form__currency"><span class="uah"></span></div>
-                                </div>
+                        <div class="cart-form__total">
+                            {{ pdp_vue_lang.cost_of_services }}
+                            <div class="cart-form__total-price">
+                                <div class="cart-form__price">{{ cartTotal }}</div>
+                                <div class="cart-form__currency"><span class="uah"></span></div>
                             </div>
                         </div>
+                    </div>
                 
-                        <input type="hidden" name="action" value="appointment">
-                    </form>
-                </div>
-            `,
-            data: function(){
-                return {
-                    isLoading: false,
-                    isSubmitSuccess: false,
-                    submitResponse: '',
-                    formErrors: [],
-                    name: '',
-                    phone: '',
-                    email: ''
+                    <input type="hidden" name="action" value="appointment">
+                </form>
+            </div>
+        `,
+        data: function(){
+            return {
+                isLoading: false,
+                isSubmitSuccess: false,
+                submitResponse: '',
+                formErrors: [],
+                name: '',
+                phone: '',
+                email: ''
+            }
+        },
+        computed: {
+            cart: function(){
+                return this.$store.getters.cart
+            },
+            isHairServiceInCart: function(){
+                if(this.cart.items.filter((item) => item.prices.length >= 3).length){
+                    return true
+                }
+                else{
+                    return false
                 }
             },
-            computed: {
-                cart: function(){
-                    return this.$store.getters.cart
-                },
-                isHairServiceInCart: function(){
-                    if(this.cart.items.filter((item) => item.prices.length >= 3).length){
-                        return  true
-                    }
-                    else{
-                        return false
-                    }
-                },
-                cartTotal: function(){
-                    return this.$store.getters.cartTotal
-                }
+            cartTotal: function(){
+                return this.$store.getters.cartTotal
+            }
+        },
+        methods: {
+            removeFromCart(service){
+                this.$store.dispatch('addToCart', service)
             },
-            methods: {
-                removeFromCart(service){
-                    this.$store.dispatch('addToCart', service)
-                },
-                submitForm(){
-                    let isValid = true
-                    this.formErrors = []
+            submitForm(){
+                let isValid = true
+                this.formErrors = []
 
-                    if(!this.name){
-                        this.formErrors.push(pdp_vue_lang.enter_a_name)
-                        isValid = false
-                    }
+                if(!this.name){
+                    this.formErrors.push(pdp_vue_lang.enter_a_name)
+                    isValid = false
+                }
 
-                    if(!this.phone){
-                        this.formErrors.push(pdp_vue_lang.enter_a_phone)
-                        isValid = false
-                    }
+                if(!this.phone){
+                    this.formErrors.push(pdp_vue_lang.enter_a_phone)
+                    isValid = false
+                }
 
-                    if(!this.cart.items.length){
-                        this.formErrors.push(pdp_vue_lang.no_services)
-                        isValid = false
-                    }
+                if(!this.cart.items.length){
+                    this.formErrors.push(pdp_vue_lang.no_services)
+                    isValid = false
+                }
 
-                    if(isValid){
-                        let self = this;
-                        let form_data = new FormData(event.target)
-                        form_data.append('cart', JSON.stringify(this.cart))
-                        form_data.append('total', this.cartTotal)
-                        form_data.append('is_hair_services', this.isHairServiceInCart)
+                if(isValid){
+                    let self = this;
+                    let form_data = new FormData(event.target)
+                    form_data.append('cart', JSON.stringify(this.cart))
+                    form_data.append('total', this.cartTotal)
+                    form_data.append('is_hair_services', this.isHairServiceInCart)
 
-                        $.ajax({
-                            method: 'POST',
-                            url: pdp_vue_data.ajax_url,
-                            processData: false,
-                            contentType: false,
-                            data: form_data,
-                            beforeSend: function(){
-                                self.isLoading = true
-                            },
-                            success: function(res){
-                                self.isLoading = false
-                                self.name = self.phone = self.email = ''
-                                self.isSubmitSuccess = true
-                                self.submitResponse = JSON.parse(res).message
-                            }
-                        })
-                    }
+                    $.ajax({
+                        method: 'POST',
+                        url: pdp_vue_data.ajax_url,
+                        processData: false,
+                        contentType: false,
+                        data: form_data,
+                        beforeSend: function(){
+                            self.isLoading = true
+                        },
+                        success: function(res){
+                            self.isLoading = false
+                            self.name = self.phone = self.email = ''
+                            self.isSubmitSuccess = true
+                            self.submitResponse = JSON.parse(res).message
+                        }
+                    })
                 }
             }
-        })
+        }
+    })
 
 
-        /**
-         *  Preloader Component
-         */
-        const Preloader = Vue.component('preloader', {
-            template: `
-                <div class="backdrop" :class="{ active: isActive }"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
-            `,
-            props: ['isActive']
-        })
+    /**
+     *  Preloader Component
+     */
+    const Preloader = Vue.component('preloader', {
+        template: `
+            <div class="backdrop" :class="{ active: isActive }"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+        `,
+        props: ['isActive']
+    })
 
 
-        /**
-         *  Header App
-         */
-        new Vue({
-            el: '#header-app',
-            components: {
-                'cart': Cart,
-                'salon-select': SalonSelect,
-                'hair-length-select': HairLengthSelect,
-                'preloader': Preloader
+    /**
+     *  Header App
+     */
+    new Vue({
+        el: '#header-app',
+        components: {
+            'cart': Cart,
+            'salon-select': SalonSelect,
+            'hair-length-select': HairLengthSelect,
+            'preloader': Preloader
+        },
+        store: store,
+        mounted(){
+            this.fetchCart()
+            this.setCartPosition()
+            window.addEventListener('resize', this.setCartPosition)
+        },
+        methods: {
+            fetchCart(){
+                return this.$store.dispatch('fetchCart')
             },
-            store: store,
-            mounted(){
-                this.fetchCart()
-                this.setCartPosition()
-                window.addEventListener('resize', this.setCartPosition)
+            closeMenus(){
+                this.isCartActive = false
+                this.isMobileMenuActive = false
+                this.isMobileSalonsListActive = false
+
+                this.toggleDimmer()
             },
-            methods: {
-                fetchCart(){
-                    return this.$store.dispatch('fetchCart')
-                },
-                closeMenus(){
+            togglePhonesList(){
+                if(this.isCartActive){
                     this.isCartActive = false
+                }
+                else if(this.isMobileMenuActive){
                     this.isMobileMenuActive = false
+                }
+
+                this.isMobileSalonsListActive = !this.isMobileSalonsListActive
+
+                this.toggleDimmer()
+            },
+            toggleMenu(){
+                if(this.isMobileSalonsListActive){
                     this.isMobileSalonsListActive = false
+                }
 
-                    this.toggleDimmer()
-                },
-                togglePhonesList(){
-                    if(this.isCartActive){
-                        this.isCartActive = false
-                    }
-                    else if(this.isMobileMenuActive){
-                        this.isMobileMenuActive = false
-                    }
-
-                    this.isMobileSalonsListActive = !this.isMobileSalonsListActive
-
-                    this.toggleDimmer()
-                },
-                toggleMenu(){
-                    if(this.isMobileSalonsListActive){
-                        this.isMobileSalonsListActive = false
-                    }
-
-                    if(!this.isCartActive && !this.isMobileMenuActive){
-                        this.isMobileMenuActive = true
-                    }
-                    else if(!this.isCartActive && this.isMobileMenuActive){
-                        this.isMobileMenuActive = false
-                    }
-                    else if(this.isCartActive && !this.isMobileMenuActive){
-                        this.isCartActive = false
-                    }
-
-                    this.toggleDimmer()
-                },
-                toggleMobileCart(){
+                if(!this.isCartActive && !this.isMobileMenuActive){
+                    this.isMobileMenuActive = true
+                }
+                else if(!this.isCartActive && this.isMobileMenuActive){
                     this.isMobileMenuActive = false
-                    this.isMobileSalonsListActive = false
-                    this.isCartActive = !this.isCartActive
-
-                    this.toggleDimmer()
-                },
-                toggleDimmer(){
-                    if(this.isCartActive || this.isMobileMenuActive || this.isMobileSalonsListActive){
-                        document.querySelector('body').style.overflow = 'hidden';
-                        document.querySelector('.dimmer').classList.add('active');
-                    }
-                    else{
-                        document.querySelector('body').style.overflow = 'auto';
-                        document.querySelector('.dimmer').classList.remove('active');
-                    }
-                },
-                showSubMenu(id){
-                    if(id == this.activeSubMenu){
-                        this.activeSubMenu = false
-                    }
-                    else{
-                        this.activeSubMenu = id
-                    }
-                },
-                setCartPosition(){
-                    if(window.matchMedia("(min-width: 1150px)").matches) {
-                        this.$refs.cart.style.left = Math.floor(this.$refs.cartToggler.getBoundingClientRect().left - 30) + 'px'
-                        this.$refs.cart.style.right = 'unset';
-                    }
-                    else if(window.matchMedia("(min-width: 800px)").matches && window.matchMedia("(max-width: 1150px)").matches){
-                        this.$refs.cart.style.left = 'unset'
-                        this.$refs.cart.style.right = '30px'
-                    }
-                },
-            },
-            data: {
-                isSubMenuActive: false,
-                isCartActive: false,
-                isMobileMenuActive: false,
-                isMobileSalonsListActive: false,
-                activeSubMenu: false
-            },
-            computed: {
-                cartItems: function(){
-                    return this.$store.getters.cartItems
                 }
+                else if(this.isCartActive && !this.isMobileMenuActive){
+                    this.isCartActive = false
+                }
+
+                this.toggleDimmer()
+            },
+            toggleMobileCart(){
+                this.isMobileMenuActive = false
+                this.isMobileSalonsListActive = false
+                this.isCartActive = !this.isCartActive
+
+                this.toggleDimmer()
+            },
+            toggleDimmer(){
+                if(this.isCartActive || this.isMobileMenuActive || this.isMobileSalonsListActive){
+                    document.querySelector('body').style.overflow = 'hidden';
+                    document.querySelector('.dimmer').classList.add('active');
+                }
+                else{
+                    document.querySelector('body').style.overflow = 'auto';
+                    document.querySelector('.dimmer').classList.remove('active');
+                }
+            },
+            showSubMenu(id){
+                if(id == this.activeSubMenu){
+                    this.activeSubMenu = false
+                }
+                else{
+                    this.activeSubMenu = id
+                }
+            },
+            setCartPosition(){
+                if(window.matchMedia("(min-width: 1150px)").matches) {
+                    this.$refs.cart.style.left = Math.floor(this.$refs.cartToggler.getBoundingClientRect().left - 30) + 'px'
+                    this.$refs.cart.style.right = 'unset';
+                }
+                else if(window.matchMedia("(min-width: 800px)").matches && window.matchMedia("(max-width: 1150px)").matches){
+                    this.$refs.cart.style.left = 'unset'
+                    this.$refs.cart.style.right = '30px'
+                }
+            },
+        },
+        data: {
+            isSubMenuActive: false,
+            isCartActive: false,
+            isMobileMenuActive: false,
+            isMobileSalonsListActive: false,
+            activeSubMenu: false
+        },
+        computed: {
+            cartItems: function(){
+                return this.$store.getters.cartItems
             }
-        })
+        }
+    })
 
 
-        /**
-         *  Appointment App
-         */
-        new Vue({
-            el: '#appointment-app',
-            components: {
-                'cart': Cart,
-                'salon-select': SalonSelect,
-                'hair-length-select': HairLengthSelect,
-                'service-categories': ServiceCategories,
-                'pricelist-item': PriceListItem,
-                'preloader': Preloader
+    /**
+     *  Appointment App
+     */
+    new Vue({
+        el: '#appointment-app',
+        components: {
+            'cart': Cart,
+            'salon-select': SalonSelect,
+            'hair-length-select': HairLengthSelect,
+            'service-categories': ServiceCategories,
+            'pricelist-item': PriceListItem,
+            'preloader': Preloader
+        },
+        store: store,
+        mounted(){
+            this.setActiveCategoryFromURI()
+        },
+        methods: {
+            fetchSalons(){
+                return this.$store.dispatch('fetchSalons')
             },
-            store: store,
-            mounted(){
-                this.setActiveCategoryFromURI()
+            fetchCategories(){
+                return this.$store.dispatch('fetchCategories')
             },
-            methods: {
-                fetchSalons(){
-                    return this.$store.dispatch('fetchSalons')
-                },
-                fetchCategories(){
-                    return this.$store.dispatch('fetchCategories')
-                },
-                setActiveCategory(cat){
-                    if(cat == 'sertifikati'){
-                        window.open(pdp_vue_data.gift_cards_url,'_blank')
-                    }
-                    else{
-                        this.$store.dispatch('setActiveCategory', cat)
-                        $([document.documentElement, document.body]).animate({
-                            scrollTop: $("#appointment-list").offset().top - 140
-                        }, 1000)
-                    }
-                },
-                setActiveCategoryFromURI(){
-                    let uri = window.location.search.substring(1)
-                    let params = new URLSearchParams(uri)
-
-                    if(params.get('cat')){
-                        this.$store.dispatch('setActiveCategory', params.get('cat'))
-                    }
-                },
-                setMasterOption($event){
-                    this.$store.dispatch('setMasterOption', $event.target.checked ? 1 : 0)
+            setActiveCategory(cat){
+                if(cat == 'sertifikati'){
+                    window.open(pdp_vue_data.gift_cards_url,'_blank')
+                }
+                else{
+                    this.$store.dispatch('setActiveCategory', cat)
+                    $([document.documentElement, document.body]).animate({
+                        scrollTop: $("#appointment-list").offset().top - 140
+                    }, 1000)
                 }
             },
-            data: {
-                isPricelistLoading: false
-            },
-            computed: {
-                pricelist: function(){
-                    return this.$store.getters.pricelist
-                },
-                activeCategory: function(){
-                    return this.$store.getters.activeCategory
-                },
-                activeCategoryServices: function(){
-                    return this.pricelist[this.activeCategory]
-                },
-                masterOption: function(){
-                    return this.$store.getters.masterOption
+            setActiveCategoryFromURI(){
+                let uri = window.location.search.substring(1)
+                let params = new URLSearchParams(uri)
+
+                if(params.get('cat')){
+                    this.$store.dispatch('setActiveCategory', params.get('cat'))
                 }
+            },
+            setMasterOption($event){
+                this.$store.dispatch('setMasterOption', $event.target.checked ? 1 : 0)
             }
-        })
+        },
+        data: {
+            isPricelistLoading: false
+        },
+        computed: {
+            pricelist: function(){
+                return this.$store.getters.pricelist
+            },
+            activeCategory: function(){
+                return this.$store.getters.activeCategory
+            },
+            activeCategoryServices: function(){
+                return this.pricelist[this.activeCategory]
+            },
+            masterOption: function(){
+                return this.$store.getters.masterOption
+            }
+        }
+    })
 });
