@@ -1,330 +1,329 @@
 jQuery(function($){
-    $(document).ready(function(){
-        let store = new Vuex.Store({
-            state: {
-                cart: {
-                    hair_length: 0,
-                    master_option: 0,
-                    salon: false,
-                    items: []
-                },
-                salons: [],
-                categories: [],
-                pricelist: [],
-                activeCategory: false
+    let store = new Vuex.Store({
+        state: {
+            cart: {
+                hair_length: 0,
+                master_option: 0,
+                salon: false,
+                items: []
             },
-            getters: {
-                cart: function(state){
-                    return state.cart
-                },
-                isServiceInCart(state){
-                    return function(service){
-                        if(state.cart.items.find(item => item.id === service.id)){
-                            return true
-                        }
-                        else{
-                            return false
-                        }
-                    }
-                },
-                cartTotal: function(state){
-                    return state.cart.items.reduce(function(prev, cur){
-                        if(cur.master && cur.prices.length == 1){
-                            return parseInt(prev) + parseInt(cur.prices[0][state.cart.master_option])
-                        }
-                        else if(!cur.master && cur.prices.length == 1){
-                            return parseInt(prev) + parseInt(cur.prices[0][0])
-                        }
-                        else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length < 3){
-                            return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
-                        }
-                        else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length == 3){
-                            return parseInt(prev) + parseInt(cur.prices[2][0])
-                        }
-                        else if(!cur.master && cur.prices.length == 4){
-                            return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
-                        }
-                        else if(cur.master && cur.prices.length == 4){
-                            return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][state.cart.master_option])
-                        }
-                        else{
-                            return parseInt(prev) + parseInt(cur.price)
-                        }
-                    }, 0)
-                },
-                cartItems: function(state){
-                    return state.cart.items.length
-                },
-                hairLength: function(state){
-                    return state.cart.hair_length
-                },
-                masterOption: function(state){
-                    return state.cart.master_option
-                },
-                salons: function(state){
-                    return state.salons
-                },
-                activeSalon: function(state){
-                    return state.cart.salon
-                },
-                categories: function(state){
-                    return state.categories
-                },
-                pricelist: function(state){
-                    return state.pricelist
-                },
-                activeCategory: function(state){
-                    return state.activeCategory
-                }
+            salons: [],
+            categories: [],
+            pricelist: [],
+            activeCategory: false
+        },
+        getters: {
+            cart: function(state){
+                return state.cart
             },
-            mutations: {
-                setCart(state, data){
-                    state.cart = data
-                },
-                setActiveSalon(state, salon){
-                    state.cart.salon = salon
-                },
-                setHairLength(state, length){
-                    state.cart.hair_length = length
-                },
-                setMasterOption(state, option){
-                    state.cart.master_option = option
-                },
-                addToCart(state, service){
+            isServiceInCart(state){
+                return function(service){
                     if(state.cart.items.find(item => item.id === service.id)){
-                        state.cart.items = state.cart.items.filter(item => item.id != service.id)
+                        return true
                     }
                     else{
-                        state.cart.items.push(service)
-                    }
-                },
-                clearCart(state){
-                    state.cart.items = []
-                },
-                setSalons(state, data){
-                    state.salons = data
-                },
-                setCategories(state, data){
-                    state.categories = data
-                },
-                setPricelist(state, data){
-                    state.pricelist = data
-                },
-                setActiveCategory(state, category){
-                    state.activeCategory = category
-                }
-            },
-            actions: {
-                async fetchCart(ctx){
-                    const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/get_cart`)
-                    const cart = await res.json()
-
-                    ctx.commit('setCart', cart)
-                },
-                async addToCart(ctx, service){
-                    ctx.commit('addToCart', service)
-
-                    await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
-                        method: 'POST',
-                        body: JSON.stringify({ cart: ctx.state.cart }),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                },
-                async setActiveSalon(ctx, salon){
-                    ctx.commit('setActiveSalon', salon)
-                    ctx.commit('clearCart')
-
-                    ctx.dispatch('fetchPricelist', salon)
-                },
-                async setHairLength(ctx, length){
-                    ctx.commit('setHairLength', length)
-
-                    await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
-                        method: 'POST',
-                        body: JSON.stringify({ cart: ctx.state.cart }),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                },
-                async setMasterOption(ctx, value){
-                    ctx.commit('setMasterOption', value)
-
-                    await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
-                        method: 'POST',
-                        body: JSON.stringify({ cart: ctx.state.cart }),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
-                },
-                async fetchSalons(ctx){
-                    const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/salons/get_all`)
-                    const salons = await res.json()
-
-                    ctx.commit('setSalons', salons)
-                },
-                async fetchCategories(ctx){
-                    const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/get_categories`)
-                    const categories = await res.json()
-
-                    ctx.commit('setCategories', categories)
-                },
-                async fetchPricelist(ctx, salonId){
-                    const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/${salonId}`)
-                    const pricelist = await res.json()
-
-                    ctx.commit('setPricelist', pricelist)
-                },
-                setActiveCategory(ctx, category){
-                    ctx.commit('setActiveCategory', category)
-                }
-            }
-        })
-
-
-        /**
-         *  Vue Components
-         */
-
-
-        /**
-         *  Salon Select Component
-         */
-        const SalonSelect = Vue.component('salon-select', {
-            template: `
-                <div class="selectric-wrap">
-                    <select name="salon" class="selectric_pdp" :value="activeSalon">
-                        <option
-                            v-for="salon of salons"
-                            :key="salon.id"
-                            :value="salon.id"
-                            :disabled="!salon.pricelist"
-                        >
-                            {{ salon.title }}
-                        </option>
-                    </select>
-                </div>
-            `,
-            mounted(){
-                this.fetchSalons()
-            },
-            methods: {
-                fetchSalons(){
-                    let vm = this
-                    vm.$store.dispatch('fetchSalons').then(() => {
-                        let select = $(vm.$el).find('select').selectric()
-
-                        let uri = window.location.search.substring(1);
-                        let params = new URLSearchParams(uri);
-
-                        if(params.get('salonId')){
-                            vm.setSalonOption(params.get('salonId'))
-                        }
-                        else if(vm.activeSalon){
-                            vm.setSalonOption(vm.activeSalon)
-                        }
-                        else{
-                            vm.setSalonOption(vm.salons[0].id)
-                        }
-
-                        if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
-                            select.on('change', function(){
-                                vm.$store.dispatch('setActiveSalon', $(this).val())
-                            })
-                        }
-                        else{
-                            select.on('selectric-change', function(event, element, selectric){
-                                vm.$store.dispatch('setActiveSalon', element.value)
-                            })
-                        }
-                    })
-                },
-                setSalonOption(value){
-                    if(value){
-                        $(this.$el).find('select').val(value).selectric('refresh')
-                        this.$store.dispatch('setActiveSalon', value)
+                        return false
                     }
                 }
             },
-            computed: {
-                salons: function(){
-                    return this.$store.getters.salons
-                },
-                activeSalon: function(){
-                    return this.$store.getters.activeSalon
-                }
+            cartTotal: function(state){
+                return state.cart.items.reduce(function(prev, cur){
+                    if(cur.master && cur.prices.length == 1){
+                        return parseInt(prev) + parseInt(cur.prices[0][state.cart.master_option])
+                    }
+                    else if(!cur.master && cur.prices.length == 1){
+                        return parseInt(prev) + parseInt(cur.prices[0][0])
+                    }
+                    else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length < 3){
+                        return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
+                    }
+                    else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length == 3){
+                        return parseInt(prev) + parseInt(cur.prices[2][0])
+                    }
+                    else if(!cur.master && cur.prices.length == 4){
+                        return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
+                    }
+                    else if(cur.master && cur.prices.length == 4){
+                        return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][state.cart.master_option])
+                    }
+                    else{
+                        return parseInt(prev) + parseInt(cur.price)
+                    }
+                }, 0)
+            },
+            cartItems: function(state){
+                return state.cart.items.length
+            },
+            hairLength: function(state){
+                return state.cart.hair_length
+            },
+            masterOption: function(state){
+                return state.cart.master_option
+            },
+            salons: function(state){
+                return state.salons
+            },
+            activeSalon: function(state){
+                return state.cart.salon
+            },
+            categories: function(state){
+                return state.categories
+            },
+            pricelist: function(state){
+                return state.pricelist
+            },
+            activeCategory: function(state){
+                return state.activeCategory
             }
-        })
-
-
-        /**
-         *  Hair Length Select Component
-         */
-        const HairLengthSelect = Vue.component('hair-length-select', {
-            template: `
-                <div class="selectric-wrap">
-                    <select name="hair_length" class="selectric_pdp" :value="length">
-                        <option
-                            v-for="length of lengths"
-                            :key="length.id"
-                            :value="length.id"
-                        >
-                            {{ length.title }}
-                        </option>
-                    </select>
-                </div>
-            `,
-            mounted(){
-                let vm = this
-                let select = $(vm.$el).find('select').selectric('init')
-
-                if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
-                    select.on('change', function(){
-                        vm.$store.dispatch('setHairLength', $(this).val())
-                    })
+        },
+        mutations: {
+            setCart(state, data){
+                state.cart = data
+            },
+            setActiveSalon(state, salon){
+                state.cart.salon = salon
+            },
+            setHairLength(state, length){
+                state.cart.hair_length = length
+            },
+            setMasterOption(state, option){
+                state.cart.master_option = option
+            },
+            addToCart(state, service){
+                if(state.cart.items.find(item => item.id === service.id)){
+                    state.cart.items = state.cart.items.filter(item => item.id != service.id)
                 }
                 else{
-                    select.on('selectric-change', function(event, element, selectric){
-                        vm.$store.dispatch('setHairLength', element.value)
-                    })
+                    state.cart.items.push(service)
                 }
             },
-            data: function(){
-                return {
-                    lengths: [
-                        {
-                            title: pdp_vue_lang.hair_length_1st,
-                            id: 0
-                        },
-                        {
-                            title: pdp_vue_lang.hair_length_2nd,
-                            id: 1
-                        },
-                        {
-                            title: pdp_vue_lang.hair_length_3rd,
-                            id: 2
-                        },
-                        {
-                            title: pdp_vue_lang.hair_length_4th,
-                            id: 3
-                        }
-                    ]
-                }
+            clearCart(state){
+                state.cart.items = []
             },
-            computed: {
-                length: function(){
-                    return this.$store.getters.hairLength
-                }
+            setSalons(state, data){
+                state.salons = data
             },
-            watch: {
-                length: function(value){
+            setCategories(state, data){
+                state.categories = data
+            },
+            setPricelist(state, data){
+                state.pricelist = data
+            },
+            setActiveCategory(state, category){
+                state.activeCategory = category
+            }
+        },
+        actions: {
+            async fetchCart(ctx){
+                const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/get_cart`)
+                const cart = await res.json()
+
+                ctx.commit('setCart', cart)
+            },
+            async addToCart(ctx, service){
+                ctx.commit('addToCart', service)
+
+                await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
+                    method: 'POST',
+                    body: JSON.stringify({ cart: ctx.state.cart }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            },
+            async setActiveSalon(ctx, salon){
+                ctx.commit('setActiveSalon', salon)
+                ctx.commit('clearCart')
+
+                ctx.dispatch('fetchPricelist', salon)
+            },
+            async setHairLength(ctx, length){
+                ctx.commit('setHairLength', length)
+
+                await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
+                    method: 'POST',
+                    body: JSON.stringify({ cart: ctx.state.cart }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            },
+            async setMasterOption(ctx, value){
+                ctx.commit('setMasterOption', value)
+
+                await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
+                    method: 'POST',
+                    body: JSON.stringify({ cart: ctx.state.cart }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            },
+            async fetchSalons(ctx){
+                const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/salons/get_all`)
+                const salons = await res.json()
+
+                ctx.commit('setSalons', salons)
+            },
+            async fetchCategories(ctx){
+                const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/get_categories`)
+                const categories = await res.json()
+
+                ctx.commit('setCategories', categories)
+            },
+            async fetchPricelist(ctx, salonId){
+                const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/${salonId}`)
+                const pricelist = await res.json()
+
+                ctx.commit('setPricelist', pricelist)
+            },
+            setActiveCategory(ctx, category){
+                ctx.commit('setActiveCategory', category)
+            }
+        }
+    })
+
+
+    /**
+     *  Vue Components
+     */
+
+
+    /**
+     *  Salon Select Component
+     */
+    const SalonSelect = Vue.component('salon-select', {
+        template: `
+            <div class="selectric-wrap">
+                <select name="salon" class="selectric_pdp" :value="activeSalon">
+                    <option
+                        v-for="salon of salons"
+                        :key="salon.id"
+                        :value="salon.id"
+                        :disabled="!salon.pricelist"
+                    >
+                        {{ salon.title }}
+                    </option>
+                </select>
+            </div>
+        `,
+        mounted(){
+            this.fetchSalons()
+        },
+        methods: {
+            fetchSalons(){
+                let vm = this
+                vm.$store.dispatch('fetchSalons').then(() => {
+                    let select = $(vm.$el).find('select').selectric()
+
+                    let uri = window.location.search.substring(1);
+                    let params = new URLSearchParams(uri);
+
+                    if(params.get('salonId')){
+                        vm.setSalonOption(params.get('salonId'))
+                    }
+                    else if(vm.activeSalon){
+                        vm.setSalonOption(vm.activeSalon)
+                    }
+                    else{
+                        vm.setSalonOption(vm.salons[0].id)
+                    }
+
+                    if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
+                        select.on('change', function(){
+                            vm.$store.dispatch('setActiveSalon', $(this).val())
+                        })
+                    }
+                    else{
+                        select.on('selectric-change', function(event, element, selectric){
+                            vm.$store.dispatch('setActiveSalon', element.value)
+                        })
+                    }
+                })
+            },
+            setSalonOption(value){
+                if(value){
                     $(this.$el).find('select').val(value).selectric('refresh')
+                    this.$store.dispatch('setActiveSalon', value)
                 }
             }
-        })
+        },
+        computed: {
+            salons: function(){
+                return this.$store.getters.salons
+            },
+            activeSalon: function(){
+                return this.$store.getters.activeSalon
+            }
+        }
+    })
+
+
+    /**
+     *  Hair Length Select Component
+     */
+    const HairLengthSelect = Vue.component('hair-length-select', {
+        template: `
+            <div class="selectric-wrap">
+                <select name="hair_length" class="selectric_pdp" :value="length">
+                    <option
+                        v-for="length of lengths"
+                        :key="length.id"
+                        :value="length.id"
+                    >
+                        {{ length.title }}
+                    </option>
+                </select>
+            </div>
+        `,
+        mounted(){
+            let vm = this
+            let select = $(vm.$el).find('select').selectric('init')
+
+            if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
+                select.on('change', function(){
+                    vm.$store.dispatch('setHairLength', $(this).val())
+                })
+            }
+            else{
+                select.on('selectric-change', function(event, element, selectric){
+                    vm.$store.dispatch('setHairLength', element.value)
+                })
+            }
+        },
+        data: function(){
+            return {
+                lengths: [
+                    {
+                        title: pdp_vue_lang.hair_length_1st,
+                        id: 0
+                    },
+                    {
+                        title: pdp_vue_lang.hair_length_2nd,
+                        id: 1
+                    },
+                    {
+                        title: pdp_vue_lang.hair_length_3rd,
+                        id: 2
+                    },
+                    {
+                        title: pdp_vue_lang.hair_length_4th,
+                        id: 3
+                    }
+                ]
+            }
+        },
+        computed: {
+            length: function(){
+                return this.$store.getters.hairLength
+            }
+        },
+        watch: {
+            length: function(value){
+                $(this.$el).find('select').val(value).selectric('refresh')
+            }
+        }
+    })
 
 
         /**
@@ -845,5 +844,4 @@ jQuery(function($){
                 }
             }
         })
-    });
 });
