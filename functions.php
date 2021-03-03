@@ -279,3 +279,8 @@ require get_template_directory() . '/inc/template-shortcodes.php';
  * Template options.
  */
 require get_template_directory() . '/inc/template-options.php';
+
+/**
+ * Template fields.
+ */
+require get_template_directory() . '/inc/template-fields.php';
