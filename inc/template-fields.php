@@ -26,7 +26,7 @@ function pdp_add_homepage_fields(){
 					Field::make( 'complex', 'advantages', __( 'Преимущества', 'pdp' ) )
 						->add_fields( array(
 							Field::make( 'text', 'title', __( 'Заголовок', 'pdp' ) ),
-							Field::make( 'rich_text', 'content', __( 'Контент', 'pdp' ) )
+							Field::make( 'textarea', 'content', __( 'Контент', 'pdp' ) )
 						) )
 				) )
 		) )
