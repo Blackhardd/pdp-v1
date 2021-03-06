@@ -1877,9 +1877,11 @@ header.main-header.fixed.active {
  */
 
 .lang-switcher {
+    position: relative;
     font-size: 18px;
     font-weight: bold;
     line-height: 18px;
+    text-transform: uppercase;
 }
 
 .lang-switcher__current {
@@ -1892,10 +1894,23 @@ header.main-header.fixed.active {
 }
 
 .lang-switcher__list {
+    visibility: hidden;
     list-style: none;
-    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: -10px;
     margin: 0;
-    padding: 0;
+    padding: 10px;
+    background: rgba(249, 249, 249, 0.97);
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: visibility 200ms ease, opacity 200ms ease, transform 200ms ease;
+}
+
+.lang-switcher:hover .lang-switcher__list {
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .lang-switcher__item a {

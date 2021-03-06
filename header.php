@@ -45,6 +45,8 @@
                 </nav>
 
                 <?php get_template_part( 'templates/header/phones-list' ); ?>
+
+                <?php get_template_part( 'templates/header/lang-switcher' ); ?>
             </div>
         </div>
 

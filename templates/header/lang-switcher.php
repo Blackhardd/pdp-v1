@@ -1,13 +1,23 @@
+<?php
+
+$langs = pll_the_languages( array( 'raw' => true ) );
+$current_lang = pll_current_language();
+
+?>
+
 <div class="lang-switcher">
     <div class="lang-switcher__current">
-        RU
+	    <?=( $current_lang == 'uk' ) ? 'ua' : $current_lang; ?>
         <svg width="14" height="9" fill="none">
             <path d="M13 1L7 7 1 1" stroke="#111" stroke-width="2"/>
         </svg>
     </div>
 
     <ul class="lang-switcher__list">
-        <li class="lang-switcher__item"><a href="#">UA</a></li>
-        <li class="lang-switcher__item"><a href="#">EN</a></li>
+        <?php foreach( $langs as $lang ) : ?>
+            <?php if( $lang['slug'] != $current_lang ) : ?>
+                <li class="lang-switcher__item"><a href="<?=$lang['url']; ?>"><?=( $lang['slug'] == 'uk' ) ? 'ua' : $lang['slug']; ?></a></li>
+            <?php endif; ?>
+        <?php endforeach; ?>
     </ul>
 </div>
