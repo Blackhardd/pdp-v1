@@ -2575,6 +2575,11 @@ input.search-form__input:focus {
     margin-bottom: 0;
 }
 
+.textBlock ul {
+    margin: 0 0 20px;
+    padding-left: 16px;
+}
+
 
 /**
  *  Info box
