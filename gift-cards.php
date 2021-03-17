@@ -1,4 +1,9 @@
-<?php /* Template Name: Подарочные сертификаты */
+<?php
+/**
+ * Template Name: Подарочные сертификаты
+ *
+ * @package PDP
+ */
 
 get_header(); ?>
     <section id="gift-cards-header">
