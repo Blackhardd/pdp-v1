@@ -11,7 +11,7 @@
                                 <path d="M10.8 9.4C9.1 8.7 8.5 9 8.5 7.9v-.2h2.7c.4-.3-1-.8-1-4.5C10.2 1.3 9 0 7.1 0H7h-.1C5 0 3.8 1.3 3.8 3.2c0 3.7-1.4 4.2-1 4.5h2.6v.2c0 1.2-.5.8-2.2 1.5C1.4 10 .9 10.7.9 11V14h12.2v-2.9c0-.4-.5-1-2.3-1.7z" fill="#000"/>
                             </svg>
                         </div>
-                        <input type="text" name="name" class="input input_text" placeholder="Как к вам обращаться?" data-parsley-length="[3, 24]" required>
+                        <input type="text" name="name" class="input input_text" placeholder="<?=__( 'Как к вам обращаться?', 'pdp' ); ?>" data-parsley-length="[3, 24]" required>
                     </div>
                     <div class="inputWrap__errors"></div>
                 </div>
