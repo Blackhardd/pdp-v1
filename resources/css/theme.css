@@ -4967,6 +4967,7 @@ input.search-form__input:focus {
     max-width: 768px;
 }
 
+.page-template-about-us-ua #franchise,
 .page-template-about-us #franchise {
     padding-bottom: 0;
 }
@@ -5154,7 +5155,7 @@ input.search-form__input:focus {
 
 
 /**
- *  Vacancies page
+ *  Vacancies Page
  */
 
 #vacancies-header {
@@ -5183,9 +5184,10 @@ input.search-form__input:focus {
 
 
 /**
- *  Gift vouchers
+ *  Gift Cards Page
  */
 
+.page-template-gift-cards-ua .main-article,
 .page-template-gift-cards .main-article {
     background: url("../images/gift-cards/header.png") no-repeat right 63vw top 110px;
 }
