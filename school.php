@@ -1,4 +1,9 @@
-<?php /* Template Name: Школа */
+<?php
+/**
+ * Template Name: Школа
+ *
+ * @package PDP
+ */
 
 get_header(); ?>
     <section id="hero-school">
