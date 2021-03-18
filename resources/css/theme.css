@@ -3608,6 +3608,11 @@ input.search-form__input:focus {
     padding-left: 20px;
 }
 
+.service-row__desc ul li,
+.service-row__desc ol li {
+    margin-bottom: 10px;
+}
+
 .service-row__pricelist {
     margin-top: 60px;
 }
