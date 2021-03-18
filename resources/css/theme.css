@@ -467,6 +467,7 @@ input[type="submit"].btn-default {
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
+    text-transform: lowercase;
     background: #392BDF;
     border-radius: 10px;
     border: 0;
