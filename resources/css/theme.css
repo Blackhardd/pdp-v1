@@ -3570,7 +3570,6 @@ input.search-form__input:focus {
     margin: 0 0 40px;
     font-size: 36px;
     line-height: 1;
-    text-transform: lowercase;
 }
 
 .service-row__desc {
