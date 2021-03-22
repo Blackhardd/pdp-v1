@@ -63,7 +63,7 @@ $gallery = carbon_get_post_meta( get_the_ID(), 'gallery' ); ?>
         </div>
     </section>
 
-    <?php if( carbon_get_post_meta( get_the_ID(), 'masters_term' ) ){ ?>
+    <?php if( false ){ ?>
         <section id="salon-team">
             <div class="container">
                 <?php get_template_part( 'templates/salon/team' ); ?>
