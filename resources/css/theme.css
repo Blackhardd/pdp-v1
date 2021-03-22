@@ -2207,6 +2207,7 @@ input.search-form__input:focus {
 .hero {
     position: relative;
     display: flex;
+    flex-grow: 1;
     justify-content: space-between;
     align-items: center;
     max-width: 1237px;
@@ -2216,6 +2217,7 @@ input.search-form__input:focus {
 }
 
 .hero__title {
+    max-width: 500px;
     color: black;
 }
 
