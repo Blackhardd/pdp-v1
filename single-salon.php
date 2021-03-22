@@ -78,7 +78,7 @@ $gallery = carbon_get_post_meta( get_the_ID(), 'gallery' ); ?>
             </div>
 
             <div class="title mb_30px">
-                <h3 class="title__heading"><span>у нас уже</span> 7 салонов</h3>
+                <h3 class="title__heading"><span>у нас уже</span> <?=count( pdp_get_salons() ); ?> салонов</h3>
             </div>
 
 	        <?php get_template_part( 'templates/widgets/salons_slider' ); ?>
