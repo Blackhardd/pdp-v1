@@ -239,7 +239,7 @@ function pdp_pagination_template( $template, $class ){
 function pdp_register_image_sizes(){
 	if( function_exists( 'add_image_size' ) ){
 		add_image_size( 'testimonial', 160, 160, true );
-		add_image_size( 'salons-slider-thumb', 270, 212, true );
+		add_image_size( 'salons-slider-thumb', 540, 424, true );
 		add_image_size( 'services-slider-thumb', 340, 340, true );
 		add_image_size( 'salon-carousel-large', 1260, 800, true );
 		add_image_size( 'salon-carousel-nav', 248, 154, true );
