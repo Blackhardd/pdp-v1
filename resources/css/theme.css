@@ -4975,6 +4975,10 @@ input.search-form__input:focus {
     min-height: 328px;
 }
 
+#home-form {
+    padding-bottom: 120px;
+}
+
 #franchise {
     display: flex;
     align-items: flex-end;
