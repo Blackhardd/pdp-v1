@@ -5,9 +5,6 @@
     /**
      *  Modals
      */
-    .modal__dimmer {
-        align-items: flex-start;
-    }
     .admin-bar .modal__dimmer {
         padding-top: 160px;
     }
