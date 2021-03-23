@@ -1756,9 +1756,9 @@ header.main-header.fixed.active {
     position: absolute;
     visibility: hidden;
     top: 100%;
-    transform: translateY(-40px);
+    transform: translateY(-20px);
     opacity: 0;
-    transition: all 200ms ease;
+    transition: visibility 200ms ease, opacity 200ms ease, transform 200ms ease;
 }
 
 .phonesList:hover .phonesList__dropdown {
@@ -1905,6 +1905,7 @@ header.main-header.fixed.active {
     margin: 0;
     padding: 10px;
     background: rgba(249, 249, 249, 0.97);
+    border-radius: 4px;
     transform: translateY(-20px);
     opacity: 0;
     transition: visibility 200ms ease, opacity 200ms ease, transform 200ms ease;
