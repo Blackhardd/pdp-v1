@@ -1230,7 +1230,7 @@ header.main-header.fixed.active {
 .main-navigation .menu > .menu-item > .sub-menu {
     list-style: none;
     position: absolute;
-    display: none;
+    visibility: hidden;
     top: calc(100% + 46px);
     left: -30px;
     width: 320px;
@@ -1239,24 +1239,34 @@ header.main-header.fixed.active {
     font-size: 16px;
     background: rgba(249, 249, 249, 0.97);
     border-radius: 4px;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: visibility 200ms ease, opacity 200ms ease, transform 200ms ease;
 }
 
 .main-navigation .menu > .menu-item.active > .sub-menu {
-    display: block;
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .main-navigation .menu > .menu-item > .sub-menu > .menu-item > .sub-menu {
     position: absolute;
-    display: none;
+    visibility: hidden;
     top: -20px;
     left: 100%;
     width: 300px;
     padding: 20px 0;
     background: rgba(249, 249, 249, 0.97);
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: visibility 200ms ease, opacity 200ms ease, transform 200ms ease;
 }
 
 .main-navigation > div > .menu > .menu-item.menu-item-has-children > .sub-menu .menu-item-has-children:hover > .sub-menu {
-    display: block;
+    visibility: visible;
+    transform: translateX(0);
+    opacity: 1;
 }
 
 .main-navigation .menu-item.menu-item-has-children > .sub-menu > .menu-item {
