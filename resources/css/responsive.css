@@ -8,6 +8,13 @@
     .admin-bar .modal__dimmer {
         padding-top: 160px;
     }
+    /**
+     *  Phones List
+     */
+    .phonesList__dropdownInner {
+        max-height: 500px;
+        overflow-y: auto;
+    }
 }
 
 @media(max-width: 1150px) {

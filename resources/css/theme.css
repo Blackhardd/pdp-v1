@@ -1758,20 +1758,21 @@ header.main-header.fixed.active {
 }
 
 .phonesList__dropdownInner {
-    display: none;
+    visibility: hidden;
     min-width: 288px;
+    max-height: 0;
     margin-top: 37px;
     padding: 30px 26px 30px 32px;
     background: rgba(249, 249, 249, 0.97);
     border-radius: 4px;
+    transform: translateY(-40px);
+    transition: all 200ms ease;
 }
 
 .phonesList:hover .phonesList__dropdownInner {
-    display: block;
-}
-
-.phonesList__dropdownInner.active {
-    display: block;
+    visibility: visible;
+    height: auto;
+    transform: translateY(0);
 }
 
 .phonesList__dropdownGroup {
