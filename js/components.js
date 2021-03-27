@@ -604,7 +604,8 @@ jQuery(function($){
                 return this.$store.getters.cart
             },
             isHairServiceInCart: function(){
-                if(this.cart.items.filter((item) => item.prices.length >= 3).length){
+                let hair_services = this.cart.items.filter((item) => item.prices.length >= 3)
+                if(hair_services.length){
                     return true
                 }
 
