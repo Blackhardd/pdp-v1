@@ -204,7 +204,7 @@ function pdp_scripts() {
     /**
      * Enqueue Vue.js
      */
-    wp_enqueue_script( 'vue', '//cdn.jsdelivr.net/npm/vue', array(), _S_VERSION, true );
+    wp_enqueue_script( 'vue', get_template_directory_uri() . '/js/vue.min.js', array(), _S_VERSION, true );
     wp_enqueue_script( 'vuex', '//unpkg.com/vuex@3.6.0/dist/vuex.js', array(), _S_VERSION, true );
 
     /**

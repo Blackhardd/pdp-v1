@@ -22,9 +22,7 @@ get_header(); ?>
                         <salon-select />
                     </div>
 
-                    <service-categories
-                        @show-category="setActiveCategory($event)"
-                    />
+                    <service-categories @show-category="setActiveCategory($event)" />
                 </div>
             </div>
         </section>
