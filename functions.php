@@ -234,7 +234,8 @@ function pdp_scripts() {
     wp_localize_script( 'pdp-components', 'pdp_vue_data', array(
         'rest_url'          => untrailingslashit( esc_url_raw( rest_url() ) ),
         'ajax_url'          => admin_url( 'admin-ajax.php' ),
-	    'gift_cards_url'    => get_permalink( 366 )
+	    'gift_cards_url'    => get_permalink( 366 ),
+	    'lang'              => pll_current_language( 'slug' )
     ) );
 
 	wp_localize_script( 'pdp-components', 'pdp_vue_lang', array(

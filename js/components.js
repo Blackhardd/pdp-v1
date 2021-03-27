@@ -21,9 +21,8 @@ jQuery(function($){
                     if(state.cart.items.find(item => item.id === service.id)){
                         return true
                     }
-                    else{
-                        return false
-                    }
+
+                    return false
                 }
             },
             cartTotal: function(state){
@@ -34,11 +33,11 @@ jQuery(function($){
                     else if(!cur.master && cur.prices.length == 1){
                         return parseInt(prev) + parseInt(cur.prices[0][0])
                     }
-                    else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length < 3){
-                        return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
+                    else if(cur.master && cur.prices.length == 3){
+                        return (state.cart.hair_length < 3) ? parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][state.cart.master_option]) : parseInt(prev) + parseInt(cur.prices[2][state.cart.master_option]);
                     }
-                    else if(!cur.master && cur.prices.length == 3 && state.cart.hair_length == 3){
-                        return parseInt(prev) + parseInt(cur.prices[2][0])
+                    else if(!cur.master && cur.prices.length == 3){
+                        return (state.cart.hair_length < 3) ? parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0]) : parseInt(prev) + parseInt(cur.prices[2][0]);
                     }
                     else if(!cur.master && cur.prices.length == 4){
                         return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][0])
@@ -46,9 +45,8 @@ jQuery(function($){
                     else if(cur.master && cur.prices.length == 4){
                         return parseInt(prev) + parseInt(cur.prices[state.cart.hair_length][state.cart.master_option])
                     }
-                    else{
-                        return parseInt(prev) + parseInt(cur.price)
-                    }
+
+                    return parseInt(prev) + parseInt(cur.price)
                 }, 0)
             },
             cartItems: function(state){
@@ -174,6 +172,8 @@ jQuery(function($){
             async fetchPricelist(ctx, salonId){
                 const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/${salonId}`)
                 const pricelist = await res.json()
+
+                console.log(pricelist)
 
                 ctx.commit('setPricelist', pricelist)
             },
@@ -338,12 +338,12 @@ jQuery(function($){
                             <div v-html="category.img"></div>
                             <div class="service-categories__title" @click="$emit('show-category', category.slug)">
                                 {{ category.title }}
-                            <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
+                                <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         `,
         mounted(){
             this.fetchCategories()
@@ -407,7 +407,7 @@ jQuery(function($){
             <div class="pricelist-item">
                 <div class="pricelist-item__info">
                     <div class="pricelist-item__name">
-                        {{data.name}}<span class="badge pro" v-if="data.pro"></span>
+                        {{name}}<span class="badge pro" v-if="data.pro"></span>
                     </div>
 
                     <div class="pricelist-item__price">{{price}}<span class="uah"></span></div>
@@ -436,6 +436,13 @@ jQuery(function($){
             },
             master_option: function(){
                 return this.$store.getters.masterOption
+            },
+            name: function(){
+                if(pdp_vue_data.lang == 'ru'){
+                    return this.data.name.ru
+                }
+
+                return this.data.name.ua
             },
             price: function(){
                 let service = this.data
@@ -600,9 +607,8 @@ jQuery(function($){
                 if(this.cart.items.filter((item) => item.prices.length >= 3).length){
                     return true
                 }
-                else{
-                    return false
-                }
+
+                return false
             },
             cartTotal: function(){
                 return this.$store.getters.cartTotal
@@ -830,6 +836,9 @@ jQuery(function($){
             isPricelistLoading: false
         },
         computed: {
+            lang: function(){
+                return (pdp_vue_data.lang == 'ru') ? pdp_vue_data.lang : 'ua';
+            },
             pricelist: function(){
                 return this.$store.getters.pricelist
             },
