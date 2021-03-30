@@ -78,7 +78,7 @@
         </div>
 
         <input type="hidden" name="vacancy" value="">
-        <input type="hidden" name="action" value="cv_apply">
-	    <?php wp_nonce_field( 'pdp_cv_apply_nonce', 'pdp_nonce' ); ?>
+        <input type="hidden" name="action" value="vacancy_application">
+	    <?php wp_nonce_field( 'pdp_vacancy_application_nonce', 'pdp_nonce' ); ?>
     </form>
 </div>

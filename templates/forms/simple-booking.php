@@ -67,10 +67,9 @@
 					<div class="inputWrap__input">
 						<select name="service" class="selectric selectric_pdp iconed iconed_service">
 							<option value=""><?=__( 'Выберите услугу', 'pdp' ); ?></option>
-							<?php
-							foreach( pdp_get_service_categories() as $service ){ ?>
+							<?php foreach( pdp_get_service_categories() as $service ) : ?>
 								<option value="<?=$service['title']; ?>"><?=$service['title']; ?></option>
-							<?php } ?>
+							<?php endforeach; ?>
 						</select>
 					</div>
 					<div class="inputWrap__errors"></div>
@@ -84,7 +83,7 @@
 			<input type="submit" class="btn-default" value="<?=__( 'Записаться', 'pdp' ); ?>">
 		</div>
 
-		<input type="hidden" name="action" value="appointment_quick">
-		<?php wp_nonce_field( 'pdp_appointment_quick_nonce', 'pdp_nonce' ); ?>
+		<input type="hidden" name="action" value="simple_booking">
+		<?php wp_nonce_field( 'pdp_simple_booking_nonce', 'pdp_nonce' ); ?>
 	</form>
 </div>

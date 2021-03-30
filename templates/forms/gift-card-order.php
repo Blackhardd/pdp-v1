@@ -68,7 +68,7 @@
             <input type="submit" class="btn-default" value="<?=__( 'Заказать', 'pdp' ); ?>">
         </div>
 
-        <input type="hidden" name="action" value="gift_card">
-	    <?php wp_nonce_field( 'pdp_gift_card_nonce', 'pdp_nonce' ); ?>
+        <input type="hidden" name="action" value="gift_card_order">
+	    <?php wp_nonce_field( 'pdp_gift_card_order_nonce', 'pdp_nonce' ); ?>
     </form>
 </div>

@@ -57,7 +57,7 @@
                         }
 
                         if( $section['form_title'] && $section['form_service'] ){
-                            get_template_part( 'templates/forms/appointment_service', null, ['title' => $section['form_title'], 'service' => $section['form_service']] );
+                            get_template_part( 'templates/forms/service-booking', null, ['title' => $section['form_title'], 'service' => $section['form_service']] );
                         } ?>
                     </div>
 

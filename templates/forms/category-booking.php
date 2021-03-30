@@ -41,8 +41,8 @@
 			<input type="submit" class="btn-default" value="<?=__( 'Записаться', 'pdp' ); ?>">
 		</div>
 
-		<input type="hidden" name="action" value="appointment_service_category">
+		<input type="hidden" name="action" value="category_booking">
 		<input type="hidden" name="service" value="<?=$post->post_title; ?>">
-		<?php wp_nonce_field( 'pdp_appointment_service_category_nonce', 'pdp_nonce' ); ?>
+		<?php wp_nonce_field( 'pdp_category_booking_nonce', 'pdp_nonce' ); ?>
 	</form>
 </div>

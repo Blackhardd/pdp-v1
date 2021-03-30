@@ -163,7 +163,7 @@ get_header(); ?>
 
     <section id="home-form">
         <div class="container">
-            <?php get_template_part( 'templates/forms/appointment_home' ); ?>
+            <?php get_template_part( 'templates/forms/home-booking' ); ?>
         </div>
     </section>
 

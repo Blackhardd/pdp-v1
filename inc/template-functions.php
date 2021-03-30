@@ -12,9 +12,9 @@
  * @return array
  */
 add_filter( 'body_class', 'pdp_body_classes' );
-function pdp_body_classes( $classes ) {
+function pdp_body_classes( $classes ){
 	// Adds a class of hfeed to non-singular pages.
-	if ( ! is_singular() ) {
+	if ( !is_singular() ){
 		$classes[] = 'hfeed';
 	}
 
@@ -26,8 +26,8 @@ function pdp_body_classes( $classes ) {
  * Add a pingback url auto-discovery header for single posts, pages, or attachments.
  */
 add_action( 'wp_head', 'pdp_pingback_header' );
-function pdp_pingback_header() {
-	if ( is_singular() && pings_open() ) {
+function pdp_pingback_header(){
+	if( is_singular() && pings_open() ){
 		printf( '<link rel="pingback" href="%s">', esc_url( get_bloginfo( 'pingback_url' ) ) );
 	}
 }
@@ -118,7 +118,7 @@ function pdp_add_appointment_modal(){ ?>
                 <button class="modal__close btn-icon" aria-label="Close modal" data-micromodal-close><svg width="14" height="14" fill="none"><path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4l5.6 5.6 1.4-1.4L8.4 7 14 1.4z" fill="#000"/></svg></button>
 
                 <div class="modal__content">
-					<?php get_template_part( 'templates/forms/appointment-quick' ); ?>
+					<?php get_template_part( 'templates/forms/simple-booking' ); ?>
                 </div>
             </div>
         </div>
@@ -141,7 +141,7 @@ function pdp_add_service_category_appointment_modal(){
                     <button class="modal__close btn-icon" aria-label="Close modal" data-micromodal-close><svg width="14" height="14" fill="none"><path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4l5.6 5.6 1.4-1.4L8.4 7 14 1.4z" fill="#000"/></svg></button>
 
                     <div class="modal__content">
-						<?php get_template_part( 'templates/forms/appointment-service-category' ); ?>
+						<?php get_template_part( 'templates/forms/category-booking' ); ?>
                     </div>
                 </div>
             </div>

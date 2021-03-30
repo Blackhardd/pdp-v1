@@ -1,10 +1,13 @@
-<div class="appointment-form">
-    <h3><?=__( 'Записаться в салон', 'pdp' ); ?></h3>
-    <form id="appointment-home-form" class="form">
+<?php $salons = pdp_get_salons(); ?>
+
+<div class="serviceForm">
+    <h2 class="serviceForm__title"><?=$args['title']; ?></h2>
+
+    <form class="form">
         <div class="backdrop"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
 
         <div class="form__row">
-            <div class="form__col_half">
+            <div class="form__col_full">
                 <div class="inputWrap inputWrap_iconed">
                     <div class="inputWrap__input">
                         <div class="inputWrap__icon">
@@ -17,8 +20,10 @@
                     <div class="inputWrap__errors"></div>
                 </div>
             </div>
+        </div>
 
-            <div class="form__col_half">
+        <div class="form__row">
+            <div class="form__col_full">
                 <div class="inputWrap inputWrap_iconed">
                     <div class="inputWrap__input">
                         <div class="inputWrap__icon">
@@ -33,46 +38,31 @@
             </div>
         </div>
 
-        <div class="form__row">
-            <?php if( carbon_get_theme_option( 'forms_show_salon_select' ) ) : ?>
-                <div class="form__col_half">
+	    <?php if( carbon_get_theme_option( 'forms_show_salon_select' ) ) : ?>
+            <div class="form__row">
+                <div class="form__col_full">
                     <div class="inputWrap">
                         <div class="inputWrap__input">
                             <select name="salon" class="selectric selectric_pdp iconed iconed_salon">
                                 <option value=""><?=__( 'Выберите салон', 'pdp' ); ?></option>
-                                <?php
-                                foreach( pdp_get_salons() as $salon ){
-                                    if( isset( $_GET['salon_pricelist'] ) && $_GET['salon_pricelist'] == $salon->ID ){ ?>
+							    <?php
+							    foreach( pdp_get_salons() as $salon ){
+								    if( isset( $_GET['salon_pricelist'] ) && $_GET['salon_pricelist'] == $salon->ID ){ ?>
                                         <option value="<?=$salon->ID; ?>" selected><?=$salon->post_title; ?></option>
-                                    <?php } else { ?>
+								    <?php } else { ?>
                                         <option value="<?=$salon->ID; ?>"><?=$salon->post_title; ?></option>
-                                        <?php
-                                    }
-                                } ?>
+									    <?php
+								    }
+							    } ?>
                             </select>
                         </div>
                         <div class="inputWrap__errors"></div>
                     </div>
                 </div>
-            <?php else : ?>
-                <input type="hidden" name="salon" value="<?=carbon_get_theme_option( 'forms_default_salon' ); ?>">
-            <?php endif; ?>
-
-            <div class="<?=( carbon_get_theme_option( 'forms_show_salon_select' ) ) ? 'form__col_half' : 'form__col_full' ;?>">
-                <div class="inputWrap">
-                    <div class="inputWrap__input">
-                        <select name="service" class="selectric selectric_pdp iconed iconed_service">
-                            <option value=""><?=__( 'Выберите услугу', 'pdp' ); ?></option>
-				            <?php
-				            foreach( pdp_get_service_categories() as $service ){ ?>
-                                <option value="<?=$service['title']; ?>"><?=$service['title']; ?></option>
-				            <?php } ?>
-                        </select>
-                    </div>
-                    <div class="inputWrap__errors"></div>
-                </div>
             </div>
-        </div>
+	    <?php else : ?>
+            <input type="hidden" name="salon" value="<?=carbon_get_theme_option( 'forms_default_salon' ); ?>">
+	    <?php endif; ?>
 
         <div class="form__response"></div>
 
@@ -80,7 +70,8 @@
             <input type="submit" class="btn-default" value="<?=__( 'Записаться', 'pdp' ); ?>">
         </div>
 
-        <input type="hidden" name="action" value="appointment_quick">
-	    <?php wp_nonce_field( 'pdp_appointment_quick_nonce', 'pdp_nonce' ); ?>
+        <input type="hidden" name="action" value="service_booking">
+        <input type="hidden" name="service" value="<?=$args['service']; ?>">
+	    <?php wp_nonce_field( 'pdp_service_booking_nonce', 'pdp_nonce' ); ?>
     </form>
 </div>
