@@ -174,7 +174,7 @@ jQuery(function($){
                     const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/${salonId}`)
                     const pricelist = await res.json()
 
-                    console.log(pricelist)
+                    console.log(ctx.state.cart.salon)
 
                     ctx.commit('setPricelist', pricelist)
                 },
@@ -570,7 +570,7 @@ jQuery(function($){
                             </div>
                         </div>
                         
-                        <input type="hidden" name="action" value="appointment">
+                        <input type="hidden" name="action" value="booking">
                     </form>
                 </div>
             `,

@@ -1244,7 +1244,7 @@ header.main-header.fixed.active {
     transition: visibility 200ms ease, opacity 200ms ease, transform 200ms ease;
 }
 
-.main-navigation .menu > .menu-item.active > .sub-menu {
+.main-navigation .menu > .menu-item:hover > .sub-menu {
     visibility: visible;
     transform: translateY(0);
     opacity: 1;
