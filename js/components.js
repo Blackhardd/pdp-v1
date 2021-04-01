@@ -159,7 +159,7 @@ jQuery(function($){
                     })
                 },
                 async fetchSalons(ctx){
-                    const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/salons/get_all`)
+                    const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/salons/get_all/${pdp_vue_data.lang}`)
                     const salons = await res.json()
 
                     ctx.commit('setSalons', salons)
