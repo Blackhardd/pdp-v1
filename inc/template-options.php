@@ -80,8 +80,10 @@ function pdp_attach_theme_options(){
 			Field::make( 'complex', 'service_categories', __( 'Список категорий', 'pdp' ) )
 				->set_collapsed( true )
 				->add_fields( array(
-					Field::make( 'text', 'title', __( 'Имя категории', 'pdp' ) )
+					Field::make( 'text', 'title', __( 'RU', 'pdp' ) )
 						->set_width( 40 ),
+					Field::make( 'text', 'title_ua', __( 'UA', 'pdp' ) )
+					     ->set_width( 40 ),
 					Field::make( 'text', 'slug', __( 'Ярлык', 'pdp' ) )
 			            ->set_width( 40 ),
 					Field::make( 'image', 'cover', __( 'Обложка', 'pdp' ) )
