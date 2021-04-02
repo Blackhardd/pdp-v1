@@ -2394,6 +2394,7 @@ input.search-form__input:focus {
     max-width: 304px;
     border-radius: 4px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .service-categories__category a {
@@ -2419,7 +2420,6 @@ input.search-form__input:focus {
     text-transform: lowercase;
     background-color: white;
     z-index: 1;
-    cursor: pointer;
 }
 
 .service-categories__category:hover img {

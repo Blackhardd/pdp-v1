@@ -335,9 +335,9 @@ jQuery(function($){
                 <div class="service-categories-wrap">
                     <div class="service-categories">
                         <div v-for="(category, index) of categories" :key="index">
-                            <div class="service-categories__category">
+                            <div class="service-categories__category" :data-category="category.slug">
                                 <div v-html="category.img"></div>
-                                <div class="service-categories__title" @click="$emit('show-category', category.slug)">
+                                <div class="service-categories__title">
                                     {{ category.title }}
                                     <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
                                 </div>
@@ -354,6 +354,15 @@ jQuery(function($){
                     let vm = this
                     this.$store.dispatch('fetchCategories').then(() => {
                         $(vm.$el).find('.service-categories').slick(this.slickOptions)
+                        let $categories = $(vm.$el).find('.service-categories__category')
+                        $categories.on('mousedown', function(e){
+                            $categories.on('mouseup mousemove', function handler(e){
+                                if(e.type === 'mouseup'){
+                                    vm.$emit('show-category', $(this).data('category'))
+                                }
+                                $categories.off('mouseup mousemove', handler);
+                            })
+                        })
                         vm.stretchSlider()
                         window.addEventListener('resize', vm.stretchSlider)
                     })
@@ -787,6 +796,7 @@ jQuery(function($){
                         window.open(pdp_vue_data.gift_cards_url,'_blank')
                     }
                     else{
+                        console.log(this.$store.getters.activeSalon)
                         this.$store.dispatch('setActiveCategory', cat)
                         $([document.documentElement, document.body]).animate({
                             scrollTop: $("#appointment-list").offset().top - 140
