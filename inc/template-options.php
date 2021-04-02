@@ -81,13 +81,13 @@ function pdp_attach_theme_options(){
 				->set_collapsed( true )
 				->add_fields( array(
 					Field::make( 'text', 'title', __( 'RU', 'pdp' ) )
-						->set_width( 40 ),
+						->set_width( 25 ),
 					Field::make( 'text', 'title_ua', __( 'UA', 'pdp' ) )
-					     ->set_width( 40 ),
+					     ->set_width( 25 ),
 					Field::make( 'text', 'slug', __( 'Ярлык', 'pdp' ) )
-			            ->set_width( 40 ),
+			            ->set_width( 25 ),
 					Field::make( 'image', 'cover', __( 'Обложка', 'pdp' ) )
-			            ->set_width( 20 )
+			            ->set_width( 10 )
 				) )
 		) );
 }

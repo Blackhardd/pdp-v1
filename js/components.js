@@ -174,7 +174,8 @@ jQuery(function($){
                     const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/${salonId}`)
                     const pricelist = await res.json()
 
-                    console.log(ctx.state.cart.salon)
+                    console.log('Salon:', ctx.state.cart.salon)
+                    console.log('Pricelist:', pricelist)
 
                     ctx.commit('setPricelist', pricelist)
                 },
@@ -338,7 +339,7 @@ jQuery(function($){
                             <div class="service-categories__category" :data-category="category.slug">
                                 <div v-html="category.img"></div>
                                 <div class="service-categories__title">
-                                    {{ category.title }}
+                                    {{ category.name[(pdp_vue_data.lang == 'ru') ? pdp_vue_data.lang : 'ua'] }}
                                     <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
                                 </div>
                             </div>
