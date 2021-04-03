@@ -1857,7 +1857,6 @@ header.main-header.fixed.active {
     left: 0;
     bottom: 0;
     width: 75vw;
-    padding: 165px 22px 50px;
     transform: translateX(calc(-100% - 18px));
     background: rgba(249, 249, 249, 0.98);
     transition: transform 300ms ease;
@@ -1878,6 +1877,12 @@ header.main-header.fixed.active {
     transform: translateY(-50%);
     background: linear-gradient(to left, rgba(249, 249, 249, 0.98) 0%, rgba(249, 249, 249, 0.98) 50%, transparent 50% );
     border-radius: 50%;
+}
+
+.phones-list_mobile .phones-list__inner {
+    height: 100%;
+    padding: 165px 22px 50px;
+    overflow: auto;
 }
 
 .phones-list_mobile .phones-list__group {
@@ -4233,15 +4238,18 @@ input.search-form__input:focus {
 
 .dimmer {
     position: fixed;
-    display: none;
+    visibility: hidden;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    opacity: 0;
+    transition: visibility 200ms ease, opacity 200ms ease;
 }
 
 .dimmer.active {
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 .dimmer.darkening {
