@@ -60,11 +60,13 @@
 
                 <?php get_template_part( 'templates/header/site-logo', NULL, array( 'classes' => 'site-logo_mobile' ) ); ?>
 
-                <button class="btn-icon mobile-navigation-toggle" @click="toggleMenu">
+                <button class="btn-icon mobile-navigation-toggle" :class="{ active: isMobileMenuActive }" @click="toggleMenu">
                     <div class="cart-counter">{{ cartItems }}</div>
-                    <svg width="28" height="18" fill="none">
-                        <path d="M.5 18h27v-3H.5v3zm0-7.5h27v-3H.5v3zM.5 0v3h27V0H.5z" fill="#0E0D0A"/>
-                    </svg>
+                    <div class="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </button>
             </div>
         </div>
