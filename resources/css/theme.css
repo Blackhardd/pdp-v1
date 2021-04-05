@@ -1927,6 +1927,7 @@ header.main-header.fixed.active {
 
 .lang-switcher {
     position: relative;
+    padding: 10px 0;
     font-size: 18px;
     font-weight: bold;
     line-height: 18px;
@@ -1946,7 +1947,7 @@ header.main-header.fixed.active {
     visibility: hidden;
     list-style: none;
     position: absolute;
-    top: calc(100% + 10px);
+    top: 100%;
     left: -10px;
     margin: 0;
     padding: 10px;
