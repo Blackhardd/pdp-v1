@@ -1,6 +1,8 @@
 <div class="school-apply-form">
     <h2><?=__( 'Оставить заявку на обучение', 'pdp' ); ?></h2>
     <form class="form">
+        <div class="backdrop"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+
         <div class="form__row">
             <div class="form__col_half">
                 <div class="inputWrap inputWrap_iconed">
@@ -62,7 +64,7 @@
             <input type="submit" class="btn-default" value="<?=__( 'Оставить заявку', 'pdp' ); ?>">
         </div>
 
-        <input type="hidden" name="action" value="school_apply">
-	    <?php wp_nonce_field( 'pdp_school_apply_nonce', 'pdp_nonce' ); ?>
+        <input type="hidden" name="action" value="school_application">
+	    <?php wp_nonce_field( 'pdp_school_application_nonce', 'pdp_nonce' ); ?>
     </form>
 </div>
