@@ -89,5 +89,8 @@ function pdp_attach_theme_options(){
 					Field::make( 'image', 'cover', __( 'Обложка', 'pdp' ) )
 			            ->set_width( 10 )
 				) )
+		) )
+		->add_tab( __( 'Уведомления', 'pdp' ), array(
+			Field::make( 'image', 'email_logo', __( 'Логотип', 'pdp' ) )
 		) );
 }
