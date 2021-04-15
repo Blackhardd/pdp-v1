@@ -281,13 +281,9 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/template-shortcodes.php';
 
 /**
- * Template options.
- */
-require get_template_directory() . '/inc/template-options.php';
-
-/**
- * Template fields.
+ * Carbon fields.
  */
 add_action( 'carbon_fields_register_fields', function(){
+	require get_template_directory() . '/inc/template-options.php';
 	require get_template_directory() . '/inc/template-fields.php';
 } );

@@ -6,5 +6,7 @@ jQuery(function($){
             $('.vacancies__details-block[data-vacancy="' + $(this).data('vacancy') + '"]').addClass('active');
             $('.cv-form input[name="vacancy"]').val($(this).data('title'));
         });
+
+        $('.vacancies__item.active button').click();
     });
 });

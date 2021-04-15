@@ -122,6 +122,8 @@ jQuery(function($){
                 async addToCart(ctx, service){
                     ctx.commit('addToCart', service)
 
+                    console.log(ctx.state.cart)
+
                     await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
                         method: 'POST',
                         body: JSON.stringify({ cart: ctx.state.cart }),
