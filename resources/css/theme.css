@@ -3883,7 +3883,7 @@ input.search-form__input:focus {
 }
 
 .blog-header__content {
-    flex-grow: 1g;
+    flex-grow: 1;
 }
 
 .blog-header__title {
