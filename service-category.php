@@ -17,7 +17,7 @@
 
                     <div class="service-header__description">
                         <?=carbon_get_the_post_meta( 'hero_content' ); ?>
-                        <button class="btn-default" data-micromodal-trigger="modal-service-category-appointment">записаться</button>
+                        <button class="btn-default" data-micromodal-trigger="modal-service-category-appointment"><?=__( 'Записаться', 'pdp' ); ?></button>
                     </div>
                 </div>
 

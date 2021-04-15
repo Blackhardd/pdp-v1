@@ -48,9 +48,9 @@
                     <div class="inputWrap__input">
                         <select name="service" class="selectric selectric_pdp iconed iconed_service">
                             <option value=""><?=__( 'Выберите курс', 'pdp' ); ?></option>
-                            <option value="Коллорист"><?php printf( __( 'Курс %s', 'pdp' ), '“Коллорист”' ); ?></option>
-                            <option value="Make-up специалист"><?php printf( __( 'Курс %s', 'pdp' ), '“Make-up специалист”' ); ?></option>
-                            <option value="Коммерческий макияж"><?php printf( __( 'Курс %s', 'pdp' ), '“Коммерческий макияж”' ); ?></option>
+                            <option value="Коллорист"><?=sprintf( __( 'Курс %s', 'pdp' ), __( '“Коллорист”', 'pdp' ) ); ?></option>
+                            <option value="Make-up специалист"><?=sprintf( __( 'Курс %s', 'pdp' ), __( '“Make-up специалист”', 'pdp' ) ); ?></option>
+                            <option value="Коммерческий макияж"><?=sprintf( __( 'Курс %s', 'pdp' ), __( '“Коммерческий макияж”', 'pdp' ) ); ?></option>
                         </select>
                     </div>
                     <div class="inputWrap__errors"></div>
