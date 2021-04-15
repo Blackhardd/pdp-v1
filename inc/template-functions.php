@@ -41,6 +41,11 @@ function pdp_add_analytics(){
 	echo carbon_get_theme_option( 'analytics_code' );
 }
 
+add_action( 'wp_footer', 'pdp_add_analytics_footer' );
+function pdp_add_analytics_footer(){
+    echo carbon_get_theme_option( 'analytics_code_footer' );
+}
+
 
 /**
  * Add gtag.js actions

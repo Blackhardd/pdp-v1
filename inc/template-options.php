@@ -59,7 +59,8 @@ Container::make( 'theme_options', __( 'Настройки', 'pdp' ) )
 			->set_width( 50 )
 	) )
 	->add_tab( __( 'Аналитика', 'pdp' ), array(
-		Field::make( 'textarea', 'analytics_code', __( 'Коды аналитик', 'pdp' ) ),
+		Field::make( 'textarea', 'analytics_code', __( 'Коды аналитик (head)', 'pdp' ) ),
+		Field::make( 'textarea', 'analytics_code_footer', __( 'Коды аналитик (footer)', 'pdp' ) ),
 		Field::make( 'complex', 'gtag_actions', __( 'События аналитики', 'pdp' ) )
 			->add_fields( array(
 				Field::make( 'text', 'selector', __( 'Селектор', 'pdp' ) )
