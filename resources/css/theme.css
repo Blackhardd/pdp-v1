@@ -4205,6 +4205,7 @@ input.search-form__input:focus {
     font-weight: bold;
     font-size: 36px;
     line-height: 34px;
+    text-transform: lowercase;
 }
 
 .post-related__posts {
@@ -4324,13 +4325,18 @@ input.search-form__input:focus {
  *  Founders Block
  */
 
-.founders {
-    position: relative;
+.founders.founders_desktop {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    max-width: 560px;
+    transform: translateY(-50%);
 }
 
 .founders img {
     display: block;
     margin: 0 auto;
+    pointer-events: none;
 }
 
 .founders__badge {
@@ -4344,11 +4350,6 @@ input.search-form__input:focus {
     font-weight: bold;
     font-size: 22px;
     line-height: 22px;
-}
-
-.founders__desc {
-    font-size: 12px;
-    line-height: 11px;
 }
 
 
@@ -5023,15 +5024,15 @@ input.search-form__input:focus {
 }
 
 #franchise {
+    position: relative;
     display: flex;
     align-items: flex-end;
     min-height: 600px;
     margin-bottom: 114px;
-    background: url("../images/homepage/franchise-upd.png") no-repeat left 60vw bottom;
 }
 
-#franchise > .container > .row {
-    max-width: 768px;
+#franchise > .container {
+    padding-right: 495px;
 }
 
 .page-template-about-us-ua #franchise,

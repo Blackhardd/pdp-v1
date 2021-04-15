@@ -273,7 +273,7 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="cta cta_perfection mw_550px">
+            <div class="cta cta_perfection mw_600px">
                 <h4 class="cta__title"><?=carbon_get_post_meta( get_the_ID(), 'perfectionism_cta_title' ); ?></h4>
                 <div class="cta__content txt_fs-20px_m txt_lh-20px_m">
 	                <?=carbon_get_post_meta( get_the_ID(), 'perfectionism_cta_text' ); ?>

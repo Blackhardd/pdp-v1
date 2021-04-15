@@ -20,7 +20,7 @@
                 <?php endforeach; ?>
             </div>
 
-            <div class="founders d_block_m mb_30px_m">
+            <div class="founders founders_mobile d_block_m mb_30px_m">
                 <?=wp_get_attachment_image( 406, 'full' ); ?>
                 <div class="founders__badge">
                     <div class="founders__title"><?=carbon_get_post_meta( get_the_ID(), 'franchise_founders_title' ); ?></div>
@@ -45,6 +45,13 @@
 	                    <?=carbon_get_post_meta( get_the_ID(), 'franchise_cta_phone' ); ?>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="founders founders_desktop">
+		    <?=wp_get_attachment_image( 406, 'full' ); ?>
+            <div class="founders__badge">
+                <div class="founders__title"><?=carbon_get_post_meta( get_the_ID(), 'franchise_founders_title' ); ?></div>
+                <div class="founders__desc"><?=carbon_get_post_meta( get_the_ID(), 'franchise_founders_content' ); ?></div>
             </div>
         </div>
     </div>
