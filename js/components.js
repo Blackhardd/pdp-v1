@@ -502,7 +502,7 @@ jQuery(function($){
                                     <button type="button" class="pricelist-item__add-btn btn-icon" @click="removeFromCart(service)" data-added>
                                         <span class="pricelist-item__icon"></span>
                                     </button>
-                                    {{ service.name[pdp_vue_data.lang] }}
+                                    {{ service.name[(pdp_vue_data.lang == 'ru') ? 'ru' : 'ua'] }}
                                 </div>
                             </div>
                         </div>

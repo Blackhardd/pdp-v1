@@ -25,7 +25,7 @@ get_header(); ?>
 						<p>Особливі умови для корпоративних клієнтів діє дисконтна система при замовленні <strong>від 10 сертифікатів</strong></p>
 					</div>
 
-					<a href="#" class="btn-default">замовити</a>
+					<a href="#gift-cards-form" class="btn-default">замовити</a>
 				</div>
 			</div>
 		</div>

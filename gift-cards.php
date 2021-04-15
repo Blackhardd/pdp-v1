@@ -25,7 +25,7 @@ get_header(); ?>
                         <p>Особые условия для корпоративных клиентов действует скидочная система при заказе <strong>от 10 сертификатов</strong></p>
                     </div>
 
-                    <a href="#" class="btn-default">заказать</a>
+                    <a href="#gift-cards-form" class="btn-default">заказать</a>
                 </div>
             </div>
         </div>
