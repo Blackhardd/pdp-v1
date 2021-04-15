@@ -27,7 +27,7 @@
                         <div class="row row_1-1">
                             <div class="col">
                                 <nav class="footer-menu">
-                                    <div class="footer-menu__title">О салоне</div>
+                                    <div class="footer-menu__title"><?=__( 'О салоне', 'pdp' ); ?></div>
                                     <?php
                                     wp_nav_menu(
                                         array(
@@ -38,7 +38,7 @@
                                 </nav>
 
                                 <nav class="footer-menu">
-                                    <div class="footer-menu__title">Информация</div>
+                                    <div class="footer-menu__title"><?=__( 'Информация', 'pdp' ); ?></div>
                                     <?php
                                     wp_nav_menu(
                                         array(
@@ -51,7 +51,7 @@
 
                             <div class="col">
                                 <nav class="footer-menu footer-menu_salons">
-                                    <div class="footer-menu__title">Салоны</div>
+                                    <div class="footer-menu__title"><?=__( 'Салоны', 'pdp' ); ?></div>
                                     <?php
                                     wp_nav_menu(
                                         array(

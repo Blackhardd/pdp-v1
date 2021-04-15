@@ -64,7 +64,7 @@
                         <select name="service" class="selectric selectric_pdp iconed iconed_service">
                             <option value=""><?=__( 'Выберите услугу', 'pdp' ); ?></option>
 				            <?php foreach( pdp_get_service_categories() as $service ) : ?>
-                                <option value="<?=$service['title']; ?>"><?=$service['title']; ?></option>
+                                <option value="<?=$service['title']; ?>"><?=( pll_current_language() == 'ru' ) ? $service['title'] : $service['title_ua']; ?></option>
 				            <?php endforeach; ?>
                         </select>
                     </div>

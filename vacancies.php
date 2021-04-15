@@ -19,9 +19,9 @@ $details_html = ''; ?>
 
                 <div class="title">
                     <div class="title__subtitle">
-                        Свежие вакансии PIED&#8209;DE&#8209;POULE:
+                        <?=sprintf( __( 'Свежие вакансии %s', 'pdp' ), 'PIED&#8209;DE&#8209;POULE:' ); ?>
                     </div>
-                    <h1 class="title__heading">открытые вакансии</h1>
+                    <h1 class="title__heading"><?=__( 'Открытые вакансии', 'pdp' ); ?></h1>
                 </div>
             </div>
         </section>

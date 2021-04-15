@@ -247,7 +247,7 @@ get_header(); ?>
             <div class="cta cta_servicesExtended">
                 <div class="cta__content"><?=carbon_get_post_meta( get_the_ID(), 'services_cta_text' ); ?></div>
                 <div class="cta__footer">
-                    <a href="<?=get_permalink( 66 ); ?>" class="btn-default"><?=carbon_get_post_meta( get_the_ID(), 'services_cta_btn_title' ); ?></a>
+                    <a href="<?=get_permalink( pll_get_post( 66 ) ); ?>" class="btn-default"><?=carbon_get_post_meta( get_the_ID(), 'services_cta_btn_title' ); ?></a>
                 </div>
             </div>
         </div>

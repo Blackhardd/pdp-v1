@@ -40,7 +40,7 @@
             <div class="cta cta_franchise">
                 <div class="cta__content"><?=carbon_get_post_meta( get_the_ID(), 'franchise_cta_text' ); ?></div>
                 <div class="cta__footer">
-                    <a href="<?=carbon_get_post_meta( get_the_ID(), 'franchise_cta_btn_link' ); ?>" class="cta__btn btn-default" target="_blank"><?=carbon_get_post_meta( get_the_ID(), 'franchise_cta_btn_title' ); ?></a>
+                    <a href="<?=( pll_current_language() == 'ru' ) ? 'https://franchise.p-de-p.com/' : 'https://franchise.p-de-p.com/ua/'; ?>" class="cta__btn btn-default" target="_blank"><?=carbon_get_post_meta( get_the_ID(), 'franchise_cta_btn_title' ); ?></a>
                     <div class="cta__phone">
 	                    <?=carbon_get_post_meta( get_the_ID(), 'franchise_cta_phone' ); ?>
                     </div>

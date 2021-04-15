@@ -56,7 +56,7 @@ $gallery = carbon_get_post_meta( get_the_ID(), 'gallery' ); ?>
                             <?php } ?>
                         </ul>
 
-                        <a href="<?=get_permalink( 66 ) . '?salonId=' . get_the_ID(); ?>" class="btn-default"><?=__( 'Список услуг', 'pdp' ); ?></a>
+                        <a href="<?=add_query_arg( ['salonId' => get_the_ID()], get_permalink( pll_get_post( 66 ) ) ); ?>" class="btn-default"><?=__( 'Список услуг', 'pdp' ); ?></a>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@ $gallery = carbon_get_post_meta( get_the_ID(), 'gallery' ); ?>
             </div>
 
             <div class="title mb_30px">
-                <h3 class="title__heading"><span>у нас уже</span> <?=count( pdp_get_salons() ); ?> салонов</h3>
+                <h3 class="title__heading"><?=sprintf( __( '%sу нас уже%s %d салонов', 'pdp' ), '<span>', '</span>', count( pdp_get_salons() ) ); ?></h3>
             </div>
 
 	        <?php get_template_part( 'templates/widgets/salons_slider' ); ?>
