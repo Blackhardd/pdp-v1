@@ -32,11 +32,11 @@ function pdp_add_homepage_fields(){
 		) )
 		->add_tab( __( 'Контакты', 'pdp' ), array(
 			Field::make( 'text', 'contacts_heading', __( 'Заголовок секции', 'pdp' ) ),
-			Field::make( 'text', 'contacts_tg_title', __( 'Telegram заголовок' ) ),
-			Field::make( 'text', 'contacts_tg_bot_title', __( 'Telegram бот заголовок' ) ),
-			Field::make( 'text', 'contacts_ig_title', __( 'Instagram заголовок' ) ),
-			Field::make( 'text', 'contacts_fb_title', __( 'Facebook заголовок' ) ),
-			Field::make( 'text', 'contacts_yt_title', __( 'YouTube заголовок' ) ),
+			Field::make( 'text', 'contacts_tg_title', __( 'Telegram заголовок', 'pdp' ) ),
+			Field::make( 'text', 'contacts_tg_bot_title', __( 'Telegram бот заголовок', 'pdp' ) ),
+			Field::make( 'text', 'contacts_ig_title', __( 'Instagram заголовок', 'pdp' ) ),
+			Field::make( 'text', 'contacts_fb_title', __( 'Facebook заголовок', 'pdp' ) ),
+			Field::make( 'text', 'contacts_yt_title', __( 'YouTube заголовок', 'pdp' ) ),
 		) )
 		->add_tab( __( 'Франшиза', 'pdp' ), array(
 			Field::make( 'text', 'franchise_heading', __( 'Заголовок секции', 'pdp' ) ),
@@ -46,8 +46,8 @@ function pdp_add_homepage_fields(){
 					Field::make( 'text', 'title', __( 'Заголовок', 'pdp' ) ),
 					Field::make( 'text', 'subtitle', __( 'Подзаголовок', 'pdp' ) )
 				) ),
-			Field::make( 'text', 'franchise_founders_title', __( 'Заголов блока основателей' ) ),
-			Field::make( 'text', 'franchise_founders_content', __( 'Текст блока основателей' ) ),
+			Field::make( 'text', 'franchise_founders_title', __( 'Заголов блока основателей', 'pdp' ) ),
+			Field::make( 'text', 'franchise_founders_content', __( 'Текст блока основателей', 'pdp' ) ),
 			Field::make( 'complex', 'franchise_services', __( 'Сервисы', 'pdp' ) )
 				->add_fields( array(
 					Field::make( 'text', 'title', __( 'Заголовок', 'pdp' ) ),
@@ -72,7 +72,7 @@ function pdp_add_homepage_fields(){
 		) )
 		->add_tab( __( 'Меню услуг', 'pdp' ), array(
 			Field::make( 'text', 'services_heading', __( 'Заголовок секции', 'pdp' ) ),
-			Field::make( 'complex', 'services_categories', __( 'Категории услуг' ) )
+			Field::make( 'complex', 'services_categories', __( 'Категории услуг', 'pdp' ) )
 				->add_fields( array(
 					Field::make( 'text', 'title', __( 'Заголовок', 'pdp' ) ),
 					Field::make( 'textarea', 'content', __( 'Контент', 'pdp' ) ),
