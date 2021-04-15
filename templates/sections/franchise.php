@@ -1,6 +1,4 @@
-<?php
-$homepage_id = pll_get_post( get_option( 'page_on_front' ) );
-?>
+<?php $homepage_id = pll_get_post( get_option( 'page_on_front' ) ); ?>
 
 <section id="franchise">
     <div class="container">

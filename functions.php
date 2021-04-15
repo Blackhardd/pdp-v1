@@ -284,4 +284,6 @@ require get_template_directory() . '/inc/template-options.php';
 /**
  * Template fields.
  */
-require get_template_directory() . '/inc/template-fields.php';
+add_action( 'carbon_fields_register_fields', function(){
+	require get_template_directory() . '/inc/template-fields.php';
+} );

@@ -3882,6 +3882,10 @@ input.search-form__input:focus {
     display: flex;
 }
 
+.blog-header__content {
+    flex-grow: 1g;
+}
+
 .blog-header__title {
     margin: 68px 0 0 0;
     font-size: 64px;

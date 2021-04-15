@@ -1,3 +1,5 @@
+<?php $blog_page_id = pll_get_post( get_option( 'page_for_posts' ) ); ?>
+
 <section id="blog-archive-header">
 	<div class="container">
 		<div class="blog-header">
@@ -7,9 +9,9 @@
 					yoast_breadcrumb( '<div class="breadcrumbs" id="breadcrumbs">','</div>' );
 				} ?>
 
-				<h1 class="blog-header__title">наш блог</h1>
-				<div class="blog-header__subtitle">ценные статьи, уроки, видео</div>
-				<div class="blog-header__desc">Все, что вы хотели знать о красоте, моде, нашем салоне и работе на себя в сфере красоты. Узнавайте каждый день что-то новое вместе с нашей командой!</div>
+				<h1 class="blog-header__title"><?=carbon_get_post_meta( $blog_page_id, 'blog_heading' ); ?></h1>
+				<div class="blog-header__subtitle"><?=carbon_get_post_meta( $blog_page_id, 'blog_subheading' ); ?></div>
+				<div class="blog-header__desc"><?=carbon_get_post_meta( $blog_page_id, 'blog_description' ); ?></div>
 			</div>
 
 			<?=wp_get_attachment_image( 375, 'full' ); ?>
