@@ -682,8 +682,6 @@ jQuery(function($){
             store: store,
             mounted(){
                 this.fetchCart()
-                this.setCartPosition()
-                window.addEventListener('resize', this.setCartPosition)
             },
             methods: {
                 fetchCart(){
