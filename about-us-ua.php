@@ -339,10 +339,8 @@ get_header(); ?>
 
 				<div class="testimonials__nav">
 					<button type="button" class="testimonials__prev-btn"><svg width="22" height="16" fill="none"><path d="M.3 7.3a1 1 0 000 1.4l6.4 6.4A1 1 0 008 13.7L2.4 8l5.7-5.7A1 1 0 006.7 1L.3 7.3zM22 7H1v2h21V7z" fill="#000"/></svg> назад</button>
-
 					<div class="testimonials__dots"></div>
-
-					<button type="button" class="testimonials__next-btn">далее <svg width="22" height="16" fill="none"><path d="M21.7 8.7c.4-.4.4-1 0-1.4L15.3.9A1 1 0 1014 2.3L19.6 8l-5.7 5.7a1 1 0 001.4 1.4l6.4-6.4zM0 9h21V7H0v2z" fill="#000"/></svg></button>
+					<button type="button" class="testimonials__next-btn">далі <svg width="22" height="16" fill="none"><path d="M21.7 8.7c.4-.4.4-1 0-1.4L15.3.9A1 1 0 1014 2.3L19.6 8l-5.7 5.7a1 1 0 001.4 1.4l6.4-6.4zM0 9h21V7H0v2z" fill="#000"/></svg></button>
 				</div>
 			</div>
 
