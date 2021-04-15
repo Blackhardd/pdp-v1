@@ -10,6 +10,6 @@
 			<div class="blog-item__date"><?=get_the_date(); ?></div>
 		</div>
 		<h3 class="blog-item__title"><a href="<?=get_permalink( get_the_ID() ); ?>"><?php the_title(); ?></a></h3>
-		<a href="<?=get_permalink( get_the_ID() ); ?>" class="btn-default blog-item__read-more">читать статью</a>
+		<a href="<?=get_permalink( get_the_ID() ); ?>" class="btn-default blog-item__read-more"><?=__( 'Читать статью', 'pdp' ); ?></a>
 	</div>
 </article>

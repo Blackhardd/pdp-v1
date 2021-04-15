@@ -1223,7 +1223,8 @@ header.main-header.fixed.active {
     padding: 37px 0 !important;
 }
 
-.main-navigation .menu-item-has-children {
+.main-navigation .menu-item-has-children,
+.main-navigation .menu-item_book {
     position: relative;
 }
 
@@ -3234,22 +3235,24 @@ input.search-form__input:focus {
     left: 0;
 }
 
-.cart-wrapper {
-    display: none;
-    z-index: 1;
-    transition: transform 500ms ease;
-}
-
-.cart-wrapper.active {
-    display: block;
-}
-
 .cart.cart_header {
+    visibility: hidden;
     position: absolute;
     top: 100%;
+    left: -30px;
     width: 390px;
     background: rgba(249, 249, 249, 0.97);
     border-radius: 0 0 4px 4px;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+    z-index: 1;
+}
+
+.menu-item_book:hover .cart.cart_header {
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .cart .selectric-wrap,

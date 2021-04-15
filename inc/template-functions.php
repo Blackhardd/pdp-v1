@@ -74,13 +74,16 @@ add_filter( 'wp_nav_menu_items', 'pdp_menu_add_appointments', 10, 2 );
 function pdp_menu_add_appointments( $items, $args ){
 	if( 'header-menu' == $args->theme_location ){
 		ob_start(); ?>
-        <li class="menu-item menu-item_book" ref="cartToggler">
-            <button class="booking-btn" @click="isCartActive = !isCartActive">
+        <li class="menu-item menu-item_book" @mouseover="isCartActive = true" @mouseleave="isCartActive = false">
+            <button class="booking-btn">
                 <?=__( 'Запись', 'pdp' ); ?>
                 <div class="booking-btn__counter">
                     {{ cartItems }}
                 </div>
             </button>
+            <div class="cart cart_header">
+                <cart />
+            </div>
         </li>
 		<?php
 		$items .= ob_get_clean();

@@ -749,17 +749,7 @@ jQuery(function($){
                     else{
                         this.activeSubMenu = id
                     }
-                },
-                setCartPosition(){
-                    if(window.matchMedia("(min-width: 1150px)").matches) {
-                        this.$refs.cart.style.left = Math.floor(this.$refs.cartToggler.getBoundingClientRect().left - 30) + 'px'
-                        this.$refs.cart.style.right = 'unset';
-                    }
-                    else if(window.matchMedia("(min-width: 800px)").matches && window.matchMedia("(max-width: 1150px)").matches){
-                        this.$refs.cart.style.left = 'unset'
-                        this.$refs.cart.style.right = '30px'
-                    }
-                },
+                }
             },
             data: {
                 isSubMenuActive: false,

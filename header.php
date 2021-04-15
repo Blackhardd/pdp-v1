@@ -100,12 +100,6 @@
             </div>
         </nav>
 
-        <div class="cart-wrapper" :class="{ active: isCartActive }">
-            <div class="cart cart_header" ref="cart">
-                <cart />
-            </div>
-        </div>
-
         <div class="dimmer darkening" @click="closeMenus"></div>
 	</header>
 
