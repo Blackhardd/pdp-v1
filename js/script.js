@@ -68,7 +68,7 @@ jQuery(function($) {
             if($('body:not(.page-template-pricelist) .service-categories').length){
                 let parseURLs = function(salonId){
                     $('.service-categories__category > a').each(function(i){
-                        $(this).attr('href', '/ceni/?salonId=' + salonId + '&cat=' + $(this).data('category') );
+                        $(this).attr('href', pdp.booking_url + '?salonId=' + salonId + '&cat=' + $(this).data('category') );
                     });
                 }
 

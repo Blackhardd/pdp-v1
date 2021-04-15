@@ -12,7 +12,7 @@ if( !defined( '_S_VERSION' ) ){
 	define( '_S_VERSION', '1.0.17b' );
 }
 
-if ( ! function_exists( 'pdp_setup' ) ) :
+if( !function_exists( 'pdp_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -20,7 +20,7 @@ if ( ! function_exists( 'pdp_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function pdp_setup() {
+	function pdp_setup(){
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -113,7 +113,7 @@ add_action( 'after_setup_theme', 'pdp_setup' );
  *
  * @global int $content_width
  */
-function pdp_content_width() {
+function pdp_content_width(){
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
@@ -125,7 +125,7 @@ add_action( 'after_setup_theme', 'pdp_content_width', 0 );
 /**
  * Enqueue scripts and styles.
  */
-function pdp_scripts() {
+function pdp_scripts(){
 	wp_enqueue_style( 'pdp-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'pdp-style', 'rtl', 'replace' );
 
@@ -262,6 +262,10 @@ function pdp_scripts() {
 
 	wp_localize_script( 'pdp-post', 'pdpData', array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' )
+	) );
+
+	wp_localize_script( 'pdp-front', 'pdp', array(
+		'booking_url' => get_permalink( pll_get_post( 66 ) )
 	) );
 }
 add_action( 'wp_enqueue_scripts', 'pdp_scripts' );
