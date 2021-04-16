@@ -225,13 +225,13 @@
     header.fixed {
         top: 0;
     }
-    .header {
+    .header.header_desktop {
         display: none;
     }
     /**
      *  Mobile header
      */
-    .header_mobile {
+    .header.header_mobile {
         display: block;
     }
     /**
@@ -256,17 +256,15 @@
         right: 0;
         left: 0;
         bottom: 0;
+        padding: 22px;
+        background: rgba(249, 249, 249, 0.97);
         transform: translateX(100%);
+        transition: transform 0.5s ease;
+        overflow-y: scroll;
+        z-index: 1;
     }
     .cart-wrapper.active {
         transform: translateX(0);
-    }
-    .cart.cart_header {
-        position: unset;
-        width: unset;
-        height: 100%;
-        padding: 22px;
-        overflow-y: scroll;
     }
     /**
      *  Form Grid System

@@ -787,7 +787,6 @@ jQuery(function($){
                         window.open(pdp_vue_data.gift_cards_url,'_blank')
                     }
                     else{
-                        console.log(this.$store.getters.activeSalon)
                         this.$store.dispatch('setActiveCategory', cat)
                         $([document.documentElement, document.body]).animate({
                             scrollTop: $("#appointment-list").offset().top - 140

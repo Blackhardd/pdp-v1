@@ -1071,11 +1071,11 @@ header.main-header.fixed.active {
     top: 0;
 }
 
-.header{
+.header.header_desktop{
     background: rgba(249, 249, 249, 0.97);
 }
 
-.header > .container {
+.header.header_desktop > .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1096,7 +1096,7 @@ header.main-header.fixed.active {
  *  Mobile header
  */
 
-.header_mobile {
+.header.header_mobile {
     position: relative;
     display: none;
     padding: 23px 0 28px;
@@ -1104,7 +1104,7 @@ header.main-header.fixed.active {
     z-index: 4;
 }
 
-.header_mobile > .container {
+.header.header_mobile > .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -3273,6 +3273,7 @@ input.search-form__input:focus {
     font-weight: bold;
     font-size: 24px;
     line-height: 24px;
+    text-transform: lowercase;
 }
 
 .cart-form__close-btn {
@@ -3291,6 +3292,7 @@ input.search-form__input:focus {
     font-size: 24px;
     line-height: 23px;
     font-weight: bold;
+    text-transform: lowercase;
 }
 
 .cart_header .cart-form__title {
@@ -4225,7 +4227,7 @@ input.search-form__input:focus {
 
 .sticky-btns {
     position: fixed;
-    right: -86px;
+    right: -88px;
     top: 50%;
     transform: rotateZ(-90deg) translateY(100%);
     z-index: 2;

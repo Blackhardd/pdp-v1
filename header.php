@@ -15,7 +15,7 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php
-    if( is_home() && isset($_GET['orderby']) ){
+    if( is_home() && isset( $_GET['orderby'] ) ){
         echo '<meta name="robots" content="noindex, nofollow">';
     }
     ?>
@@ -30,7 +30,7 @@
 <?php wp_body_open(); ?>
 <main>
 	<header id="header-app" class="main-header">
-        <div class="header">
+        <div class="header header_desktop">
             <div class="container">
                 <?php get_template_part( 'templates/header/site-logo' ); ?>
 
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <div class="header_mobile">
+        <div class="header header_mobile">
             <div class="container">
                 <button class="btn-icon" @click="togglePhonesList">
                     <svg width="28" height="28" fill="none">
@@ -99,6 +99,10 @@
 	            <?php get_template_part( 'templates/widgets/socials' ); ?>
             </div>
         </nav>
+
+        <div class="cart-wrapper" :class="{ active: isCartActive }">
+            <cart/>
+        </div>
 
         <div class="dimmer darkening" @click="closeMenus"></div>
 	</header>
