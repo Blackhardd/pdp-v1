@@ -75,7 +75,7 @@ get_header(); ?>
 				</div>
 
 				<div class="title txt_center mb_20px d_none_m   ">
-					<h3 class="title__heading txt_lh-28px">номінали сертифікату можуть бути</h3>
+					<h3 class="title__heading txt_lh-28px">номінали сертифіката можуть бути</h3>
 				</div>
 
 				<div class="row row_1-1 gap_col_40px gap_row_24px mb_50px">
