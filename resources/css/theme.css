@@ -1122,6 +1122,7 @@ header.main-header.fixed.active {
 }
 
 .menu .menu-item a {
+    display: block;
     color: #0e0d0a;
     text-decoration: none;
 }

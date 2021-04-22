@@ -37,11 +37,9 @@
                 <nav class="main-navigation">
                     <?php
                     wp_nav_menu( array(
-                            'theme_location'    => 'header-menu',
-                            'menu_id'           => 'primary-menu',
-                            'walker'            => new PDP_Core_Walker_Nav_Menu()
-                        )
-                    ); ?>
+                        'theme_location'    => 'header-menu',
+                        'menu_id'           => 'primary-menu'
+                    ) ); ?>
                 </nav>
 
                 <?php get_template_part( 'templates/header/phones-list' ); ?>

@@ -749,6 +749,8 @@ jQuery(function($){
                     else{
                         this.activeSubMenu = id
                     }
+
+                    console.log(this.activeSubMenu)
                 }
             },
             data: {
