@@ -22,7 +22,7 @@ get_header(); ?>
 					</div>
 
 					<div class="textBlock mb_35px txt_fs-24px txt_lh-24px txt_fs-18px_m txt_lh-18px_m">
-						<p>Особливі умови для корпоративних клієнтів діє дисконтна система при замовленні <strong>від 10 сертифікатів</strong></p>
+						<p>Особливі умови для корпоративних клієнтів: діє дисконтна система при замовленні <strong>від 10 сертифікатів</strong></p>
 					</div>
 
 					<a href="#gift-cards-form" class="btn-default">замовити</a>
@@ -44,7 +44,7 @@ get_header(); ?>
 					<div class="row row_1-1 gap_col_70px gap_row_54px" id="gift-cards-icons-large">
 						<div class="iconBox">
 							<svg width="56" height="56" fill="none"><path d="M29.75 36.75h7v10.5l10.5-10.5h3.48a3.51 3.51 0 003.52-3.51V5.25a3.5 3.5 0 00-3.5-3.5h-28a3.5 3.5 0 00-3.5 3.5v10.5" stroke="#392BDF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M46.88 16.11a2.62 2.62 0 100 5.25 2.62 2.62 0 000-5.25h0zM27.17 16.11a2.62 2.62 0 100 5.25 2.62 2.62 0 000-5.25h0zM37.03 16.11a2.62 2.62 0 100 5.25 2.62 2.62 0 000-5.25z" stroke="#392BDF" stroke-width="3"/><path d="M15.75 38.5a7.87 7.87 0 100-15.75 7.87 7.87 0 000 15.75zM29.75 54.25a14.13 14.13 0 00-28 0" stroke="#392BDF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-							<div class="iconBox__title txt_fs-16px txt_lh-16px">Крім обслуговування, власник сертифіката отримує консультацію від ТОП-майстрів із досвідом 10+ років</div>
+							<div class="iconBox__title txt_fs-16px txt_lh-16px">Крім обслуговування, власник сертифікату отримує консультацію від ТОП-майстрів із досвідом 10+ років</div>
 						</div>
 
 						<div class="iconBox">
@@ -75,7 +75,7 @@ get_header(); ?>
 				</div>
 
 				<div class="title txt_center mb_20px d_none_m   ">
-					<h3 class="title__heading txt_lh-28px">номінали сертифіката можуть бути</h3>
+					<h3 class="title__heading txt_lh-28px">номінали сертифікату можуть бути</h3>
 				</div>
 
 				<div class="row row_1-1 gap_col_40px gap_row_24px mb_50px">
