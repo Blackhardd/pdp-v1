@@ -74,7 +74,7 @@ get_header(); ?>
 					<h2 class="title__heading txt_fs-36px txt_lh-36px txt_fs-24px_m txt_lh-24px_m">Замовити подарунковий сертифікат</h2>
 				</div>
 
-				<div class="title txt_center mb_20px d_none_m   ">
+				<div class="title txt_center mb_20px d_none_m">
 					<h3 class="title__heading txt_lh-28px">номінали сертифіката можуть бути</h3>
 				</div>
 

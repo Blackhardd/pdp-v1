@@ -88,11 +88,10 @@
 
 	            <?php
 	            wp_nav_menu( array(
-			            'theme_location'    => 'mobile-menu',
-			            'menu_id'           => 'primary-menu-mobile',
-			            'walker'            => new PDP_Core_Walker_Nav_Menu()
-		            )
-	            ); ?>
+			        'theme_location'    => 'mobile-menu',
+                    'menu_id'           => 'primary-menu-mobile',
+                    'walker'            => new PDP_Core_Walker_Nav_Menu()
+                ) ); ?>
 
 	            <?php get_template_part( 'templates/widgets/socials' ); ?>
             </div>

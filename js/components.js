@@ -11,7 +11,8 @@ jQuery(function($){
                 salons: [],
                 categories: [],
                 pricelist: [],
-                activeCategory: false
+                activeCategory: false,
+                isFirstLoad: true
             },
             getters: {
                 cart: function(state){
@@ -110,6 +111,9 @@ jQuery(function($){
                 },
                 setActiveCategory(state, category){
                     state.activeCategory = category
+                },
+                setFirstLoad(state, data){
+                    state.isFirstLoad = data
                 }
             },
             actions: {
@@ -121,8 +125,6 @@ jQuery(function($){
                 },
                 async addToCart(ctx, service){
                     ctx.commit('addToCart', service)
-
-                    console.log(ctx.state.cart)
 
                     await fetch(`${pdp_vue_data.rest_url}/pdp/v1/update_cart/`, {
                         method: 'POST',
@@ -176,10 +178,23 @@ jQuery(function($){
                     const res = await fetch(`${pdp_vue_data.rest_url}/pdp/v1/services/${salonId}`)
                     const pricelist = await res.json()
 
-                    console.log('Salon:', ctx.state.cart.salon)
-                    console.log('Pricelist:', pricelist)
-
                     ctx.commit('setPricelist', pricelist)
+
+                    if(ctx.state.isFirstLoad){
+                        ctx.dispatch('setDefaultCategory')
+                        ctx.commit('setFirstLoad', false)
+                    }
+                },
+                setDefaultCategory(ctx){
+                    let uri = window.location.search.substring(1)
+                    let params = new URLSearchParams(uri)
+
+                    if(params.get('cat')){
+                        ctx.commit('setActiveCategory', params.get('cat'))
+                    }
+                    else{
+                        ctx.commit('setActiveCategory', 'vse-uslugi-dlya-muzhchin');
+                    }
                 },
                 setActiveCategory(ctx, category){
                     ctx.commit('setActiveCategory', category)
@@ -749,8 +764,6 @@ jQuery(function($){
                     else{
                         this.activeSubMenu = id
                     }
-
-                    console.log(this.activeSubMenu)
                 }
             },
             data: {
@@ -774,9 +787,6 @@ jQuery(function($){
         new Vue({
             el: '#appointment-app',
             store: store,
-            mounted(){
-                this.setActiveCategoryFromURI()
-            },
             methods: {
                 fetchSalons(){
                     return this.$store.dispatch('fetchSalons')
@@ -793,14 +803,6 @@ jQuery(function($){
                         $([document.documentElement, document.body]).animate({
                             scrollTop: $("#appointment-list").offset().top - 140
                         }, 1000)
-                    }
-                },
-                setActiveCategoryFromURI(){
-                    let uri = window.location.search.substring(1)
-                    let params = new URLSearchParams(uri)
-
-                    if(params.get('cat')){
-                        this.$store.dispatch('setActiveCategory', params.get('cat'))
                     }
                 },
                 setMasterOption($event){
