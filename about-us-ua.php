@@ -197,9 +197,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 436, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Александр Скичко</div>
-								<div class="testimonial__title">Телеведущий</div>
-								<div class="testimonial__comment">Приятно когда ты приходишь, объясняешь что тебе нужно и тебя понимают с полуслова! PDP спасибо за уют, комфорт и конечно самое главное - профессионализм!</div>
+								<div class="testimonial__name">Олександр Скічко</div>
+								<div class="testimonial__title">Телеведучий</div>
+								<div class="testimonial__comment">Приємно, коли ти приходиш, пояснюєш, що тобі потрібно, а тебе розуміють з півслова! PDP, дякую за комфорт, затишок і, звичайно, найголовніше - професіоналізм.</div>
 							</div>
 						</div>
 					</div>
@@ -208,9 +208,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 442, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Надя Дорофеева</div>
-								<div class="testimonial__title">группа «Время и Стекло»</div>
-								<div class="testimonial__comment">Мне безумно понравился интерьер салона – очень стильно! А еще я впервые узнала, что означает «Пье-де-пуль»! Мастера – настоящие профессионалы, мне качественно и быстро сделали маникюр. Хороший персонал, милые и приятные люди, и очень харизматичный владелец салона!</div>
+								<div class="testimonial__name">Надя Дорофєєва</div>
+								<div class="testimonial__title">Співачка</div>
+								<div class="testimonial__comment">Мені шалено сподобався інтер'єр салону - дуже стильно! А ще, я вперше дізналася, що означає «PIED-DE-POULE». Майстри - справжні професіонали, мені якісно та швидко зробили манікюр. Хороший персонал - милі та приємні люди, і дуже харизматичний власник салону!</div>
 							</div>
 						</div>
 					</div>
@@ -219,9 +219,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 439, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Евгения Липская</div>
-								<div class="testimonial__title">Главный редактор maincream.com</div>
-								<div class="testimonial__comment">Прекрасный микс нацеленности на результат и душевного отношения. Тонко, точно, обязательно и всегда красиво.</div>
+								<div class="testimonial__name">Євгенія Ліпська</div>
+								<div class="testimonial__title">Головний редактор maincream.com</div>
+								<div class="testimonial__comment">Прекрасний мікс націленості на результат і душевного ставлення до клієнта. Тонко, точно, обов‘язково та завжди гарно.</div>
 							</div>
 						</div>
 					</div>
@@ -230,9 +230,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 445, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Регина Тодоренко</div>
-								<div class="testimonial__title">Телеведущая, певица</div>
-								<div class="testimonial__comment">Я рада, что мне удалось поработать с ребятами из PDP. Очень важно, когда мастер за несколько секунд определяет, какой макияж нанести и какую сделать прическу. В PDP все делают красиво, четко, мастерски и быстро, что не мало важно в нашем темпе жизни, когда ты вечно куда-то спешишь.</div>
+								<div class="testimonial__name">Регіна Тодоренко</div>
+								<div class="testimonial__title">Телеведуча, співачка</div>
+								<div class="testimonial__comment">Я рада, що мені вдалося попрацювати з PDP. Те, що майстер за кілька секунд визначає, який макіяж нанести чи яку зачіску зробити, є надважливим. У PDP усе роблять гарно, чітко, майстерно та швидко, а це дуже важливо з нашим ритмом життя, коли ти постійно кудись поспішаєш.</div>
 							</div>
 						</div>
 					</div>
@@ -241,9 +241,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 444, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Никита Добрынин</div>
-								<div class="testimonial__title">Самый стильный теле и радиоведущий</div>
-								<div class="testimonial__comment">Вот и нашел я салон, в котором и стрижку идеальную сделают, и кофе вкусным из Милк Бара напоят.</div>
+								<div class="testimonial__name">Нікіта Добринін</div>
+								<div class="testimonial__title">Найстильніший теле та радіоведучий</div>
+								<div class="testimonial__comment">Ось я і знайшов салон, де і стрижку ідеальну зроблять, і смачною кавою з Мілк Бару пригостять.</div>
 							</div>
 						</div>
 					</div>
@@ -252,9 +252,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 446, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Сергей Дидковский</div>
-								<div class="testimonial__title">PR-стратег "Ольшанский и партнеры"</div>
-								<div class="testimonial__comment">В салоне приятные женщины нежно трогают меня за разные части тела, кои, в свою очередь, преображаются из не самых красивых в красивые.</div>
+								<div class="testimonial__name">Сергій Дідковський</div>
+								<div class="testimonial__title">PR-стратег "Ольшанський і партнери"</div>
+								<div class="testimonial__comment">У салоні приємні жінки ніжно торкаються різних частин мого тіла, які, в свою чергу, перетворюються з не самих красивих в красиві.</div>
 							</div>
 						</div>
 					</div>
@@ -263,9 +263,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 447, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Сергей Середа</div>
+								<div class="testimonial__name">Сергій Середа</div>
 								<div class="testimonial__title">Шоумен</div>
-								<div class="testimonial__comment">Выбираю именно этот салон,потому что нравится качество обслуживания,удобное расположение,и всегда приветливый персонал.</div>
+								<div class="testimonial__comment">Обираю саме цей салон, тому що подобається якість обслуговування, зручне розташування, і завжди привітний персонал.</div>
 							</div>
 						</div>
 					</div>
@@ -275,8 +275,8 @@ get_header(); ?>
 							<?=wp_get_attachment_image( 449, 'testimonial' ); ?>
 							<div class="testimonial__content">
 								<div class="testimonial__name">Valery Proshe</div>
-								<div class="testimonial__title">Актриса</div>
-								<div class="testimonial__comment">Я конечно не одна девочка которая много работает. Но наверное только я не успеваю на запись . PDP всегда находит время - спасибо. А еще мне нравиться, что можно делать все одновременно и руки и волосы. Спасибо что вы со мной в одном тайминге и делаете меня красивой.</div>
+								<div class="testimonial__title">Акторка</div>
+								<div class="testimonial__comment">Я, звичайно, не одна дівчинка, яка багато працює. Але, напевно, тільки я не встигаю на запис. PDP завжди знаходить час - дякую. А ще, мені подобається, що тут можна робити все одночасно - і манікюр, і волосся. Дякую, що ви зі мною в одному таймінгу та робите мене красивою.</div>
 							</div>
 						</div>
 					</div>
@@ -285,9 +285,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 437, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Александра Шульгина</div>
-								<div class="testimonial__title">Producer на музыкальном канале Ello</div>
-								<div class="testimonial__comment">Любимый салон на любимой улице! Красиво, уютно, профессионально и тепло. Спасибо Егору и Ане за то, что открыли место, где феи и волшебники творят красоту.</div>
+								<div class="testimonial__name">Олександра Шульгіна</div>
+								<div class="testimonial__title">Продюсерка музичного каналу Ello</div>
+								<div class="testimonial__comment">Улюблений салон на улюбленій вулиці! Красиво, затишно, професійно та тепло. Дякую Єгору й Ані за те, що відкрили місце, де феї та чарівники творять красу.</div>
 							</div>
 						</div>
 					</div>
@@ -296,9 +296,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 443, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Наталия Волошина</div>
-								<div class="testimonial__title">Управляющая сети ресторанов Carte Blanche</div>
-								<div class="testimonial__comment">Первый раз в жизни нашла профессиональный салон, по всем параметрам: супер качество и супер скорость, а еще и работают до последнего клиента! Это просто мечта каждой бизнес леди. Спасибо вам! Люблю!</div>
+								<div class="testimonial__name">Наталія Волошина</div>
+								<div class="testimonial__title">Керуюча мережі ресторанів Carte Blanche</div>
+								<div class="testimonial__comment">Вперше в житті я знайшла салон, що є професійним за всіма критеріями: якість і швидкість - супер, ще й працюють до останнього клієнта! Це просто мрія кожної бізнес-леді. Дякую вам! Кохаю!</div>
 							</div>
 						</div>
 					</div>
@@ -307,9 +307,9 @@ get_header(); ?>
 						<div class="testimonial">
 							<?=wp_get_attachment_image( 441, 'testimonial' ); ?>
 							<div class="testimonial__content">
-								<div class="testimonial__name">Мила Сивацкая</div>
-								<div class="testimonial__title">Актриса</div>
-								<div class="testimonial__comment">Мне все очень понравилось! Мастеру вообще респект. Если честно, то в PIED-DE-POULE была первый раз, и чувствую что буду тут каждый день, если не каждый день, то раз в неделю точно!</div>
+								<div class="testimonial__name">Міла Сивацька</div>
+								<div class="testimonial__title">Акторка</div>
+								<div class="testimonial__comment">Мені все дуже сподобалося! Майстру взагалі респект. Чесно кажучи, в PIED-DE-POULE була вперше, але відчуваю, що буду тут кожен день. Якщо не кожен день, то раз на тиждень точно!</div>
 							</div>
 						</div>
 					</div>
@@ -319,8 +319,8 @@ get_header(); ?>
 							<?=wp_get_attachment_image( 438, 'testimonial' ); ?>
 							<div class="testimonial__content">
 								<div class="testimonial__name">Анна Козаченко</div>
-								<div class="testimonial__title">Milk Bar/Dogs&Tails</div>
-								<div class="testimonial__comment">Как хорошо, когда есть такие соседи :) Теперь в любую минуту, за рекордно короткое время можно стать красивой практически без отрыва от работы! За 30 минут в PDP мои волосы превращаются в красивые кудри. А еще здесь моя любимая косметика для волос Davines.</div>
+								<div class="testimonial__title">Milk Bar / Dogs & Tails</div>
+								<div class="testimonial__comment">Як добре, коли є такі сусіди :) Тепер у будь-яку хвилину, за рекордно короткий час можна стати красивою, майже не відриваючись від роботи! За 30 хвилин у PDP моє волосся перетворюється в красиві кучері. А ще, тут є моя улюблена косметика для волосся - Davines.</div>
 							</div>
 						</div>
 					</div>
@@ -330,8 +330,8 @@ get_header(); ?>
 							<?=wp_get_attachment_image( 440, 'testimonial' ); ?>
 							<div class="testimonial__content">
 								<div class="testimonial__name">MamaRika</div>
-								<div class="testimonial__title">Певица</div>
-								<div class="testimonial__comment">PIED-DE-POULE - это лучший сервис, лучшие мастера, творческий подход к каждому клиенту. Поэтому выбираю именно это место!</div>
+								<div class="testimonial__title">Співачка</div>
+								<div class="testimonial__comment">PIED-DE-POULE - це найкращий сервіс, найкращі майстри, і творчий підхід до кожного клієнта. Тому я обираю саме це місце!</div>
 							</div>
 						</div>
 					</div>
@@ -341,28 +341,6 @@ get_header(); ?>
 					<button type="button" class="testimonials__prev-btn"><svg width="22" height="16" fill="none"><path d="M.3 7.3a1 1 0 000 1.4l6.4 6.4A1 1 0 008 13.7L2.4 8l5.7-5.7A1 1 0 006.7 1L.3 7.3zM22 7H1v2h21V7z" fill="#000"/></svg> назад</button>
 					<div class="testimonials__dots"></div>
 					<button type="button" class="testimonials__next-btn">далі <svg width="22" height="16" fill="none"><path d="M21.7 8.7c.4-.4.4-1 0-1.4L15.3.9A1 1 0 1014 2.3L19.6 8l-5.7 5.7a1 1 0 001.4 1.4l6.4-6.4zM0 9h21V7H0v2z" fill="#000"/></svg></button>
-				</div>
-			</div>
-
-			<div style="display: none">
-				<div class="testimonial">
-					<?=wp_get_attachment_image( 448, 'testimonial' ); ?>
-					<div class="testimonial__content">
-						<div class="testimonial__name">Светлана Тарабарова</div>
-						<div class="testimonial__title">Певица</div>
-						<div class="testimonial__comment">В PIED-DE-POULE я по-настоящему могу отдохнуть и стать чуточку лучше, благодаря профессиональным мастерам! Обожаю услугу 2 в одном, это когда ты лежишь на удобном кресле , а два мастера - маникюр и педикюр работают одновременно) Это экономит мое время и я не так устаю))) Добрые и отзывчивые администраторы всегда помогут подобрать удобное мне время, а с моим графиком это важно). Одним словом - PIED-DE-POULE - это райский уголок для девушки с отменным кофе☕</div>
-					</div>
-				</div>
-			</div>
-
-			<div style="display: none;">
-				<div class="testimonial">
-					<?=wp_get_attachment_image( 450, 'testimonial' ); ?>
-					<div class="testimonial__content">
-						<div class="testimonial__name">Алёна Винницкая</div>
-						<div class="testimonial__title">Певица</div>
-						<div class="testimonial__comment">Думаю все блондинки меня поймут. Иметь красивые, здоровые светлые волосы - это не просто! В моей жизни было много салонов и мастеров. И каждый раз я боялась, что что-то пойдёт не так) Опять лечить или резать. В PDP я наконец успокоилась, высокое качество материалов и мой любимый мастер вселили в меня уверенность - блондинкой быть легко! Искренне благодарна.</div>
-					</div>
 				</div>
 			</div>
 		</div>

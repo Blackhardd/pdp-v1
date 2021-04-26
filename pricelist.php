@@ -56,10 +56,6 @@ get_header(); ?>
                             <div class="pricelist-category" v-for="(subcategory, index) in activeCategoryServices.services">
                                 <div class="pricelist-category__header">
                                     <div class="pricelist-category__title">{{ subcategory.name[lang] }}</div>
-
-                                    <div class="pricelist-category__info">
-                                        <span class="badge pro"></span> <?=__( 'только старший мастер', 'pdp' ); ?>
-                                    </div>
                                 </div>
 
                                 <div class="pricelist-category__list">
