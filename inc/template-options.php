@@ -8,9 +8,9 @@ foreach( pdp_get_salons() as $salon ){
 	$salons[$salon->ID] = $salon->post_title;
 }
 
-Container::make( 'theme_options', __( 'Настройки', 'pdp' ) )
+Container::make( 'theme_options', 'PIED-DE-POULE' )
 	->set_icon( 'none' )
-	->set_page_parent( 'pdp-options' )
+	->set_page_menu_position( 2 )
 	->add_tab( __( 'Общие', 'pdp' ), array(
 		Field::make( 'html', 'contacts_heading' )
 			->set_html( sprintf( '<h2>%s</h2>', __( 'Контакты', 'pdp' ) ) ),
