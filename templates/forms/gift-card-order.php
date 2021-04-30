@@ -70,5 +70,6 @@
 
         <input type="hidden" name="action" value="gift_card_order">
 	    <?php wp_nonce_field( 'pdp_gift_card_order_nonce', 'pdp_nonce' ); ?>
+	    <?php pdp_utm_fields(); ?>
     </form>
 </div>

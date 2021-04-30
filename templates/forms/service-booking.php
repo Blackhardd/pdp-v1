@@ -75,5 +75,6 @@
         <input type="hidden" name="page_title" value="<?=get_the_title(); ?>">
         <input type="hidden" name="page_url" value="<?=esc_url( get_permalink() ); ?>">
 	    <?php wp_nonce_field( 'pdp_service_booking_nonce', 'pdp_nonce' ); ?>
+	    <?php pdp_utm_fields(); ?>
     </form>
 </div>
