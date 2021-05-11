@@ -103,7 +103,7 @@ class PDP_Socials_List extends \Elementor\Widget_Base {
 	protected function render(){
 		$settings = $this->get_settings_for_display();
 
-		$image = wp_get_attachment_image( $settings['image'], 'full' );
+		$image = wp_get_attachment_image( $settings['image']['id'], 'full' );
 
 		echo "
 			<div class='socials-list'>

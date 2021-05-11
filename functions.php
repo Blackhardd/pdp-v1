@@ -289,7 +289,9 @@ require get_template_directory() . '/inc/template-shortcodes.php';
 /**
  * Elementor widgets.
  */
-require get_template_directory() . '/inc/elementor.php';
+if( is_plugin_active( 'elementor/elementor.php' ) ) :
+	require get_template_directory() . '/inc/elementor.php';
+endif;
 
 /**
  * Carbon fields.

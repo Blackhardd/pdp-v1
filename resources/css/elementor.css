@@ -54,6 +54,12 @@
 /**
  *  Socials List Widget
  */
+.socials-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .socials-list__title {
     margin: 0 0 30px 0;
     font-size: 24px;
