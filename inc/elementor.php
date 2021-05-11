@@ -31,6 +31,18 @@ function pdp_load_elementor_widgets(){
 			require TEMPLATEPATH . '/elementor/class-pdp-description-list.php';
 		endif;
 
+		if( !class_exists( 'PDP_Tabs' ) ) :
+			require TEMPLATEPATH . '/elementor/class-pdp-tabs.php';
+		endif;
+
+		if( !class_exists( 'PDP_Accordion' ) ) :
+			require TEMPLATEPATH . '/elementor/class-pdp-accordion.php';
+		endif;
+
+		if( !class_exists( 'PDP_Socials_List' ) ) :
+			require TEMPLATEPATH . '/elementor/class-pdp-socials-list.php';
+		endif;
+
 		if( !class_exists( 'PDP_Salons_Carousel' ) ) :
 			require TEMPLATEPATH . '/elementor/class-pdp-salons-carousel.php';
 		endif;
@@ -47,6 +59,9 @@ function pdp_load_elementor_widgets(){
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Heading() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Text() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Description_List() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Tabs() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Accordion() );
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Socials_List() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Salons_Carousel() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Service_Categories_Carousel() );
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Franchise() );

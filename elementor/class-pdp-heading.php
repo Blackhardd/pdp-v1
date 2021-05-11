@@ -71,7 +71,7 @@ class PDP_Heading extends \Elementor\Widget_Base {
 			[
 				'name'      => 'content_typography',
 				'label'     => __( 'Типографика', 'plugin-domain' ),
-				'scheme'    => \Elementor\Scheme_Typography::TYPOGRAPHY_1,
+				'scheme'    => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
 				'selector'  => '{{WRAPPER}} .title__heading'
 			]
 		);

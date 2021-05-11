@@ -1,3 +1,100 @@
+/**
+ *  Hero Widget
+ */
+.pdp-hero {
+    position: relative;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    height: calc(100vh - 90px);
+    padding-bottom: 90px;
+}
+
+.admin-bar .pdp-hero {
+    height: calc(100vh - 122px);
+}
+
+.pdp-hero__title {
+    max-width: 600px;
+    color: black;
+}
+
+.pdp-hero__subheading {
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+.pdp-hero__heading {
+    margin: 0 0 53px;
+    font-size: 64px;
+    line-height: 61px;
+}
+
+.pdp-hero__desc {
+    font-size: 18px;
+    line-height: 19px;
+}
+
+.pdp-hero > img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 4px;
+}
+
+.pdp-hero__socials {
+    position: absolute;
+    left: 0;
+    bottom: 90px;
+}
+
+
+/**
+ *  Socials List Widget
+ */
+.socials-list__title {
+    margin: 0 0 30px 0;
+    font-size: 24px;
+}
+
+.socials-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.socials-list li {
+    margin-bottom: 21px;
+    line-height: 18px;
+}
+
+.socials-list li:last-child {
+    margin-bottom: 0;
+}
+
+.socials-list a {
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.socials-list a > img {
+    position: relative;
+    top: -2px;
+    width: 18px;
+    margin-right: 9px;
+    vertical-align: middle;
+}
+
+.socials-list a:visited {
+    color: black;
+}
+
+
+
 .description-list {
     margin: 0;
     border-top: 1px solid black;
@@ -32,12 +129,262 @@
 }
 
 
-@media screen and (max-width: 768px) {
+/**
+ *  Franchise Widget
+ */
+.franchise {
+    position: relative;
+    padding-right: 420px;
+}
+
+.franchise__title {
+    max-width: 365px;
+    margin-bottom: 20px;
+}
+
+.franchise__requirements {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 730px;
+    margin-bottom: 30px;
+}
+
+.franchise__founders {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    max-width: 500px;
+    transform: translateY(-50%);
+}
+
+.franchise__advantages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px 25px;
+    max-width: 730px;
+    margin-bottom: 40px;
+}
+
+.franchise__advantages .iconBox > img {
+    width: 32px;
+    margin-right: 10px;
+}
+
+.franchise__advantages .iconBox > .iconBox__title {
+    font-weight: bold;
+}
+
+.franchise__cta {
+    max-width: 440px;
+}
+
+.franchise__cta .cta__content {
+    font-weight: 500;
+}
+
+
+/**
+ *  Tabs Widget
+ */
+.tabs {
+    display: grid;
+    grid-template-columns: minmax(auto, 300px) 1fr;
+    grid-gap: 84px;
+}
+
+.tabs__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tabs__nav-item {
+    margin-bottom: 8px;
+}
+
+.tabs__nav-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px 20px 16px;
+    font-size: 18px;
+    line-height: 17px;
+    background: white;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+}
+
+.tabs__btn svg {
+    margin-right: 20px;
+}
+
+.tabs__nav-item.active .tabs__btn {
+    font-weight: bold;
+}
+
+.tabs__nav-item.active svg path {
+    fill: #392BDF;
+}
+
+.tabs__tab {
+    display: none;
+}
+
+.tabs__tab.active {
+    display: block;
+}
+
+
+/**
+ *  Accordion Widget
+ */
+.pdp-accordion__item {
+    margin-bottom: 18px;
+}
+
+.pdp-accordion__item-header {
+    display: flex;
+    width: 100%;
+    padding: 15px 20px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 0;
+    cursor: pointer;
+}
+
+.pdp-accordion__title {
+    margin-left: 18px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 17px;
+}
+
+.pdp-accordion__item-header.active path {
+    fill: #392BDF;
+}
+
+.pdp-accordion__item-header.active .pdp-accordion__title {
+    font-weight: bold;
+}
+
+.pdp-accordion__content {
+    display: none;
+    padding: 20px 0 40px;
+}
+
+.pdp-accordion__item-header.active + .pdp-accordion__content {
+    display: block;
+}
+
+
+/**
+ *  Media Queries
+ */
+
+@media screen and (min-width: 768px) and (max-width: 1150px) {
+    .franchise {
+        padding-right: 0;
+    }
+    .franchise__requirements {
+        max-width: unset;
+    }
+    .franchise__founders {
+        display: none;
+    }
+    .franchise__advantages {
+        max-width: unset;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .pdp-hero {
+        flex-direction: column-reverse;
+        margin-bottom: 24px;
+    }
+    .pdp-hero__title {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        bottom: -24px;
+        color: white;
+        text-align: center;
+    }
+    .pdp-hero__subheading {
+        margin-bottom: 40px;
+        order: 2;
+        font-size: 16px;
+    }
+    .pdp-hero__heading {
+        margin-bottom: 8px;
+        order: 1;
+        font-size: 22px;
+        line-height: 1;
+    }
+    .pdp-hero__btn {
+        order: 3;
+    }
+    .pdp-hero__socials {
+        display: none;
+    }
+
     .description-item {
         display: block;
     }
     .description-item > dt {
         margin-bottom: 20px;
         font-size: 18px;
+    }
+
+    .franchise {
+        padding-right: 0;
+    }
+    .franchise__title {
+        margin-bottom: 30px;
+    }
+    .franchise__title .title__description {
+        margin-top: 20px;
+    }
+    .franchise__requirements {
+        display: block;
+    }
+    .franchise__requirements .infoBox {
+        margin-bottom: 20px;
+    }
+    .franchise__founders {
+        position: unset;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+        transform: translateY(0);
+    }
+    .franchise__advantages {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-template-columns: unset;
+        grid-gap: unset;
+    }
+    .franchise__advantages .iconBox {
+        width: 256px;
+        margin-bottom: 40px;
+    }
+    .franchise__advantages .iconBox:last-child {
+        margin-bottom: 0;
+    }
+    .franchise__cta {
+        max-width: unset;
+        text-align: center;
+    }
+    .franchise__cta .cta__footer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .franchise__cta .cta__btn {
+        margin-right: 0;
+    }
+    .franchise__cta .cta__phone {
+        margin-top: 25px;
     }
 }
