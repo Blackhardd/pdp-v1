@@ -26,6 +26,10 @@ function pdp_load_elementor_widgets(){
 		require TEMPLATEPATH . '/elementor/class-pdp-text.php';
 	endif;
 
+	if( !class_exists( 'PDP_Button' ) ) :
+		require TEMPLATEPATH . '/elementor/class-pdp-button.php';
+	endif;
+
 	if( !class_exists( 'PDP_Description_List' ) ) :
 		require TEMPLATEPATH . '/elementor/class-pdp-description-list.php';
 	endif;
@@ -61,6 +65,7 @@ function pdp_load_elementor_widgets(){
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Hero() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Heading() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Text() );
+	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Button() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Description_List() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Tabs() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Accordion() );
