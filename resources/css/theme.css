@@ -2540,6 +2540,55 @@ input.search-form__input:focus {
 
 
 /**
+ *  Franchise Block
+ */
+.franchise {
+    position: relative;
+}
+
+.franchise__title {
+    max-width: 365px;
+    margin-bottom: 20px;
+}
+
+.franchise__requirements {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 730px;
+    margin-bottom: 30px;
+}
+
+.franchise__founders {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    max-width: 500px;
+    transform: translateY(-50%);
+}
+
+.franchise__advantages {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px 25px;
+    max-width: 730px;
+    margin-bottom: 40px;
+}
+
+.franchise__advantages .iconBox > img {
+    width: 32px;
+    margin-right: 10px;
+}
+
+.franchise__advantages .iconBox > .iconBox__title {
+    font-weight: bold;
+}
+
+.franchise__cta {
+    max-width: 440px;
+}
+
+
+/**
  *  Extended service list
  */
 
@@ -2575,6 +2624,10 @@ input.search-form__input:focus {
     margin-top: 10px;
     font-size: 18px;
     line-height: 24px;
+}
+
+.title__description {
+    margin-top: 16px;
 }
 
 .title h1,

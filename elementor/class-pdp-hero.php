@@ -6,7 +6,7 @@ class PDP_Hero extends \Elementor\Widget_Base {
 	}
 
 	public function get_title(){
-		return __( 'PDP Hero', 'pdp' );
+		return __( 'Слайдер', 'pdp' );
 	}
 
 	public function get_icon(){
@@ -14,10 +14,10 @@ class PDP_Hero extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories(){
-		return ['general'];
+		return ['pdp'];
 	}
 
-	protected function _register_controls(){
+	protected function register_controls(){
 		$this->start_controls_section(
 			'content_section',
 			[
@@ -83,14 +83,14 @@ class PDP_Hero extends \Elementor\Widget_Base {
 
 		echo "
 			<div class='hero'>
-            	<div class='hero__content'>
+            	<div class='hero__title'>
                 	<div class='hero__subheading'>{$settings['subtitle']}</div>
                 	<h1 class='hero__heading'>{$settings['title']}</h1>
                         
 		";
 
 		if( $settings['btn_title'] && $settings['btn_link'] ){
-			echo "<a href='{$settings['btn_link']}' class='button hero__action'>{$settings['btn_title']}</a>";
+			echo "<a href='{$settings['btn_link']}' class='btn-default hero__btn'>{$settings['btn_title']}</a>";
 		}
 
 		echo "

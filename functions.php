@@ -126,6 +126,12 @@ add_action( 'after_setup_theme', 'pdp_content_width', 0 );
  * Enqueue scripts and styles.
  */
 function pdp_scripts(){
+	wp_register_style( 'pdp-elementor-widgets', get_template_directory_uri() . '/resources/css/elementor.css', array(), _S_VERSION );
+
+	if( is_plugin_active( 'elementor/elementor.php' ) ){
+		wp_enqueue_style( 'pdp-elementor-widgets' );
+	}
+
 	wp_enqueue_style( 'pdp-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'pdp-style', 'rtl', 'replace' );
 
@@ -283,7 +289,7 @@ require get_template_directory() . '/inc/template-shortcodes.php';
 /**
  * Elementor widgets.
  */
-//require get_template_directory() . '/inc/elementor.php';
+require get_template_directory() . '/inc/elementor.php';
 
 /**
  * Carbon fields.
