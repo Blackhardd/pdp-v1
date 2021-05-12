@@ -108,8 +108,8 @@ class PDP_Button extends \Elementor\Widget_Base {
 	}
 
 	protected function _content_template(){ ?>
-		<div class="button-wrap" style="text-align: {{{ alignment }}};">
-			<a href="{{{ link }}}" class="btn-default">{{{ title }}}</a>
+		<div class="button-wrap" style="text-align: {{{ settings.alignment }}};">
+			<a href="{{{ settings.link }}}" class="btn-default">{{{ settings.title }}}</a>
 		</div>
 		<?php
 	}
