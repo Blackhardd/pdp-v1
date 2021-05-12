@@ -534,6 +534,7 @@ button.btn-sticky-right {
     font-weight: 500;
     font-size: 16px;
     line-height: 15px;
+    text-transform: lowercase;
     background-color: transparent;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 211 40'%3E%3Cpath d='M183.1 7.1c-3.8-4.5-9.4-7.1-15.3-7.1H43.2c-5.9 0-11.5 2.6-15.3 7.1L0 40h211L183.1 7.1z' fill='%23392bdf'/%3E%3C/svg%3E");
     background-size: contain;
