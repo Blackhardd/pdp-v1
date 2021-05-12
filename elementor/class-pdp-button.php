@@ -101,7 +101,7 @@ class PDP_Button extends \Elementor\Widget_Base {
 		if( $settings['title'] && $settings['link'] ){
 			echo "
                 <div class='{$classes}' style='text-align: {$settings['alignment']};'>
-                    <a href='{$settings['link']}' class='button'>{$settings['title']}{$icon}</a>
+                    <a href='{$settings['link']}' class='btn-default'>{$settings['title']}{$icon}</a>
                 </div>
             ";
 		}
