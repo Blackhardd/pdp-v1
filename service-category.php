@@ -56,9 +56,13 @@
                             }
                         }
 
-                        if( $section['form_title'] && $section['form_service'] ){
-                            get_template_part( 'templates/forms/service-booking', null, ['title' => $section['form_title'], 'service' => $section['form_service']] );
-                        } ?>
+                        if( $section['form_title'] && $section['form_service'] ) : ?>
+                            <div class="service-form">
+                                <h3 class="service-form__title"><?=$section['form_title']; ?></h3>
+
+	                            <?php get_template_part( 'templates/forms/booking/service', null, ['service' => $section['form_service']] ); ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
 
                     <?php if( ( $sections_counter % 2 ) == 0 ){ ?>

@@ -346,6 +346,7 @@ get_header(); ?>
 
     <section id="school-form">
         <div class="container">
+            <h3><?=__( 'Оставить заявку на обучение', 'pdp' ); ?></h3>
             <?php get_template_part( 'templates/forms/school-apply' ); ?>
         </div>
     </section>

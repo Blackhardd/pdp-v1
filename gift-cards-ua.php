@@ -100,7 +100,7 @@ get_header(); ?>
 					</div>
 				</div>
 
-				<?php get_template_part( 'templates/forms/gift-card-order' ); ?>
+				<?php get_template_part( 'templates/forms/gift-card' ); ?>
 			</div>
 		</div>
 	</section>

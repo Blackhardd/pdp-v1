@@ -44,9 +44,9 @@ $details_html = ''; ?>
                                 <?php
                                 $active_class = ( $key == 0 ) ? 'active' : '';
                                 $details_html .= "
-                                    <div class=\"vacancies__details-block {$active_class}\" data-vacancy=\"{$vacancy->ID}\">
+                                    <div class='vacancies__details-block {$active_class}' data-vacancy='{$vacancy->ID}'>
                                         <h2>{$vacancy->post_title}</h2>
-                                        <div class=\"vacancies__content\">{$vacancy->post_content}</div>
+                                        <div class='vacancies__content'>{$vacancy->post_content}</div>
                                     </div>
                                 ";
                             } ?>
@@ -56,7 +56,8 @@ $details_html = ''; ?>
                     <div class="vacancies__details">
                         <?=$details_html; ?>
                         <div class="vacancies__form">
-                            <?php get_template_part( 'templates/forms/vacancie-apply' ); ?>
+                            <h3><?=__( 'Оставить заявку', 'pdp' ); ?></h3>
+                            <?php get_template_part( 'templates/forms/job-apply' ); ?>
                         </div>
                     </div>
                 </div>

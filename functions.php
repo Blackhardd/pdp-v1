@@ -133,7 +133,6 @@ function pdp_scripts(){
 	}
 
 	wp_enqueue_style( 'pdp-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'pdp-style', 'rtl', 'replace' );
 
 	/**
      * Enqueue fonts.
@@ -143,7 +142,7 @@ function pdp_scripts(){
     /**
      * Enqueue theme styles.
      */
-    wp_enqueue_style( 'pdp-theme', get_template_directory_uri() . '/resources/css/theme.css', array(), _S_VERSION );
+    wp_enqueue_style( 'pdp-atomic', get_template_directory_uri() . '/resources/css/atomic.css', array(), _S_VERSION );
 
     /**
      * Enqueue theme responsive styles.
@@ -285,6 +284,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Template shortcodes.
  */
 require get_template_directory() . '/inc/template-shortcodes.php';
+
+/**
+ *  Template Modals
+ */
+require get_template_directory() . '/inc/modals.php';
 
 /**
  * Elementor widgets.
