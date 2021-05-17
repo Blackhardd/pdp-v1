@@ -705,36 +705,11 @@ jQuery(function($){
 
                     if(isValid){
                         let ctx = this
-                        ctx.isLoading = true
-
-                        setTimeout(function(){
-                            ctx.isLoading = false
-                        }, 5000)
-                    }
-                    /**
-                    this.formErrors = []
-
-                    if(!this.name){
-                        this.formErrors.push(pdp_vue_lang.enter_a_name)
-                        isValid = false
-                    }
-
-                    if(!this.phone){
-                        this.formErrors.push(pdp_vue_lang.enter_a_phone)
-                        isValid = false
-                    }
-
-                    if(!this.cart.items.length){
-                        this.formErrors.push(pdp_vue_lang.no_services)
-                        isValid = false
-                    }
-
-                    if(isValid){
-                        let self = this;
                         let form_data = new FormData(event.target)
-                        form_data.append('cart', JSON.stringify(this.cart))
-                        form_data.append('total', this.cartTotal)
-                        form_data.append('is_hair_services', this.isHairServiceInCart)
+
+                        form_data.append('cart', JSON.stringify(ctx.cart))
+                        form_data.append('total', ctx.cartTotal)
+                        form_data.append('is_hair_services', ctx.isHairServiceInCart)
 
                         $.ajax({
                             method: 'POST',
@@ -743,17 +718,16 @@ jQuery(function($){
                             contentType: false,
                             data: form_data,
                             beforeSend: function(){
-                                self.isLoading = true
+                                ctx.isLoading = true
                             },
                             success: function(res){
-                                self.isLoading = false
-                                self.name = self.phone = self.email = ''
-                                self.isSubmitSuccess = true
-                                self.submitResponse = JSON.parse(res).message
+                                ctx.isLoading = false
+                                ctx.name = ctx.phone = ctx.email = ''
+                                ctx.isSubmitSuccess = true
+                                ctx.submitResponse = JSON.parse(res).message
                             }
                         })
                     }
-                    **/
                 }
             }
         })
