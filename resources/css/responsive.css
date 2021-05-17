@@ -919,6 +919,13 @@
     .form-row.form-row--two {
         grid-template-columns: 1fr;
     }
+
+    /**
+     *  Service Categories
+     */
+    .service-categories__salon-switcher {
+        max-width: 100%;
+    }
 }
 
 @media(max-width: 600px){
