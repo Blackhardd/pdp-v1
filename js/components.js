@@ -508,108 +508,110 @@ jQuery(function($){
          */
         Vue.component('cart', {
             template: `
-                <div>
-                    <preloader :is-active="isLoading" />
-                    <form class="form cart-form cart__form" @submit.prevent="submitForm">
-                        <div class="cart-form__header">{{ pdp_vue_lang.your_booking }}</div>
+                <form class="cart form" :class="{ loading: isLoading }" @submit.prevent="submitForm">
+                    <div class="cart__header">{{ pdp_vue_lang.your_booking }}</div>
                         
-                        <div v-if="cart.items.length">
-                            <div class="cart-form__list">
-                                <div v-for="(service, index) in cart.items" :key="index">
-                                    <button type="button" class="pricelist-item__add-btn btn-icon" @click="removeFromCart(service)" data-added>
-                                        <span class="pricelist-item__icon"></span>
-                                    </button>
-                                    {{ service.name[(pdp_vue_data.lang == 'ru') ? 'ru' : 'ua'] }}
-                                </div>
+                    <div v-if="cart.items.length">
+                        <div class="cart__items-list">
+                            <div v-for="(service, index) in cart.items" :key="index">
+                                <button type="button" class="pricelist-item__add-btn btn-icon" @click="removeFromCart(service)" data-added><span class="pricelist-item__icon"></span></button>
+                                {{ service.name[(pdp_vue_data.lang == 'ru') ? 'ru' : 'ua'] }}
                             </div>
                         </div>
-                        <div v-else>
-                            <div class="alert mb_60px mt_50px">
-                                <div class="alert__icon">!</div>
-                                <div class="alert__content">{{ pdp_vue_lang.select_service }}</div>
-                            </div>
+                    </div>
+                    <div v-else>
+                        <div class="alert mb_60px mt_50px">
+                            <div class="alert__icon">!</div>
+                            <div class="alert__content">{{ pdp_vue_lang.select_service }}</div>
                         </div>
+                    </div>
                                 
-                        <div class="cart-form__hair-length" v-show="isHairServiceInCart">
-                            <hair-length-select />
-                        </div>
+                    <div class="cart__hair-length" v-show="isHairServiceInCart">
+                        <hair-length-select />
+                    </div>
                         
-                        <div class="cart-form__title">{{ pdp_vue_lang.fill_the_form }}</div>
+                    <div class="cart__title">{{ pdp_vue_lang.fill_the_form }}</div>
                         
-                        <div class="form__row">
-                            <div class="form__col_full">
-                                <div class="inputWrap inputWrap_iconed">
-                                    <div class="inputWrap__icon">
-                                        <svg width="14" height="14" fill="none">
-                                            <path d="M10.8 9.4C9.1 8.7 8.5 9 8.5 7.9v-.2h2.7c.4-.3-1-.8-1-4.5C10.2 1.3 9 0 7.1 0H7h-.1C5 0 3.8 1.3 3.8 3.2c0 3.7-1.4 4.2-1 4.5h2.6v.2c0 1.2-.5.8-2.2 1.5C1.4 10 .9 10.7.9 11V14h12.2v-2.9c0-.4-.5-1-2.3-1.7z" fill="#000"/>
-                                        </svg>
-                                    </div>
-                                    <input type="text" name="name" class="input input_text" :placeholder="pdp_vue_lang.how_call_you" v-model="name" required/>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="input input--name" :class="{ error: fields.name.isInvalid, 'error-tooltip': fields.name.isTooltipVisible }">
+                                <div class="input__errors">{{ fields.name.error }}</div>
+                                <div class="input__wrap">
+                                    <input type="text" name="name" required :placeholder="pdp_vue_lang.how_call_you" v-model="fields.name.value" @input="fields.name.isInvalid = false" />
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M10.834 9.381c-1.756-.633-2.318-.314-2.318-1.458 0-.054.004-.157.01-.262h.086c1.2.088 2.357.171 2.614-.009.411-.287-1.012-.73-1.012-4.443C10.214 1.332 8.978 0 7.101 0l-.048.001H7.04L7.02 0h-.061l-.013.001L6.9 0C5.022 0 3.785 1.332 3.785 3.209c0 3.714-1.422 4.156-1.011 4.443.257.18 1.413.097 2.614.01h.086c.006.104.01.207.01.261 0 1.144-.562.825-2.318 1.458-1.762.636-2.27 1.283-2.27 1.725V14h12.207v-2.894c0-.442-.508-1.09-2.27-1.725z" /></svg>
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
-                        <div class="form__row">
-                            <div class="form__col_full">
-                                <div class="inputWrap inputWrap_iconed">
-                                    <div class="inputWrap__icon">
-                                        <svg width="14" height="14" fill="none">
-                                            <path d="M13.7 11L11.5 9c-.4-.4-1.1-.4-1.6 0L9 10l-.3-.1C8 9.5 7 9 6 8 5 7 4.5 6 4.1 5.4L4 5.2l.7-.8.4-.3c.4-.5.4-1.2 0-1.6L3 .3C2.5 0 1.8 0 1.4.3L.8 1A3.5 3.5 0 000 2.8c-.2 2.3.8 4.5 3.8 7.4 4 4 7.3 3.8 7.4 3.8a3.7 3.7 0 001.8-.8l.7-.5c.4-.5.4-1.2 0-1.6z" fill="#000"/>
-                                        </svg>
-                                    </div>
-                                    <input type="tel" name="phone" class="input input_tel" :placeholder="pdp_vue_lang.phone_number" v-model="phone" required/>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="input input--phone" :class="{ error: fields.phone.isInvalid, 'error-tooltip': fields.phone.isTooltipVisible }">
+                                <div class="input__errors">{{ fields.phone.error }}</div>
+                                <div class="input__wrap">
+                                    <input type="tel" name="phone" required :placeholder="pdp_vue_lang.phone_number" v-model="fields.phone.value" @input="fields.phone.isInvalid = false" />
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M13.69 11.06L11.52 8.9a1.13 1.13 0 00-1.59.03l-1.08 1.1a10.84 10.84 0 01-2.83-2.01c-1-1-1.53-1.95-1.9-2.64l-.13-.2.74-.74.35-.36c.45-.44.46-1.16.03-1.59L2.95.33a1.13 1.13 0 00-1.59.03l-.6.61.01.02a3.52 3.52 0 00-.73 1.78c-.28 2.37.8 4.53 3.74 7.47 4.05 4.05 7.32 3.75 7.46 3.73a3.65 3.65 0 001.79-.72h.01l.62-.6c.44-.44.46-1.16.03-1.59z" /></svg>
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
-                        <div class="form__row">
-                            <div class="form__col_full">
-                                <div class="inputWrap inputWrap_iconed">
-                                    <div class="inputWrap__icon">
-                                        <svg width="14" height="12" fill="none">
-                                            <path d="M1.34 3.9A361.82 361.82 0 005 6.42a36.7 36.7 0 01.76.53c.1.08.24.17.4.26.16.1.31.16.45.21.14.05.27.07.4.07s.26-.02.4-.07.29-.12.45-.21A8.25 8.25 0 009 6.43l3.65-2.54c.38-.26.7-.59.96-.96.25-.38.38-.77.38-1.18 0-.34-.12-.64-.37-.88a1.2 1.2 0 00-.88-.37H1.25C.85.5.54.64.32.9.11 1.19 0 1.53 0 1.93c0 .33.14.69.43 1.07.29.38.6.68.91.9z" fill="#000"/>
-                                            <path d="M13.22 4.73a162.38 162.38 0 00-4.61 3.2c-.19.13-.44.25-.74.38-.31.13-.6.19-.86.19H7c-.27 0-.56-.06-.87-.2-.3-.12-.55-.24-.74-.37l-.72-.5c-.7-.52-2-1.42-3.88-2.7-.3-.2-.56-.43-.79-.68v6.2c0 .34.12.64.37.88.24.25.54.37.88.37h11.5c.34 0 .64-.12.88-.37.25-.24.37-.54.37-.88v-6.2a4.3 4.3 0 01-.78.68z" fill="#000"/>
-                                        </svg>
-                                    </div>
-                                    <input type="email" name="email" class="input input_email" :placeholder="pdp_vue_lang.email" v-model="email" />
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="input input--email" :class="{ error: fields.email.isInvalid, 'error-tooltip': fields.email.isTooltipVisible }">
+                                <div class="input__errors">{{ fields.email.error }}</div>
+                                <div class="input__wrap">
+                                    <input type="email" name="email" :placeholder="pdp_vue_lang.email" v-model="fields.email.value" @input="fields.email.isInvalid = false" />
+                                    <svg width="14" height="12" viewBox="0 0 14 12" fill="none"><path d="M1.34 3.9A361.82 361.82 0 005 6.42a36.7 36.7 0 01.76.53c.1.08.24.17.4.26.16.1.31.16.45.21.14.05.27.07.4.07s.26-.02.4-.07.29-.12.45-.21A8.25 8.25 0 009 6.43l3.65-2.54c.38-.26.7-.59.96-.96.25-.38.38-.77.38-1.18 0-.34-.12-.64-.37-.88a1.2 1.2 0 00-.88-.37H1.25C.85.5.54.64.32.9.11 1.19 0 1.53 0 1.93c0 .33.14.69.43 1.07.29.38.6.68.91.9z" /><path d="M13.22 4.73a162.38 162.38 0 00-4.61 3.2c-.19.13-.44.25-.74.38-.31.13-.6.19-.86.19H7c-.27 0-.56-.06-.87-.2-.3-.12-.55-.24-.74-.37l-.72-.5c-.7-.52-2-1.42-3.88-2.7-.3-.2-.56-.43-.79-.68v6.2c0 .34.12.64.37.88.24.25.54.37.88.37h11.5c.34 0 .64-.12.88-.37.25-.24.37-.54.37-.88v-6.2a4.3 4.3 0 01-.78.68z" /></svg>
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
-                        <div class="form__response active error" v-if="formErrors.length && !isSubmitSuccess">
-                            <ul>
-                                <li v-for="(error, index) in formErrors" :key="index">{{ error }}</li>
-                            </ul>
-                        </div>
-                        <div class="form__response active success" v-else-if="!formErrors.length && isSubmitSuccess">
-                            <div v-html="submitResponse"></div>
-                        </div>
+                    <div class="form__response active success" v-if="isSubmitSuccess">
+                        <div v-html="submitResponse"></div>
+                    </div>
                         
-                        <div class="cart-form__footer">
-                            <input type="submit" class="btn-default" :value="pdp_vue_lang.book_now" />
+                    <div class="cart__footer">
+                        <input type="submit" class="btn-default" :value="pdp_vue_lang.book_now" :disabled="isLoading" />
                         
-                            <div class="cart-form__total">
-                                {{ pdp_vue_lang.cost_of_services }}
-                                <div class="cart-form__total-price">
-                                    <div class="cart-form__price">{{ cartTotal }}</div>
-                                    <div class="cart-form__currency"><span class="uah"></span></div>
-                                </div>
+                        <div class="cart__total">
+                            {{ pdp_vue_lang.cost_of_services }}
+                            <div class="cart__total-price">
+                                <div class="cart__price">{{ cartTotal }}</div>
+                                <div class="cart__currency"><span class="uah"></span></div>
                             </div>
                         </div>
+                    </div>
                         
-                        <input type="hidden" name="action" value="booking">
-                    </form>
-                </div>
+                    <input type="hidden" name="action" value="booking">
+                </form>
             `,
             data: function(){
                 return {
                     isLoading: false,
                     isSubmitSuccess: false,
                     submitResponse: '',
-                    formErrors: [],
-                    name: '',
-                    phone: '',
-                    email: ''
+                    fields: {
+                        name: {
+                            value: '',
+                            error: '',
+                            isInvalid: false,
+                            isTooltipVisible: false
+                        },
+                        phone: {
+                            value: '',
+                            error: '',
+                            isInvalid: false,
+                            isTooltipVisible: false
+                        },
+                        email: {
+                            value: '',
+                            error: '',
+                            isInvalid: false,
+                            isTooltipVisible: false
+                        }
+                    }
                 }
             },
             computed: {
@@ -632,8 +634,84 @@ jQuery(function($){
                 removeFromCart(service){
                     this.$store.dispatch('addToCart', service)
                 },
+                validateName(){
+                    let field = this.fields.name
+
+                    if(field.value.length < 3){
+                        field.error = 'Должно быть больше 3-х символов';
+                        field.isInvalid = true
+                        field.isTooltipVisible = true
+
+                        setTimeout(function(){
+                            field.isTooltipVisible = false
+                        }, 2000)
+
+                        return false
+                    }
+                    else if(field.value.length > 24){
+                        field.error = 'Должно быть меньше 25 символов';
+                        field.isInvalid = true
+                        field.isTooltipVisible = true
+
+                        setTimeout(function(){
+                            field.isTooltipVisible = false
+                        }, 2000)
+
+                        return false
+                    }
+
+                    return true
+                },
+                validatePhone(){
+                    let re = /^\+?3?8?(0\d{9})$/
+                    let field = this.fields.phone
+
+                    if(!re.test(field.value)){
+                        field.error = 'Неверный формат';
+                        field.isInvalid = true
+                        field.isTooltipVisible = true
+
+                        setTimeout(function(){
+                            field.isTooltipVisible = false
+                        }, 2000)
+
+                        return false
+                    }
+
+                    return true
+                },
+                validateEmail(){
+                    let re = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+                    let field = this.fields.email
+
+                    if(field.value && !re.test(field.value)){
+                        field.error = 'Неверный формат';
+                        field.isInvalid = true
+                        field.isTooltipVisible = true
+
+                        setTimeout(function(){
+                            field.isTooltipVisible = false
+                        }, 2000)
+
+                        return false
+                    }
+
+                    return true
+                },
                 submitForm(){
                     let isValid = true
+
+                    isValid = this.validateName() && this.validatePhone() && this.validateEmail()
+
+                    if(isValid){
+                        let ctx = this
+                        ctx.isLoading = true
+
+                        setTimeout(function(){
+                            ctx.isLoading = false
+                        }, 5000)
+                    }
+                    /**
                     this.formErrors = []
 
                     if(!this.name){
@@ -675,6 +753,7 @@ jQuery(function($){
                             }
                         })
                     }
+                    **/
                 }
             }
         })

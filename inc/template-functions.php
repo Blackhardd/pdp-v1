@@ -79,14 +79,14 @@ add_filter( 'wp_nav_menu_items', 'pdp_menu_add_appointments', 10, 2 );
 function pdp_menu_add_appointments( $items, $args ){
 	if( 'header-menu' == $args->theme_location ){
 		ob_start(); ?>
-        <li class="menu-item menu-item_book" @mouseover="isCartActive = true" @mouseleave="isCartActive = false">
+        <li class="menu-item menu-item_book">
             <button class="booking-btn">
                 <?=__( 'Запись', 'pdp' ); ?>
                 <div class="booking-btn__counter">
                     {{ cartItems }}
                 </div>
             </button>
-            <div class="cart cart_header">
+            <div class="cart-wrap cart-wrap--header">
                 <cart />
             </div>
         </li>
@@ -328,18 +328,18 @@ function pdp_get_related_pages( $post = false ){
  *  Form Fields
  */
 
-function pdp_get_form_field( $name = false ){
+function pdp_get_form_field( $name = false, $required = false ){
     if( $name ){
         ob_start();
-        get_template_part( 'templates/forms/fields/' . $name );
+        get_template_part( 'templates/forms/fields/' . $name, null, ['required' => $required] );
         return ob_get_clean();
     }
 
     return null;
 }
 
-function pdp_form_field( $name = false ){
+function pdp_form_field( $name = false, $required = false ){
     if( $name ){
-        echo pdp_get_form_field( $name );
+        echo pdp_get_form_field( $name, $required );
     }
 }

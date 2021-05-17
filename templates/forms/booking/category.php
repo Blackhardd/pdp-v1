@@ -1,16 +1,18 @@
 <div class="form-wrap">
 	<form class="form">
-		<div class="form-row">
-			<div class="form-col">
-				<?php pdp_form_field( 'name' ); ?>
-			</div>
-		</div>
+        <div class="form__fields">
+            <div class="form-row">
+                <div class="form-col">
+			        <?php pdp_form_field( 'name', true ); ?>
+                </div>
+            </div>
 
-		<div class="form-row">
-			<div class="form-col">
-				<?php pdp_form_field( 'phone' ); ?>
-			</div>
-		</div>
+            <div class="form-row">
+                <div class="form-col">
+			        <?php pdp_form_field( 'phone', true ); ?>
+                </div>
+            </div>
+        </div>
 
 		<div class="form__response"></div>
 

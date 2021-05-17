@@ -70,7 +70,7 @@ get_header(); ?>
                     </div>
 
                     <div class="pricelist__sidebar">
-                        <div class="cart">
+                        <div class="cart-wrap">
                             <cart />
                         </div>
                     </div>

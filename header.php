@@ -96,7 +96,7 @@
             </div>
         </nav>
 
-        <div class="cart-wrapper" :class="{ active: isCartActive }">
+        <div class="cart-wrap cart-wrap--mobile" :class="{ active: isCartActive }">
             <cart/>
         </div>
 

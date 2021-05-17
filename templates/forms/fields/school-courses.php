@@ -1,7 +1,7 @@
 <div class="select select--school-course">
 	<div class="select__errors"></div>
 	<div class="select__wrap">
-		<select name="service" class="selectric selectric_pdp">
+		<select name="course" class="selectric selectric_pdp">
 			<option value=""><?=__( 'Выберите курс', 'pdp' ); ?></option>
 			<option value="Коллорист"><?=sprintf( __( 'Курс %s', 'pdp' ), __( '“Коллорист”', 'pdp' ) ); ?></option>
 			<option value="Make-up специалист"><?=sprintf( __( 'Курс %s', 'pdp' ), __( '“Make-up специалист”', 'pdp' ) ); ?></option>

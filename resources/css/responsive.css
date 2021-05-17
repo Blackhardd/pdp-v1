@@ -3,12 +3,6 @@
         background: url("../images/gift-cards/header.png") no-repeat right 70vw top 110px;
     }
     /**
-     *  Modals
-     */
-    .admin-bar .modal__dimmer {
-        padding-top: 160px;
-    }
-    /**
      *  Phones List
      */
     .phonesList__dropdownInner {
@@ -649,9 +643,6 @@
     /**
      *  Modal
      */
-    .modal__dimmer {
-        padding-top: 105px;
-    }
     .modal__close {
         top: 15px;
         right: 15px;
@@ -659,10 +650,6 @@
     .modal__inner {
         max-height: 100%;
         overflow-y: auto;
-    }
-    .modal__content {
-        display: flex;
-        justify-content: stretch;
     }
     /**
      *  Modal - Promotions

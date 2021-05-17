@@ -3,11 +3,11 @@
         <div class="form__fields">
             <div class="form-row form-row--two">
                 <div class="form-col">
-                    <?php pdp_form_field( 'name' ); ?>
+                    <?php pdp_form_field( 'name', true ); ?>
                 </div>
 
                 <div class="form-col">
-	                <?php pdp_form_field( 'phone' ); ?>
+	                <?php pdp_form_field( 'phone', true ); ?>
                 </div>
             </div>
 

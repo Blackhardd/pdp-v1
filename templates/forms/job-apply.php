@@ -1,34 +1,36 @@
 <div class="form-wrap">
 	<form class="form" enctype="multipart/form-data">
-		<div class="form-row form-row--two">
-			<div class="form-col">
-				<div class="form-row">
-					<div class="form-col">
-						<?php pdp_form_field( 'name' ); ?>
-					</div>
-				</div>
+		<div class="form__fields">
+            <div class="form-row form-row--two">
+                <div class="form-col">
+                    <div class="form-row">
+                        <div class="form-col">
+							<?php pdp_form_field( 'name', true ); ?>
+                        </div>
+                    </div>
 
-				<div class="form-row">
-					<div class="form-col">
-						<?php pdp_form_field( 'email' ); ?>
-					</div>
-				</div>
+                    <div class="form-row">
+                        <div class="form-col">
+							<?php pdp_form_field( 'email', true ); ?>
+                        </div>
+                    </div>
 
-				<div class="form-row">
-					<div class="form-col">
-						<?php pdp_form_field( 'phone' ); ?>
-					</div>
-				</div>
-			</div>
+                    <div class="form-row">
+                        <div class="form-col">
+							<?php pdp_form_field( 'phone', true ); ?>
+                        </div>
+                    </div>
+                </div>
 
-			<div class="form-col">
-				<div class="form-row">
-					<div class="form-col">
-						<?php pdp_form_field( 'message' ); ?>
-					</div>
-				</div>
-			</div>
-		</div>
+                <div class="form-col">
+                    <div class="form-row">
+                        <div class="form-col">
+							<?php pdp_form_field( 'message' ); ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 		<div class="form__response"></div>
 

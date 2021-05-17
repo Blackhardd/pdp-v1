@@ -1,26 +1,28 @@
 <div class="form-wrap">
 	<form class="form">
-		<div class="form-row">
-			<div class="form-col">
-				<?php pdp_form_field( 'name' ); ?>
-			</div>
-		</div>
+        <div class="form__fields">
+            <div class="form-row">
+                <div class="form-col">
+			        <?php pdp_form_field( 'name', true ); ?>
+                </div>
+            </div>
 
-		<div class="form-row">
-			<div class="form-col">
-				<?php pdp_form_field( 'phone' ); ?>
-			</div>
-		</div>
+            <div class="form-row">
+                <div class="form-col">
+			        <?php pdp_form_field( 'phone', true ); ?>
+                </div>
+            </div>
 
-		<?php if( carbon_get_theme_option( 'forms_show_salon_select' ) ) : ?>
-			<div class="form-row">
-				<div class="form-col">
-					<?php pdp_form_field( 'salon' ); ?>
-				</div>
-			</div>
-		<?php else : ?>
-			<input type="hidden" name="salon" value="<?=carbon_get_theme_option( 'forms_default_salon' ); ?>">
-		<?php endif; ?>
+	        <?php if( carbon_get_theme_option( 'forms_show_salon_select' ) ) : ?>
+                <div class="form-row">
+                    <div class="form-col">
+				        <?php pdp_form_field( 'salon' ); ?>
+                    </div>
+                </div>
+	        <?php else : ?>
+                <input type="hidden" name="salon" value="<?=carbon_get_theme_option( 'forms_default_salon' ); ?>">
+	        <?php endif; ?>
+        </div>
 
 		<div class="form__response"></div>
 

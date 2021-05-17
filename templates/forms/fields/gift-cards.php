@@ -1,7 +1,7 @@
 <div class="select select--gift-cards">
 	<div class="select__errors"></div>
 	<div class="select__wrap">
-		<select name="card" class="selectric selectric_pdp">
+		<select name="gift_card" class="selectric selectric_pdp">
 			<option value=""><?=__( 'Выберите сертификат', 'pdp' ); ?></option>
 			<option value="500"><?php printf( __( 'Номиналом %s грн.', 'pdp' ), '500' ); ?></option>
 			<option value="1000"><?php printf( __( 'Номиналом %s грн.', 'pdp' ), '1 000' ); ?></option>
