@@ -2120,6 +2120,8 @@ input.search-form__input:focus {
  */
 
 .service-categories__salon-switcher {
+	width: 100%;
+	max-width: 314px;
 	margin-bottom: 20px;
 }
 
