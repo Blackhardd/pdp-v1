@@ -573,7 +573,7 @@ jQuery(function($){
                     </div>
                         
                     <div class="cart__footer">
-                        <input type="submit" class="btn-default" :value="pdp_vue_lang.book_now" :disabled="isLoading" />
+                        <input type="submit" class="btn-default" :value="pdp_vue_lang.book_now" :disabled="isLoading || isCartEmpty" />
                         
                         <div class="cart__total">
                             {{ pdp_vue_lang.cost_of_services }}
@@ -590,6 +590,7 @@ jQuery(function($){
             data: function(){
                 return {
                     isLoading: false,
+                    isFormValid: true,
                     isSubmitSuccess: false,
                     submitResponse: '',
                     fields: {
@@ -618,6 +619,9 @@ jQuery(function($){
                 cart: function(){
                     return this.$store.getters.cart
                 },
+                isCartEmpty: function(){
+                    return (this.cart.items.length) ? false : true
+                },
                 isHairServiceInCart: function(){
                     let hair_services = this.cart.items.filter((item) => item.prices.length >= 3)
                     if(hair_services.length){
@@ -634,6 +638,18 @@ jQuery(function($){
                 removeFromCart(service){
                     this.$store.dispatch('addToCart', service)
                 },
+                validateForm(){
+                    this.isFormValid = true
+
+                    this.validateCart()
+
+                    this.validateName()
+                    this.validatePhone()
+                    this.validateEmail()
+                },
+                validateCart(){
+                    this.isFormValid = (this.cart.items.length) ? true : false
+                },
                 validateName(){
                     let field = this.fields.name
 
@@ -646,7 +662,7 @@ jQuery(function($){
                             field.isTooltipVisible = false
                         }, 2000)
 
-                        return false
+                        this.isFormValid = false
                     }
                     else if(field.value.length > 24){
                         field.error = 'Должно быть меньше 25 символов';
@@ -657,10 +673,8 @@ jQuery(function($){
                             field.isTooltipVisible = false
                         }, 2000)
 
-                        return false
+                        this.isFormValid = false
                     }
-
-                    return true
                 },
                 validatePhone(){
                     let re = /^\+?3?8?(0\d{9})$/
@@ -675,10 +689,8 @@ jQuery(function($){
                             field.isTooltipVisible = false
                         }, 2000)
 
-                        return false
+                        this.isFormValid = false
                     }
-
-                    return true
                 },
                 validateEmail(){
                     let re = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
@@ -693,17 +705,13 @@ jQuery(function($){
                             field.isTooltipVisible = false
                         }, 2000)
 
-                        return false
+                        this.isFormValid = false
                     }
-
-                    return true
                 },
                 submitForm(){
-                    let isValid = true
+                    this.validateForm()
 
-                    isValid = this.validateName() && this.validatePhone() && this.validateEmail()
-
-                    if(isValid){
+                    if(this.isFormValid){
                         let ctx = this
                         let form_data = new FormData(event.target)
 
@@ -722,7 +730,12 @@ jQuery(function($){
                             },
                             success: function(res){
                                 ctx.isLoading = false
-                                ctx.name = ctx.phone = ctx.email = ''
+                                ctx.fields.name = ctx.fields.phone = ctx.fields.email = {
+                                    value: '',
+                                    error: '',
+                                    isInvalid: false,
+                                    isTooltipVisible: false
+                                }
                                 ctx.isSubmitSuccess = true
                                 ctx.submitResponse = JSON.parse(res).message
                             }
