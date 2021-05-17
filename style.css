@@ -111,7 +111,7 @@ input[type="submit"].btn-default {
 }
 
 input[type="submit"].btn-default:disabled {
-	background: #0E0D0A;
+	opacity: 0.5;
 	cursor: not-allowed;
 }
 
@@ -2127,6 +2127,7 @@ input.search-form__input:focus {
 
 .service-categories-wrap {
 	position: relative;
+	width: 100% !important;
 	height: 373px;
 }
 
