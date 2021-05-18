@@ -56,7 +56,7 @@ jQuery(document).ready(function($){
 
     function validate_required($input){
         if($input.prop('required') && !$input.val().length){
-            input_error($input, 'Обязательное поле');
+            input_error($input, pdp_forms_i18n.required_field);
             return false;
         }
 
@@ -65,11 +65,11 @@ jQuery(document).ready(function($){
 
     function validate_name($input){
         if($input.val().length < 3){
-            input_error($input, 'Должно быть больше 3-х символов');
+            input_error($input, pdp_forms_i18n.name_shorter);
             return false;
         }
         else if($input.val().length > 24){
-            input_error($input, 'Должно быть меньше 25 символов');
+            input_error($input, pdp_forms_i18n.name_longer);
             return false;
         }
 
@@ -78,7 +78,7 @@ jQuery(document).ready(function($){
 
     function validate_email($input){
         if(!regex_email.test($input.val())){
-            input_error($input, 'Неверный формат');
+            input_error($input, pdp_forms_i18n.wrong_format);
             return false;
         }
 
@@ -87,7 +87,7 @@ jQuery(document).ready(function($){
 
     function validate_phone($input){
         if(!regex_phone.test($input.val())){
-            input_error($input, 'Неверный формат');
+            input_error($input, pdp_forms_i18n.wrong_format);
             return false;
         }
 
@@ -96,7 +96,7 @@ jQuery(document).ready(function($){
 
     function validate_select($input){
         if(!$input.val()){
-            input_error($input, 'Вы не выбрали опцию');
+            input_error($input, pdp_forms_i18n.no_selected_option);
         }
 
         return true;
@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
 
         $.ajax({
             method: 'POST',
-            url: pdpData.ajaxurl,
+            url: pdp_forms_data.ajax_url,
             data: form_data,
             contentType: false,
             processData: false,
