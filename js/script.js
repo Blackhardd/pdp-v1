@@ -65,7 +65,7 @@ jQuery(function($) {
         pdp_sticky_buttons();
 
         function pdp_init_services_slider(){
-            if($('body:not(.page-template-pricelist) .service-categories').length){
+            if($('body:not(.page-template-pricelist, .elementor-page) .service-categories').length){
                 let parseURLs = function(salonId){
                     $('.service-categories__category > a').each(function(i){
                         $(this).attr('href', pdp.booking_url + '?salonId=' + salonId + '&cat=' + $(this).data('category') );
@@ -136,7 +136,7 @@ jQuery(function($) {
         pdp_init_accordions();
 
         function pdp_init_salon_sliders(){
-            if($('.testimonials').length){
+            if(!$('body').hasClass('elementor-page') && $('.testimonials').length){
                 let offset = $('.testimonials__slider').offset().left;
                 let $pagination = $('.testimonials__dots');
                 let $slider = $('.testimonials__slider');
