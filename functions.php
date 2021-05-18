@@ -6,7 +6,7 @@
  */
 
 if( !defined( 'PDP_THEME_VERSION' ) ) :
-	define( 'PDP_THEME_VERSION', '1.0.24' );
+	define( 'PDP_THEME_VERSION', '1.0.25' );
 endif;
 
 
@@ -215,29 +215,34 @@ function pdp_scripts(){
     wp_enqueue_script( 'pdp-front', get_template_directory_uri() . '/js/script.js', array(), PDP_THEME_VERSION, true );
     wp_enqueue_script( 'pdp-components', get_template_directory_uri() . '/js/components.js', array(), PDP_THEME_VERSION, true );
 
-    wp_localize_script( 'pdp-components', 'pdp_vue_data', array(
+    wp_localize_script( 'pdp-components', 'pdp_components_data', array(
         'rest_url'          => untrailingslashit( esc_url_raw( rest_url() ) ),
         'ajax_url'          => admin_url( 'admin-ajax.php' ),
 	    'gift_cards_url'    => get_permalink( 366 ),
 	    'lang'              => pll_current_language( 'slug' )
     ) );
 
-	wp_localize_script( 'pdp-components', 'pdp_vue_lang', array(
-		'your_booking'      => __( 'Ваше бронирование', 'pdp' ),
-		'select_service'    => __( 'Выберите услуги', 'pdp' ),
-		'fill_the_form'     => __( 'Заполните форму', 'pdp' ),
-		'how_call_you'      => __( 'Как к вам обращаться?', 'pdp' ),
-		'phone_number'      => __( 'Номер телефона', 'pdp' ),
-		'email'             => __( 'Электронная почта', 'pdp' ),
-		'book_now'          => __( 'Забронировать', 'pdp' ),
-		'cost_of_services'  => __( 'Стоимость услуг', 'pdp' ),
-		'enter_a_name'      => __( 'Укажите имя', 'pdp' ),
-		'enter_a_phone'     => __( 'Укажите номер телефона', 'pdp' ),
-		'no_services'       => __( 'Вы не выбрали услуги', 'pdp' ),
-		'hair_length_1st'   => __( 'от 5-15 см', 'pdp' ),
-		'hair_length_2nd'   => __( 'от 15 - 25 см (выше плеч, каре, боб)', 'pdp' ),
-		'hair_length_3rd'   => __( 'от 25 - 40 см (ниже плеч/выше лопаток)', 'pdp' ),
-		'hair_length_4th'   => __( 'от 40 - 60 см (ниже лопаток)', 'pdp' )
+	wp_localize_script( 'pdp-components', 'pdp_components_i18n', array(
+		'your_booking'          => __( 'Ваше бронирование', 'pdp' ),
+		'select_service'        => __( 'Выберите услуги', 'pdp' ),
+		'fill_the_form'         => __( 'Заполните форму', 'pdp' ),
+		'how_call_you'          => __( 'Как к вам обращаться?', 'pdp' ),
+		'phone_number'          => __( 'Номер телефона', 'pdp' ),
+		'email'                 => __( 'Электронная почта', 'pdp' ),
+		'book_now'              => __( 'Забронировать', 'pdp' ),
+		'cost_of_services'      => __( 'Стоимость услуг', 'pdp' ),
+		'enter_a_name'          => __( 'Укажите имя', 'pdp' ),
+		'enter_a_phone'         => __( 'Укажите номер телефона', 'pdp' ),
+		'no_services'           => __( 'Вы не выбрали услуги', 'pdp' ),
+		'hair_length_1st'       => __( 'от 5-15 см', 'pdp' ),
+		'hair_length_2nd'       => __( 'от 15 - 25 см (выше плеч, каре, боб)', 'pdp' ),
+		'hair_length_3rd'       => __( 'от 25 - 40 см (ниже плеч/выше лопаток)', 'pdp' ),
+		'hair_length_4th'       => __( 'от 40 - 60 см (ниже лопаток)', 'pdp' ),
+		'required_field'        => __( 'Обязательное поле', 'pdp' ),
+		'wrong_format'          => __( 'Неверный формат', 'pdp' ),
+		'no_selected_option'    => __( 'Вы не выбрали опцию', 'pdp' ),
+		'name_shorter'          => __( 'Должно быть больше 3-х символов', 'pdp' ),
+		'name_longer'           => __( 'Должно быть меньше 25 символов', 'pdp' ),
 	) );
 
     wp_localize_script( 'pdp-forms', 'pdp_forms_data', array(
