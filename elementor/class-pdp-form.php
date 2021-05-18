@@ -41,10 +41,10 @@ class PDP_Form extends \Elementor\Widget_Base {
 				'label'         => __( 'Форма', 'pdp' ),
 				'type'          => \Elementor\Controls_Manager::SELECT,
 				'options'       => [
-					'simple-booking'    => __( 'Простая форма записи', 'pdp' ),
-					'home-booking'      => __( 'Форма записи для главной', 'pdp' ),
+					'simple'        => __( 'Простая форма записи', 'pdp' ),
+					'homepage'      => __( 'Форма записи для главной', 'pdp' ),
 				],
-				'default'       => 'simple-booking'
+				'default'       => 'simple'
 			]
 		);
 
@@ -54,7 +54,7 @@ class PDP_Form extends \Elementor\Widget_Base {
 	protected function render(){
 		$settings = $this->get_settings_for_display();
 
-		get_template_part( 'templates/forms/elementor/' . $settings['form'], null, ['title' => $settings['title']] );
+		get_template_part( 'templates/forms/booking/' . $settings['form'] );
 	}
 
 	protected function _content_template(){
