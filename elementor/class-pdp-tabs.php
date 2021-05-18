@@ -4,7 +4,7 @@ class PDP_Tabs extends \Elementor\Widget_Base {
 	public function __construct( $data = [], $args = null ){
 		parent::__construct( $data, $args );
 
-		wp_register_script( 'pdp-tabs', get_template_directory_uri() . '/js/elementor/tabs.js', [ 'elementor-frontend' ], _S_VERSION, true );
+		wp_register_script( 'pdp-tabs', get_template_directory_uri() . '/js/elementor/tabs.js', [ 'elementor-frontend' ], PDP_THEME_VERSION, true );
 	}
 
 	public function get_name(){

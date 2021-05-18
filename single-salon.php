@@ -1,6 +1,7 @@
 <?php get_header();
 
-$city = array_pop( get_the_terms( get_the_ID(), 'city' ) )->name;
+$city_terms = get_the_terms( get_the_ID(), 'city' );
+$city = array_pop( $city_terms )->name;
 $tel = carbon_get_post_meta( get_the_ID(), 'phone' );
 $advantages = carbon_get_post_meta( get_the_ID(), 'advantages' );
 $gallery = carbon_get_post_meta( get_the_ID(), 'gallery' ); ?>

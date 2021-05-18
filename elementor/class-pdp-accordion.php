@@ -4,7 +4,7 @@ class PDP_Accordion extends \Elementor\Widget_Base {
 	public function __construct( $data = [], $args = null ){
 		parent::__construct( $data, $args );
 
-		wp_register_script( 'pdp-accordion', get_template_directory_uri() . '/js/elementor/accordion.js', [ 'elementor-frontend' ], _S_VERSION, true );
+		wp_register_script( 'pdp-accordion', get_template_directory_uri() . '/js/elementor/accordion.js', [ 'elementor-frontend' ], PDP_THEME_VERSION, true );
 	}
 
 	public function get_name(){

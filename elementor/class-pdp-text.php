@@ -48,7 +48,10 @@ class PDP_Text extends \Elementor\Widget_Base {
 		";
 	}
 
-	protected function _content_template(){
-
+	protected function _content_template(){ ?>
+		<div class="text">
+			{{{ settings.content }}}
+		</div>
+		<?php
 	}
 }
