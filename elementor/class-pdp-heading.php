@@ -31,7 +31,8 @@ class PDP_Heading extends \Elementor\Widget_Base {
 			[
 				'label'         => __( 'Заголовок', 'pdp' ),
 				'type'          => \Elementor\Controls_Manager::TEXTAREA,
-				'placeholder' 	=> __( 'Введите заголовок', 'pdp' )
+				'placeholder' 	=> __( 'Введите заголовок', 'pdp' ),
+                'default'       => __( 'Заголовок', 'pdp' )
 			]
 		);
 
@@ -50,6 +51,30 @@ class PDP_Heading extends \Elementor\Widget_Base {
 					'div'           => 'DIV',
 				],
 				'default'       => 'h2'
+			]
+		);
+
+		$this->add_responsive_control(
+			'alignment',
+			[
+				'label'         => __( 'Выравнивание', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::CHOOSE,
+				'options'       => [
+					'left'          => [
+						'title'         => __( 'Слева', 'pdp' ),
+						'icon'          => 'fa fa-align-left',
+					],
+					'center'        => [
+						'title'         => __( 'Центр', 'pdp' ),
+						'icon'          => 'fa fa-align-center',
+					],
+					'right'         => [
+						'title'         => __( 'Справа', 'pdp' ),
+						'icon'          => 'fa fa-align-right',
+					],
+				],
+				'devices'       => [ 'desktop', 'tablet', 'mobile' ],
+				'prefix_class'  => 'text-align--%s',
 			]
 		);
 
@@ -84,14 +109,14 @@ class PDP_Heading extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		echo "
-			<div class='title'>
+			<div class='title {$settings['alignment']}'>
                 <{$settings['heading_tag']} class='title__heading'>{$settings['heading']}</{$settings['heading_tag']}>
             </div>
 		";
 	}
 
 	protected function _content_template(){ ?>
-		<div class="title">
+		<div class="title {{{ settings.alignment }}}">
 			<{{{ settings.heading_tag }}} class="title__heading">{{{ settings.heading }}}</{{{ settings.heading_tag }}}>
 		</div>
 		<?php

@@ -329,48 +329,6 @@ button.btn-sticky-right {
 
 
 /**
- *  Inputs
- */
-
-.form__row .inputWrap .selectric-selectric_pdp {
-	display: block;
-	width: 100%;
-	min-width: unset;
-}
-
-.inputWrap_error .input {
-	border-color: red;
-}
-
-.inputWrap__input {
-	position: relative;
-}
-
-.inputWrap__icon {
-	position: absolute;
-	top: 50%;
-	left: 12px;
-	transform: translateY(-50%);
-}
-
-.inputWrap__icon > svg {
-	display: block;
-}
-
-.inputWrap_iconed {
-	position: relative;
-}
-
-.inputWrap_iconed input.input {
-	padding-left: 35px;
-}
-
-input::placeholder {
-	color: #575653;
-}
-
-
-/**
  *	Inputs
  */
 input:not([type="submit"],[type="button"]),
@@ -387,6 +345,10 @@ textarea {
 
 input {
 	height: 38px;
+}
+
+input::placeholder {
+	color: #575653;
 }
 
 textarea {
@@ -541,7 +503,6 @@ textarea:focus {
  * Selectric
  */
 .selectric-selectric_pdp {
-	min-width: 314px;
 	z-index: 1;
 }
 
