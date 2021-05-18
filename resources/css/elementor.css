@@ -312,7 +312,12 @@
 @media screen and (max-width: 767px) {
     .pdp-hero {
         flex-direction: column-reverse;
+        height: unset;
         margin-bottom: 24px;
+        padding-bottom: unset;
+    }
+    .admin-bar .pdp-hero {
+        height: unset;
     }
     .pdp-hero__title {
         position: absolute;
@@ -338,6 +343,13 @@
         order: 3;
     }
     .pdp-hero__socials {
+        display: none;
+    }
+
+    .socials-list__image {
+        display: none;
+    }
+    .socials-list__content li span {
         display: none;
     }
 
