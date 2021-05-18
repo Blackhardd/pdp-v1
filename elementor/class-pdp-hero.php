@@ -21,8 +21,8 @@ class PDP_Hero extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'content_tab',
 			[
-				'label' => __( 'Контент', 'pdp' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'label'     => __( 'Контент', 'pdp' ),
+				'tab'       => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
@@ -41,6 +41,7 @@ class PDP_Hero extends \Elementor\Widget_Base {
 			'title',
 			[
 				'label'         => __( 'Заголовок', 'pdp' ),
+				'label_block'   => true,
 				'type'          => \Elementor\Controls_Manager::TEXT,
 				'placeholder' 	=> __( 'Введите заголовок', 'pdp' )
 			]
@@ -50,26 +51,78 @@ class PDP_Hero extends \Elementor\Widget_Base {
 			'subtitle',
 			[
 				'label' 		=> __( 'Подзаголовок', 'pdp' ),
+				'label_block'   => true,
 				'type' 			=> \Elementor\Controls_Manager::TEXT,
 				'placeholder' 	=> __( 'Введите подзаголовок', 'pdp' ),
+			]
+		);
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'action_tab',
+			[
+				'label'     => __( 'Действие', 'pdp' ),
+				'tab'       => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
 		$this->add_control(
 			'btn_title',
 			[
-				'label' 		=> __( 'Заголовок кнопки', 'pdp' ),
+				'label' 		=> __( 'Текст кнопки', 'pdp' ),
+				'label_block'   => true,
 				'type' 			=> \Elementor\Controls_Manager::TEXT,
-				'placeholder' 	=> __( 'Введите заголовок кнопки', 'pdp' ),
+				'placeholder' 	=> __( 'Введите текст кнопки', 'pdp' ),
+			]
+		);
+
+		$this->add_control(
+			'btn_open_modal',
+			[
+				'label'         => __( 'Открывать модальное окно', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'      => __( 'Да', 'pdp' ),
+				'label_off'     => __( 'Нет', 'pdp' ),
+				'return_value'  => 'yes'
 			]
 		);
 
 		$this->add_control(
 			'btn_link',
 			[
-				'label' 		=> __( 'Ссылка кнопки', 'pdp' ),
+				'label' 		=> __( 'Ссылка', 'pdp' ),
+				'label_block'   => true,
 				'type' 			=> \Elementor\Controls_Manager::TEXT,
 				'placeholder' 	=> __( 'Введите ссылку кнопки', 'pdp' ),
+				'condition'     => array(
+					'btn_open_modal'    => ''
+				)
+			]
+		);
+
+		$this->add_control(
+			'btn_modal',
+			[
+				'label' 		=> __( 'ID модального окна', 'pdp' ),
+				'label_block'   => true,
+				'type' 			=> \Elementor\Controls_Manager::TEXT,
+				'placeholder' 	=> __( 'Введите ID модального окна', 'pdp' ),
+				'condition'     => array(
+					'btn_open_modal'    => 'yes'
+				)
+			]
+		);
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'socials_tab',
+			[
+				'label'     => __( 'Социальные сети', 'pdp' ),
+				'tab'       => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
@@ -101,7 +154,10 @@ class PDP_Hero extends \Elementor\Widget_Base {
                         
 		";
 
-		if( $settings['btn_title'] && $settings['btn_link'] ){
+		if( $settings['btn_open_modal'] && $settings['btn_title'] && $settings['btn_modal'] ){
+			echo "<button data-micromodal-trigger='{$settings['btn_modal']}' class='btn-default pdp-hero__btn'>{$settings['btn_title']}</button>";
+		}
+		else if( $settings['btn_title'] && $settings['btn_link'] ){
 			echo "<a href='{$settings['btn_link']}' class='btn-default pdp-hero__btn'>{$settings['btn_title']}</a>";
 		}
 

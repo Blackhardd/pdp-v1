@@ -50,7 +50,7 @@ class PDP_Button extends \Elementor\Widget_Base {
 		$this->add_control(
 			'open_modal',
 			[
-				'label'         => __( 'Открывает модальное окно', 'pdp' ),
+				'label'         => __( 'Открывать модальное окно', 'pdp' ),
 				'type'          => \Elementor\Controls_Manager::SWITCHER,
 				'label_on'      => __( 'Да', 'pdp' ),
 				'label_off'     => __( 'Нет', 'pdp' ),
@@ -143,7 +143,7 @@ class PDP_Button extends \Elementor\Widget_Base {
 	}
 
 	protected function _content_template(){ ?>
-		<div class="button-wrap" style="text-align: {{{ settings.alignment }}};">
+		<div class="button-wrap">
 			<a href="{{{ settings.link }}}" class="btn-default">{{{ settings.title }}}</a>
 		</div>
 		<?php
