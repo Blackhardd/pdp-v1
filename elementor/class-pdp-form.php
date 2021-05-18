@@ -27,15 +27,6 @@ class PDP_Form extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'title',
-			[
-				'label'         => __( 'Заголовок формы', 'pdp' ),
-				'type'          => \Elementor\Controls_Manager::TEXT,
-				'placeholder'   => __( 'Введите заголовок', 'pdp' )
-			]
-		);
-
-		$this->add_control(
 			'form',
 			[
 				'label'         => __( 'Форма', 'pdp' ),

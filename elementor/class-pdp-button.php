@@ -14,7 +14,7 @@ class PDP_Button extends \Elementor\Widget_Base {
 	}
 
 	public function get_categories(){
-		return ['general'];
+		return ['pdp'];
 	}
 
 	protected function _register_controls(){
@@ -29,9 +29,10 @@ class PDP_Button extends \Elementor\Widget_Base {
 		$this->add_control(
 			'title',
 			[
-				'label'         => __( 'Заголовок кнопки', 'pdp' ),
+				'label'         => __( 'Текст', 'pdp' ),
+				'label_block'   => true,
 				'type'          => \Elementor\Controls_Manager::TEXT,
-				'placeholder' 	=> __( 'Введите заголовок кнопки', 'pdp' ),
+				'placeholder' 	=> __( 'Введите текст', 'pdp' ),
 				'default'       => __( 'Кнопка', 'pdp' )
 			]
 		);
@@ -40,8 +41,20 @@ class PDP_Button extends \Elementor\Widget_Base {
 			'icon_class',
 			[
 				'label'         => __( 'Класс иконки IcoFont', 'pdp' ),
+				'label_block'   => true,
 				'type'          => \Elementor\Controls_Manager::TEXT,
 				'placeholder' 	=> __( 'Введите название класса', 'pdp' )
+			]
+		);
+
+		$this->add_control(
+			'open_modal',
+			[
+				'label'         => __( 'Открывает модальное окно', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'      => __( 'Да', 'pdp' ),
+				'label_off'     => __( 'Нет', 'pdp' ),
+				'return_value'  => 'yes'
 			]
 		);
 
@@ -49,35 +62,53 @@ class PDP_Button extends \Elementor\Widget_Base {
 			'link',
 			[
 				'label' 		=> __( 'Ссылка', 'pdp' ),
+				'label_block'   => true,
 				'type' 			=> \Elementor\Controls_Manager::TEXT,
-				'placeholder' 	=> __( 'Введите ссылку кнопки', 'pdp' ),
-				'default'       => '#'
+				'placeholder' 	=> __( 'Введите ссылку', 'pdp' ),
+				'default'       => '#',
+                'condition'     => array(
+                    'open_modal'    => ''
+                )
 			]
 		);
 
 		$this->add_control(
+			'modal',
+			[
+				'label' 		=> __( 'ID модального окна', 'pdp' ),
+				'label_block'   => true,
+				'type' 			=> \Elementor\Controls_Manager::TEXT,
+				'placeholder' 	=> __( 'Введите ID модального окна', 'pdp' ),
+				'default'       => 'modal-appointment',
+				'condition'     => array(
+					'open_modal'    => 'yes'
+				)
+			]
+		);
+
+		$this->add_responsive_control(
 			'alignment',
 			[
-				'label' 		=> __( 'Выравнивание', 'pdp' ),
-				'type' 			=> \Elementor\Controls_Manager::SELECT,
-				'default' 	    => 'left',
+				'label'         => __( 'Выравнивание', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::CHOOSE,
 				'options'       => [
-					'left'          => __( 'Слева', 'pdp' ),
-					'center'        => __( 'Центр', 'pdp' ),
-					'right'         => __( 'Справа', 'pdp' )
+					'left'          => [
+						'title'         => __( 'Слева', 'pdp' ),
+						'icon'          => 'fa fa-align-left',
+					],
+					'center'        => [
+						'title'         => __( 'Центр', 'pdp' ),
+						'icon'          => 'fa fa-align-center',
+					],
+					'right'         => [
+						'title'         => __( 'Справа', 'pdp' ),
+						'icon'          => 'fa fa-align-right',
+					],
+				],
+				'devices'       => [ 'desktop', 'tablet', 'mobile' ],
+				'selectors'     => [
+					'{{WRAPPER}}'   => 'text-align: {{VALUE}};',
 				]
-			]
-		);
-
-		$this->add_control(
-			'mobile_centering',
-			[
-				'label'         => __( 'Выровнять на мобилке по центру', 'pdp' ),
-				'type'          => \Elementor\Controls_Manager::SWITCHER,
-				'label_on'      => __( 'Да', 'pdp' ),
-				'label_off'     => __( 'Нет', 'pdp' ),
-				'return_value'  => 'yes',
-				'default'       => ''
 			]
 		);
 
@@ -88,11 +119,6 @@ class PDP_Button extends \Elementor\Widget_Base {
 		$settings = $this->get_settings_for_display();
 
 		$icon = '';
-		$classes = 'button-wrap ';
-
-		if( $settings['mobile_centering'] == 'yes' ){
-			$classes .= 'button-wrap--m-center';
-		}
 
 		if( $settings['icon_class'] ){
 			$icon = "<i class='{$settings['icon_class']}'></i>";
@@ -100,10 +126,19 @@ class PDP_Button extends \Elementor\Widget_Base {
 
 		if( $settings['title'] && $settings['link'] ){
 			echo "
-                <div class='{$classes}' style='text-align: {$settings['alignment']};'>
-                    <a href='{$settings['link']}' class='btn-default'>{$settings['title']}{$icon}</a>
-                </div>
+                <div class='button-wrap'>
             ";
+
+			if( $settings['open_modal'] == 'yes' ){
+				echo "<button class='btn-default' data-micromodal-trigger='{$settings['modal']}'>{$settings['title']}{$icon}</button>";
+            }
+			else{
+				echo "<a href='{$settings['link']}' class='btn-default'>{$settings['title']}{$icon}</a>";
+            }
+
+			echo "
+			    </div>
+			";
 		}
 	}
 

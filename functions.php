@@ -2,50 +2,23 @@
 /**
  * PIED-DE-POULE functions and definitions
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
  * @package PIED-DE-POULE
  */
 
-if( !defined( '_S_VERSION' ) ){
-	// Replace the version number of the theme on each release.
+if( !defined( '_S_VERSION' ) ) :
 	define( '_S_VERSION', '1.0.23c' );
-}
+endif;
+
 
 if( !function_exists( 'pdp_setup' ) ) :
-	/**
-	 * Sets up theme defaults and registers support for various WordPress features.
-	 *
-	 * Note that this function is hooked into the after_setup_theme hook, which
-	 * runs before the init hook. The init hook is too late for some features, such
-	 * as indicating support for post thumbnails.
-	 */
 	function pdp_setup(){
-		/*
-		 * Make theme available for translation.
-		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on PIED-DE-POULE, use a find and replace
-		 * to change 'pdp' to the name of your theme in all the template files.
-		 */
 		load_theme_textdomain( 'pdp', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
-
-		/*
-		 * Let WordPress manage the document title.
-		 * By adding theme support, we declare that this theme does not use a
-		 * hard-coded <title> tag in the document head, and expect WordPress to
-		 * provide it for us.
-		 */
 		add_theme_support( 'title-tag' );
-
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		 */
 		add_theme_support( 'post-thumbnails' );
+
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
@@ -58,10 +31,7 @@ if( !function_exists( 'pdp_setup' ) ) :
 			)
 		);
 
-		/*
-		 * Switch default core markup for search form, comment form, and comments
-		 * to output valid HTML5.
-		 */
+
 		add_theme_support(
 			'html5',
 			array(
@@ -72,6 +42,7 @@ if( !function_exists( 'pdp_setup' ) ) :
 				'script',
 			)
 		);
+
 
 		// Set up the WordPress core custom background feature.
 		add_theme_support(
@@ -85,8 +56,10 @@ if( !function_exists( 'pdp_setup' ) ) :
 			)
 		);
 
+
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
+
 
 		/**
 		 * Add support for core custom logo.
@@ -125,6 +98,7 @@ add_action( 'after_setup_theme', 'pdp_content_width', 0 );
 /**
  * Enqueue scripts and styles.
  */
+add_action( 'wp_enqueue_scripts', 'pdp_scripts' );
 function pdp_scripts(){
 	wp_register_style( 'pdp-elementor-widgets', get_template_directory_uri() . '/resources/css/elementor.css', array(), _S_VERSION );
 
@@ -134,42 +108,42 @@ function pdp_scripts(){
 
 	wp_enqueue_style( 'pdp-style', get_stylesheet_uri(), array(), _S_VERSION );
 
+
 	/**
      * Enqueue fonts.
      */
     wp_enqueue_style( 'pdp-fonts', get_template_directory_uri() . '/resources/css/fonts.css', array(), _S_VERSION );
+
 
     /**
      * Enqueue theme styles.
      */
     wp_enqueue_style( 'pdp-atomic', get_template_directory_uri() . '/resources/css/atomic.css', array(), _S_VERSION );
 
+
     /**
      * Enqueue theme responsive styles.
      */
     wp_enqueue_style( 'pdp-responsive', get_template_directory_uri() . '/resources/css/responsive.css', array(), _S_VERSION );
+
 
     /**
      * Enqueue Animate.css
      */
     wp_enqueue_style( 'animate', '//cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css', array(), _S_VERSION );
 
-    /**
-     * Enqueue Imask.js
-     */
-    wp_enqueue_script( 'imask', '//cdnjs.cloudflare.com/ajax/libs/imask/6.0.5/imask.min.js', array(), _S_VERSION, true );
 
     /**
-     * Enqueue FormValidation.js.
+     * Enqueue Forms script.
      */
-    wp_enqueue_script( 'parsley', '//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js', array( 'jquery' ), _S_VERSION, true );
-    wp_enqueue_script( 'parsley-i18n-ru', get_template_directory_uri() . '/js/i18n/parsley-i18n-ru.js', array(), _S_VERSION, true );
     wp_enqueue_script( 'pdp-forms', get_template_directory_uri() . '/js/forms.js', array(), _S_VERSION, true );
+
 
 	/**
 	 * Enqueue Clipboard.js
 	 */
 	wp_enqueue_script( 'clipboard', '//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js', array( 'jquery' ), _S_VERSION, true );
+
 
     /**
      * Enqueue slick.js.
@@ -178,10 +152,12 @@ function pdp_scripts(){
     wp_enqueue_style( 'slick-theme', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css', array(), _S_VERSION );
 	wp_enqueue_script( 'slick', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array(), _S_VERSION, true );
 
+
     /**
      * Enqueue jQuery.svg.
      */
 	wp_enqueue_script( 'jquery-svg', '//cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js', array(), _S_VERSION, true );
+
 
     /**
      * Enqueue micromodal.js
@@ -206,11 +182,13 @@ function pdp_scripts(){
     wp_enqueue_style( 'selectric', '//cdn.jsdelivr.net/npm/selectric@1.13.0/public/selectric.min.css', array(), _S_VERSION );
     wp_enqueue_script( 'selectric', '//cdn.jsdelivr.net/npm/selectric@1.13.0/public/jquery.selectric.min.js', array(), _S_VERSION, true );
 
+
     /**
      * Enqueue Vue.js
      */
     wp_enqueue_script( 'vue', get_template_directory_uri() . '/js/vue.min.js', array(), _S_VERSION, true );
     wp_enqueue_script( 'vuex', '//unpkg.com/vuex@3.6.0/dist/vuex.js', array(), _S_VERSION, true );
+
 
     /**
      * Enqueue SimpleBar
@@ -229,6 +207,7 @@ function pdp_scripts(){
     if( is_singular( 'post' ) ){
 	    wp_enqueue_script( 'pdp-post', get_template_directory_uri() . '/js/post.js', array(), _S_VERSION, true );
     }
+
 
     /**
      * Enqueue theme script.
@@ -262,33 +241,36 @@ function pdp_scripts(){
 	) );
 
     wp_localize_script( 'pdp-forms', 'pdpData', array(
-        'ajaxurl' => admin_url( 'admin-ajax.php' )
+        'ajaxurl'           => admin_url( 'admin-ajax.php' )
     ) );
 
 	wp_localize_script( 'pdp-post', 'pdpData', array(
-		'ajaxurl' => admin_url( 'admin-ajax.php' )
+		'ajaxurl'           => admin_url( 'admin-ajax.php' )
 	) );
 
 	wp_localize_script( 'pdp-front', 'pdp', array(
-		'booking_url' => get_permalink( pll_get_post( 66 ) )
+		'booking_url'       => get_permalink( pll_get_post( 66 ) )
 	) );
 }
-add_action( 'wp_enqueue_scripts', 'pdp_scripts' );
+
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
 
+
 /**
  * Template shortcodes.
  */
 require get_template_directory() . '/inc/template-shortcodes.php';
 
+
 /**
  *  Template Modals
  */
 require get_template_directory() . '/inc/modals.php';
+
 
 /**
  * Elementor widgets.
@@ -296,6 +278,7 @@ require get_template_directory() . '/inc/modals.php';
 if( is_plugin_active( 'elementor/elementor.php' ) ) :
 	require get_template_directory() . '/inc/elementor.php';
 endif;
+
 
 /**
  * Carbon fields.
