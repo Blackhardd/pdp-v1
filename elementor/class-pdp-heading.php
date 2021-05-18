@@ -74,7 +74,9 @@ class PDP_Heading extends \Elementor\Widget_Base {
 					],
 				],
 				'devices'       => [ 'desktop', 'tablet', 'mobile' ],
-				'prefix_class'  => 'text-align--%s',
+				'selectors'     => [
+					'{{WRAPPER}}'   => 'text-align: {{VALUE}};',
+				]
 			]
 		);
 
