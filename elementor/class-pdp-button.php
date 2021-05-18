@@ -124,7 +124,7 @@ class PDP_Button extends \Elementor\Widget_Base {
 			$icon = "<i class='{$settings['icon_class']}'></i>";
 		}
 
-		if( $settings['title'] && $settings['link'] ){
+		if( $settings['title'] && ( $settings['title'] || $settings['modal'] ) ){
 			echo "
                 <div class='button-wrap'>
             ";
