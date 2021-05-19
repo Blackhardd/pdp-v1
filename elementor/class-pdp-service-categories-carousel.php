@@ -78,11 +78,11 @@ class PDP_Service_Categories_Carousel extends \Elementor\Widget_Base {
 			$category_title = ( $current_lang == 'ru' ) ? $category['title'] : $category['title_ua'];
 
 			echo "
-				<div>
-					<div class='service-categories__category'>
+				<div class='service-category'>
+					<div class='service-category__inner'>
 						<a href='#' data-category='{$category_key}'>
 							{$category_image}
-							<div class='service-categories__title'>
+							<div class='service-category__title'>
 								{$category_title}
 								<svg width='25' height='16' fill='none'>
                                 	<path d='M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z' fill='#000'/>

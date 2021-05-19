@@ -22,34 +22,18 @@ class SalonsCarousel extends elementorModules.frontend.handlers.Base {
     }
 
     stretchCarousel(){
-        let carousel_width = jQuery(window).width() - this.elements.$carousel.offset().left - 15;
+        let carousel_width = jQuery(window).width() - this.elements.$carousel.offset().left;
         this.elements.$carousel.css('width', carousel_width + 'px');
     }
 
     initCarousel(){
-        this.elements.$carousel.slick({
-            infinite: false,
-            slidesToShow: 4,
-            slidesToScroll: 1,
-            variableWidth: true,
-            autoplay: false,
-            autoplaySpeed: 4000,
-            swipeToSlide: true,
-            arrows: false,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 2
-                    }
-                },
-                {
-                    breakpoint: 550,
-                    settings: {
-                        slidesToShow: 1
-                    }
-                }
-            ]
+        new Glider(this.elements.$carousel[0], {
+            slidesToShow: 'auto',
+            slidesToScroll: 'auto',
+            itemWidth: 282,
+            exactWidth: true,
+            draggable: true,
+            dragVelocity: 1
         });
     }
 }

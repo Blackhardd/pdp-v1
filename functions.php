@@ -153,6 +153,13 @@ function pdp_scripts(){
 	wp_enqueue_script( 'slick', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array(), PDP_THEME_VERSION, true );
 
 
+	/**
+	 * Enqueue Glider.js.
+	 */
+	wp_enqueue_style( 'glider', '//cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.css', array(), PDP_THEME_VERSION );
+	wp_enqueue_script( 'glider', '//cdnjs.cloudflare.com/ajax/libs/glider-js/1.7.7/glider.min.js', array(), PDP_THEME_VERSION, true );
+
+
     /**
      * Enqueue jQuery.svg.
      */

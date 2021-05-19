@@ -16,13 +16,13 @@ $salons = pdp_get_salons(); ?>
         </select>
     </div>
 
-    <div class="service-categories__slider">
+    <div class="service-categories__slider" data-item-width="316">
         <?php foreach( $categories as $category ){ ?>
-            <div>
-                <div class="service-categories__category">
+            <div class="service-category">
+                <div class="service-category__inner">
                     <a href="#" data-category="<?=pdp_service_slug_to_key( $category['slug'] ); ?>">
                         <?=wp_get_attachment_image( $category['cover'], 'services-slider-thumb' ); ?>
-                        <div class="service-categories__title">
+                        <div class="service-category__title">
                             <?=( pll_current_language() == 'ru' ) ? $category['title'] : $category['title_ua']; ?>
                             <svg width="25" height="16" fill="none">
                                 <path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/>

@@ -4,7 +4,7 @@ class PDP_Salons_Carousel extends \Elementor\Widget_Base {
 	public function __construct( $data = [], $args = null ){
 		parent::__construct( $data, $args );
 
-		wp_register_script( 'pdp-salons-carousel', get_template_directory_uri() . '/js/elementor/salons-carousel.js', [ 'elementor-frontend' ], PDP_THEME_VERSION, true );
+		wp_register_script( 'pdp-salons-carousel', get_template_directory_uri() . '/js/elementor/salons-carousel.js', [ 'elementor-frontend', 'glider' ], PDP_THEME_VERSION, true );
 	}
 
 	public function get_name(){
@@ -146,15 +146,15 @@ class PDP_Salons_Carousel extends \Elementor\Widget_Base {
 			}
 
 			echo "
-				<div>
-					<div class='salons-slider__item'>
+				<div class='salon-card'>
+					<div class='salon-card__inner'>
 						<a href='{$salon['link']}' {$target_attr}>{$salon['image']}</a>
-						<div class='salons-slider__info'>
-							<div class='salons-slider__city'>{$salon['city']}</div>
-							<div class='salons-slider__address'>{$salon['title']}</div>
-							<div class='salons-slider__item-footer'>
-								<a href='tel:{$salon['phone']}' class='salons-slider__tel'>{$salon['phone']}</a>
-								<a href='{$salon['link']}' {$target_attr} class='salons-slider__link'>
+						<div class='salon-card__info'>
+							<div class='salon-card__city'>{$salon['city']}</div>
+							<div class='salon-card__address'>{$salon['title']}</div>
+							<div class='salon-card__footer'>
+								<a href='tel:{$salon['phone']}' class='salon-card__tel'>{$salon['phone']}</a>
+								<a href='{$salon['link']}' {$target_attr} class='salon-card__link'>
 		                            <svg width='25' height='16' fill='none'>
 		                                <path d='M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z' />
 		                            </svg>

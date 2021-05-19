@@ -170,7 +170,7 @@ button.btn-sticky-right {
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 15px;
-	text-transform: lowercase;
+	text-transform: lowercase ;
 	background-color: transparent;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 211 40'%3E%3Cpath d='M183.1 7.1c-3.8-4.5-9.4-7.1-15.3-7.1H43.2c-5.9 0-11.5 2.6-15.3 7.1L0 40h211L183.1 7.1z' fill='%23392bdf'/%3E%3C/svg%3E");
 	background-size: contain;
@@ -2077,9 +2077,8 @@ input.search-form__input:focus {
 
 
 /**
- *  Homepage services slider
+ *  Service Categories Slider
  */
-
 .service-categories__salon-switcher {
 	width: 100%;
 	max-width: 314px;
@@ -2091,34 +2090,24 @@ input.search-form__input:focus {
 	height: 373px;
 }
 
-.service-categories .slick-track,
-.service-categories .slick-track {
-	display: flex;
-	margin: 0 -6px;
+.service-category {
+	margin-right: 12px;
 }
 
-.service-categories .slick-track>div,
-.service-categories .slick-track>div {
-	padding: 0 6px;
-}
-
-.service-categories .slick-track > div:focus {
-	outline: none;
-}
-
-.service-categories__category {
-	max-width: 304px;
+.service-category__inner {
+	height: 100%;
+	background: #FFFFFF;
 	border-radius: 4px;
 	overflow: hidden;
-	cursor: pointer;
 }
 
-.service-categories__category a {
+.service-category a {
+	display: block;
 	color: black;
 	text-decoration: none;
 }
 
-.service-categories__category img {
+.service-category img {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -2126,7 +2115,7 @@ input.search-form__input:focus {
 	transition: transform 500ms ease;
 }
 
-.service-categories__title {
+.service-category__title {
 	position: relative;
 	display: flex;
 	justify-content: space-between;
@@ -2138,71 +2127,67 @@ input.search-form__input:focus {
 	z-index: 1;
 }
 
-.service-categories__category:hover img {
+.service-category:hover img {
 	transform: scale(1.1);
 }
 
 
 /**
- *  Homepage salons slider
+ *  Salons Slider
  */
-
-.salons-slider .slick-track {
-	display: flex;
-	margin: 0 -6px;
+.salon-card {
+	margin-right: 12px;
 }
 
-.salons-slider .slick-track>div {
-	padding: 0 6px;
-}
-
-.salons-slider .slick-track>div:focus {
-	outline: none;
-}
-
-.salons-slider__item {
-	width: 270px;
+.salon-card__inner {
+	height: 100%;
+	background: #FFFFFF;
 	border-radius: 4px;
 	overflow: hidden;
 }
 
-.salons-slider__item img {
+.salon-card__inner > a {
+	display: block;
+}
+
+.salon-card img {
+	display: block;
 	width: 100%;
-	height: auto;
+	height: 100%;
 	object-fit: cover;
 	transition: transform 500ms ease;
 }
 
-.salons-slider__item:hover img {
+.salon-card:hover img {
 	transform: scale(1.1);
 }
 
-.salons-slider__info {
+.salon-card__info {
 	position: relative;
 	padding: 20px 20px 18px;
 	background-color: white;
 	z-index: 1;
 }
 
-.salons-slider__city {
+.salon-card__city {
 	margin-bottom: 6px;
 	font-size: 24px;
 	font-weight: bold;
 	line-height: 1;
 }
 
-.salons-slider__address {
+.salon-card__address {
 	margin-bottom: 20px;
 	line-height: 1;
 }
 
-.salons-slider__item-footer {
+.salon-card__footer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
-.salons-slider__tel {
+.salon-card__tel {
 	color: black;
 	font-size: 16px;
 	font-weight: bold;
@@ -2210,17 +2195,17 @@ input.search-form__input:focus {
 	text-decoration: none;
 }
 
-.salons-slider__link {
+.salon-card__link {
 	display: flex;
 	align-items: center;
 }
 
-.salons-slider__link > svg {
+.salon-card__link > svg {
 	fill: #000000;
 	transition: fill 300ms ease;
 }
 
-.salons-slider__item:hover .salons-slider__link > svg {
+.salon-card:hover .salon-card__link > svg {
 	fill: var(--pdp-primary);
 }
 

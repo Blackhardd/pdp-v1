@@ -135,12 +135,35 @@ jQuery(function($) {
 
         pdp_init_accordions();
 
+
+        function pdp_init_sliders(){
+            if(!$('body').hasClass('elementor-page') && $('.service-categories__slider, .salons-slider').length){
+                $('.service-categories__slider, .salons-slider').each(function(i){
+                    let offset = $(this).offset().left;
+                    $(this).width('calc(100vw - ' + offset + 'px)');
+
+                    let item_width = $(this).data('item-width');
+
+                    new Glider($(this)[0], {
+                        slidesToShow: 'auto',
+                        slidesToScroll: 'auto',
+                        itemWidth: item_width,
+                        exactWidth: true,
+                        draggable: true,
+                        dragVelocity: 1
+                    });
+                });
+            }
+        }
+
+        pdp_init_sliders();
+
+
         function pdp_init_salon_sliders(){
             if(!$('body').hasClass('elementor-page') && $('.testimonials').length){
                 let offset = $('.testimonials__slider').offset().left;
                 let $pagination = $('.testimonials__dots');
                 let $slider = $('.testimonials__slider');
-
 
                 $slider.width('calc(100vw - ' + offset + 'px)');
 
@@ -173,7 +196,6 @@ jQuery(function($) {
         /**
          * Mobile sliders system
          */
-
         function pdp_init_mobile_sliders(){
             if(window.matchMedia('(max-width: 800px)').matches && $('[data-slider-mobile]').length){
                 $sliders = $('[data-slider-mobile]');
