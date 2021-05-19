@@ -29,19 +29,85 @@ class PDP_Salons_Carousel extends \Elementor\Widget_Base {
 
 	protected function register_controls(){
 		$this->start_controls_section(
-			'content_section',
+			'content_tab',
 			[
 				'label' => __( 'Контент', 'pdp' ),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
-		$this->add_control(
+		$repeater = new \Elementor\Repeater();
+
+		$repeater->add_control(
 			'title',
 			[
-				'label'         => __( 'Заголовок', 'pdp' ),
+				'label'         => __( 'Название', 'pdp' ),
+				'label_block'   => true,
 				'type'          => \Elementor\Controls_Manager::TEXT,
-				'placeholder' 	=> __( 'Введите заголовок', 'pdp' )
+				'placeholder' 	=> __( 'Введите название', 'pdp' )
+			]
+		);
+
+		$repeater->add_control(
+			'city',
+			[
+				'label'         => __( 'Город', 'pdp' ),
+				'label_block'   => true,
+				'type'          => \Elementor\Controls_Manager::TEXT,
+				'placeholder' 	=> __( 'Введите название города', 'pdp' )
+			]
+		);
+
+		$repeater->add_control(
+			'phone',
+			[
+				'label'         => __( 'Номер телефона', 'pdp' ),
+				'label_block'   => true,
+				'type'          => \Elementor\Controls_Manager::TEXT,
+				'placeholder' 	=> __( 'Введите номер телефона', 'pdp' )
+			]
+		);
+
+		$repeater->add_control(
+			'link',
+			[
+				'label'         => __( 'Ссылка', 'pdp' ),
+				'label_block'   => true,
+				'type'          => \Elementor\Controls_Manager::TEXT,
+				'placeholder' 	=> __( 'Введите ссылку', 'pdp' )
+			]
+		);
+
+		$repeater->add_control(
+			'open_in_new_tab',
+			[
+				'label'         => __( 'Открывать в новой вкладке', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'      => __( 'Да', 'pdp' ),
+				'label_off'     => __( 'Нет', 'pdp' ),
+				'return_value'  => 'yes',
+				'default'       => 'yes'
+			]
+		);
+
+		$repeater->add_control(
+			'image',
+			[
+				'label'         => __( 'Обложка', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::MEDIA,
+				'default'       => [
+					'url'           => \Elementor\Utils::get_placeholder_image_src()
+				]
+			]
+		);
+
+		$this->add_control(
+			'salons',
+			[
+				'label'         => __( 'Салоны', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::REPEATER,
+				'fields'        => $repeater->get_controls(),
+				'title_field'   => '{{{ title }}}'
 			]
 		);
 
@@ -51,33 +117,46 @@ class PDP_Salons_Carousel extends \Elementor\Widget_Base {
 	protected function render(){
 		$settings = $this->get_settings_for_display();
 
-		$salons = pdp_get_salons();
-		$current_lang = pll_current_language();
+		$salons = pdp_get_salons( 'ASC', 'slider' );
+
+		if( $settings['salons'] ){
+			foreach( $settings['salons'] as $salon ){
+				$cover = wp_get_attachment_image( $salon['image']['id'], 'salons-slider-thumb' );
+
+				$salons[] = array(
+					'title'             => $salon['title'],
+					'city'              => $salon['city'],
+					'phone'             => $salon['phone'],
+					'link'              => $salon['link'],
+					'open_in_new_tab'   => ( $salon['open_in_new_tab'] == 'yes' ),
+					'image'             => $cover
+				);
+			}
+		}
 
 		echo "
 			<div class='salons-slider'>
 		";
 
 		foreach( $salons as $salon ) :
-			$link = get_permalink( $salon->ID );
-			$city_terms = get_the_terms( $salon->ID, 'city' );
-			$city = array_pop( $city_terms )->name;
-			$tel = carbon_get_post_meta( $salon->ID, 'phone' );
-			$clear_tel = str_replace( array( '(', ')', ' ' ), '', $tel );
-			$thumbnail = get_the_post_thumbnail( $salon->ID, 'salons-slider-thumb' );
+			$target_attr = '';
+
+			if( isset( $salon['open_in_new_tab'] ) && $salon['open_in_new_tab'] ){
+				$target_attr = 'target="_blank"';
+			}
 
 			echo "
 				<div>
 					<div class='salons-slider__item'>
-						<a href='{$link}'>{$thumbnail}</a>
+						<a href='{$salon['link']}' {$target_attr}>{$salon['image']}</a>
 						<div class='salons-slider__info'>
-							<div class='salons-slider__city'>{$city}</div>
-							<div class='salons-slider__address'>{$salon->post_title}</div>
+							<div class='salons-slider__city'>{$salon['city']}</div>
+							<div class='salons-slider__address'>{$salon['title']}</div>
 							<div class='salons-slider__item-footer'>
-								<a href='tel:{$clear_tel}' class='salons-slider__tel'>{$tel}</a>
-								<a href='{$link}' class='salons-slider__link'>
+								<a href='tel:{$salon['phone']}' class='salons-slider__tel'>{$salon['phone']}</a>
+								<a href='{$salon['link']}' {$target_attr} class='salons-slider__link'>
 		                            <svg width='25' height='16' fill='none'>
-		                                <path d='M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z' fill='#000'/>
+		                                <path d='M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z' />
 		                            </svg>
 		                        </a>
 							</div>
