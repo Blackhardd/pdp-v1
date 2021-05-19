@@ -167,7 +167,14 @@ get_header(); ?>
         </div>
     </section>
 
-    <?php get_template_part( 'templates/sections/franchise' ); ?>
+    <?php
+    if( pll_current_language() == 'ru' ){
+	    get_template_part( 'templates/sections/franchise' );
+    }
+    else{
+	    get_template_part( 'templates/sections/franchise-ua' );
+    }
+    ?>
 
     <section id="network">
         <div class="container">
