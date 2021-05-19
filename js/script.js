@@ -67,7 +67,7 @@ jQuery(function($) {
         function pdp_init_services_slider(){
             if($('body:not(.page-template-pricelist) .service-categories').length){
                 let parseURLs = function(salonId){
-                    $('.service-categories__category > a').each(function(i){
+                    $('.service-category__inner > a').each(function(i){
                         $(this).attr('href', pdp.booking_url + '?salonId=' + salonId + '&cat=' + $(this).data('category') );
                     });
                 }
