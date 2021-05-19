@@ -6,7 +6,7 @@
  */
 
 if( !defined( 'PDP_THEME_VERSION' ) ) :
-	define( 'PDP_THEME_VERSION', '1.0.25' );
+	define( 'PDP_THEME_VERSION', '1.0.25a' );
 endif;
 
 
