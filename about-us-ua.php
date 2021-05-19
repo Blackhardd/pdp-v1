@@ -506,5 +506,5 @@ get_header(); ?>
 	</section>
 
 <?php
-get_template_part( 'templates/sections/franchise' );
+get_template_part( 'templates/sections/franchise-ua' );
 get_footer();
