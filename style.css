@@ -4731,51 +4731,7 @@ input.search-form__input:focus {
 }
 
 #franchise {
-	position: relative;
-	display: flex;
-	align-items: flex-end;
-	min-height: 600px;
 	margin-bottom: 114px;
-}
-
-#franchise > .container {
-	padding-right: 495px;
-}
-
-.page-template-about-us-ua #franchise,
-.page-template-about-us #franchise {
-	padding-bottom: 0;
-}
-
-#franchise .textBlock {
-	max-width: 365px;
-}
-
-#franchise-requirements {
-	margin-bottom: 30px;
-}
-
-#franchise .cta {
-	margin-top: 40px;
-}
-
-#franchise .cta__content {
-	max-width: 336px;
-	margin-bottom: 40px;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 18px;
-}
-
-#franchise .cta__phone strong {
-	font-size: 18px;
-	line-height: 18px;
-}
-
-#franchise .iconBox {
-	font-weight: bold;
-	font-size: 14px;
-	line-height: 14px;
 }
 
 #network {

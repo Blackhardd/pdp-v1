@@ -1,4 +1,4 @@
-<section>
+<section id="franchise">
     <div class="container">
         <div class="franchise">
             <div class="franchise__title title">
