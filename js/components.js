@@ -352,12 +352,12 @@ jQuery(function($){
             template: `
                 <div class="service-categories-wrap">
                     <div class="service-categories">
-                        <div v-for="(category, index) of categories" :key="index">
-                            <div class="service-categories__category" :data-category="category.slug">
+                        <div class="service-category" v-for="(category, index) of categories" :key="index">
+                            <div class="service-category__inner" :data-category="category.slug">
                                 <div v-html="category.img"></div>
-                                <div class="service-categories__title">
+                                <div class="service-category__title">
                                     {{ category.name[(pdp_components_data.lang == 'ru') ? pdp_components_data.lang : 'ua'] }}
-                                    <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" fill="#000"/></svg>
+                                    <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" /></svg>
                                 </div>
                             </div>
                         </div>
@@ -371,8 +371,8 @@ jQuery(function($){
                 fetchCategories(){
                     let vm = this
                     this.$store.dispatch('fetchCategories').then(() => {
-                        $(vm.$el).find('.service-categories').slick(this.slickOptions)
-                        let $categories = $(vm.$el).find('.service-categories__category')
+                        new Glider($(vm.$el).find('.service-categories')[0], vm.gliderOptions)
+                        let $categories = $(vm.$el).find('.service-category')
                         $categories.on('mousedown', function(e){
                             $categories.on('mouseup mousemove', function handler(e){
                                 if(e.type === 'mouseup'){
@@ -391,31 +391,14 @@ jQuery(function($){
                 }
             },
             data: function(){
-                return{
-                    slickOptions: {
-                        infinite: false,
-                        slidesToShow: 4,
-                        slidesToScroll: 1,
-                        variableWidth: true,
-                        autoplay: false,
-                        swipeToSlide: true,
-                        arrows: false,
-                        responsive: [
-                            {
-                                breakpoint: 1024,
-                                settings: {
-                                    slidesToShow: 2,
-                                    arrows: false
-                                }
-                            },
-                            {
-                                breakpoint: 550,
-                                settings: {
-                                    slidesToShow: 1,
-                                    arrows: false
-                                }
-                            }
-                        ]
+                return {
+                    gliderOptions: {
+                        slidesToShow: 'auto',
+                        slidesToScroll: 'auto',
+                        itemWidth: 320,
+                        exactWidth: true,
+                        draggable: true,
+                        dragVelocity: 1
                     }
                 }
             },
@@ -743,17 +726,6 @@ jQuery(function($){
                     }
                 }
             }
-        })
-
-
-        /**
-         *  Preloader Component
-         */
-        Vue.component('preloader', {
-            template: `
-                <div class="backdrop" :class="{ active: isActive }"><div class="loader"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
-            `,
-            props: ['isActive']
         })
 
 

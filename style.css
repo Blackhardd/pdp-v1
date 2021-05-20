@@ -2088,6 +2088,7 @@ input.search-form__input:focus {
 
 .service-category {
 	margin-right: 12px;
+	cursor: pointer;
 }
 
 .service-category__inner {
@@ -2120,7 +2121,16 @@ input.search-form__input:focus {
 	font-weight: bold;
 	text-transform: lowercase;
 	background-color: white;
+	transition: color 300ms ease;
 	z-index: 1;
+}
+
+.service-category:hover .service-category__title {
+	color: var(--pdp-primary);
+}
+
+.service-category__title svg {
+	fill: #000000;
 }
 
 .service-category:hover img {
