@@ -280,16 +280,19 @@ jQuery(function($){
          */
         Vue.component('hair-length-select', {
             template: `
-                <div class="selectric-wrap">
-                    <select name="hair_length" class="selectric_pdp" :value="length">
-                        <option
-                            v-for="length of lengths"
-                            :key="length.id"
-                            :value="length.id"
-                        >
-                            {{ length.title }}
-                        </option>
-                    </select>
+                <div class="select">
+                    <div class="select__errors"></div>
+                    <div class="select__wrap">
+                        <select name="hair_length" class="selectric selectric_pdp" :value="length">
+                            <option
+                                v-for="length of lengths"
+                                :key="length.id"
+                                :value="length.id"
+                            >
+                                {{ length.title }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             `,
             mounted(){
@@ -392,7 +395,7 @@ jQuery(function($){
                     gliderOptions: {
                         slidesToShow: 'auto',
                         slidesToScroll: 'auto',
-                        itemWidth: 320,
+                        itemWidth: 352,
                         exactWidth: true,
                         draggable: true,
                         dragVelocity: 1
@@ -433,6 +436,12 @@ jQuery(function($){
             methods: {
                 addToCart(service){
                     this.$store.dispatch('addToCart', service)
+
+                    if(window.matchMedia("(max-width: 768px)").matches){
+                        $([document.documentElement, document.body]).animate({
+                            scrollTop: $('.pricelist__sidebar').offset().top - 140
+                        }, 1000)
+                    }
                 }
             },
             computed: {

@@ -103,7 +103,7 @@ function pdp_menu_add_appointments( $items, $args ){
  */
 add_action( 'wp_footer', 'pdp_add_right_appointment_button' );
 function pdp_add_right_appointment_button(){
-	if( !is_single( 66 ) ){ ?>
+	if( !is_page_template( 'pricelist.php' ) ){ ?>
         <div class="sticky-btns">
             <button class="btn-sticky-right sticky-btns__btn" data-micromodal-trigger="modal-appointment"><?=__( 'Online запись', 'pdp' ); ?></button>
         </div>

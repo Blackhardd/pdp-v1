@@ -367,6 +367,14 @@ textarea:focus {
 	position: relative;
 }
 
+.select {
+	width: 314px;
+}
+
+.form .select {
+	width: 100%;
+}
+
 .form.loading .input:before,
 .form.loading .select:before {
 	content: "";
@@ -2083,7 +2091,6 @@ input.search-form__input:focus {
 
 .service-categories-wrap {
 	position: relative;
-	height: 373px;
 }
 
 .service-category {
@@ -2940,6 +2947,7 @@ input.search-form__input:focus {
 	background: rgba(249,249,249,.97);
 	transform: translateX(100%);
 	transition: transform 0.5s ease;
+	border-radius: 0;
 	overflow-y: scroll;
 	z-index: 1;
 }
@@ -4440,7 +4448,7 @@ input.search-form__input:focus {
 .uah:before {
 	content: "\0024";
 	font-family: 'PDPIcons';
-	font-size: 11px;
+	font-size: 8px;
 }
 
 

@@ -38,7 +38,11 @@
         grid-template-columns: 1fr;
     }
     .pricelist__sidebar {
-        display: none;
+        margin-top: 60px;
+    }
+    .pricelist__sidebar .cart-wrap {
+        padding: 0;
+        background: transparent;
     }
 }
 
@@ -200,12 +204,6 @@
     .title.title_contacts .socials {
         margin-top: 20px;
         margin-left: 0;
-    }
-    /**
-     *  PDP Select
-     */
-    .select {
-        font-size: 14px;
     }
     /**
      *  Header
@@ -851,33 +849,24 @@
         justify-content: center;
     }
     /**
-     *  Service header
-     */
-    /**
      *  Service Row
      */
     .service-row {
         margin-bottom: 60px;
-    }
-    /**
-     *  Service Form
-     */
-    .serviceForm {
-        margin-top: 40px;
-    }
-    .serviceForm__title {
-        margin: 0 0 20px;
-        font-size: 27px;
-        line-height: 26px;
-    }
-    .serviceForm .form {
-        max-width: 100%;
     }
 }
 
 @media only screen and (max-width: 768px){
     .form-row.form-row--two {
         grid-template-columns: 1fr;
+    }
+
+    /**
+     *  Select
+     */
+    .select {
+        width: 100%;
+        font-size: 14px;
     }
 
     /**
@@ -916,9 +905,6 @@
 }
 
 @media(max-width: 550px) {
-    .selectric-wrap {
-        width: 100%;
-    }
     .selectric-selectric_pdp {
         width: 100%;
         min-width: unset;
@@ -943,7 +929,7 @@
     .pricelist-category__info {
         margin-top: 6px;
     }
-    .pricelist-item {
+    .pricelist-item:not(:last-child) {
         margin-bottom: 20px;
     }
     .pricelist-item__info {
@@ -963,7 +949,7 @@
         background-color: #F9F9F9;
     }
     .pricelist-item__price {
-        margin-bottom: -3px;
+        margin-bottom: -4px;
         padding-left: 6px;
         font-weight: 500;
         font-size: 11px;
@@ -971,17 +957,12 @@
     }
     .pricelist-item__add-btn {
         margin-top: auto;
+        margin-bottom: -4px;
     }
     /**
      *  Service Row
      */
     .service-row__read-more {
-        width: 100%;
-    }
-    /**
-     *  Service Form
-     */
-    .serviceForm .form__submit input {
         width: 100%;
     }
 }
