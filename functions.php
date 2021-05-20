@@ -6,7 +6,7 @@
  */
 
 if( !defined( 'PDP_THEME_VERSION' ) ) :
-	define( 'PDP_THEME_VERSION', '1.0.25b' );
+	define( 'PDP_THEME_VERSION', '1.0.26' );
 endif;
 
 
@@ -236,7 +236,7 @@ function pdp_scripts(){
 		'how_call_you'          => __( 'Как к вам обращаться?', 'pdp' ),
 		'phone_number'          => __( 'Номер телефона', 'pdp' ),
 		'email'                 => __( 'Электронная почта', 'pdp' ),
-		'book_now'              => __( 'Забронировать', 'pdp' ),
+		'book_now'              => __( 'Записаться', 'pdp' ),
 		'cost_of_services'      => __( 'Стоимость услуг', 'pdp' ),
 		'enter_a_name'          => __( 'Укажите имя', 'pdp' ),
 		'enter_a_phone'         => __( 'Укажите номер телефона', 'pdp' ),
