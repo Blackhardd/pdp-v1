@@ -118,25 +118,22 @@ jQuery(function($){
             },
             actions: {
                 async fetchCart(ctx){
-                    const res = await fetch(`${pdp_components_data.rest_url}/pdp/v1/get_cart`)
-                    const cart = await res.json()
+                    let cart = JSON.parse(window.sessionStorage.getItem('cart'))
 
-                    ctx.commit('setCart', cart)
+                    if(cart !== null){
+                        ctx.commit('setCart', cart)
+                    }
                 },
                 async addToCart(ctx, service){
                     ctx.commit('addToCart', service)
-
-                    await fetch(`${pdp_components_data.rest_url}/pdp/v1/update_cart/`, {
-                        method: 'POST',
-                        body: JSON.stringify({ cart: ctx.state.cart }),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                    window.sessionStorage.setItem('cart', JSON.stringify(ctx.state.cart))
                 },
                 async setActiveSalon(ctx, salon){
                     ctx.commit('setActiveSalon', salon)
-                    ctx.commit('clearCart')
+
+                    if(salon != ctx.state.cart.salon){
+                        ctx.commit('clearCart')
+                    }
 
                     ctx.dispatch('fetchPricelist', salon)
                 },
