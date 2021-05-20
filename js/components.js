@@ -372,7 +372,7 @@ jQuery(function($){
                     let vm = this
                     this.$store.dispatch('fetchCategories').then(() => {
                         new Glider($(vm.$el).find('.service-categories')[0], vm.gliderOptions)
-                        let $categories = $(vm.$el).find('.service-category')
+                        let $categories = $(vm.$el).find('.service-category__inner')
                         $categories.on('mousedown', function(e){
                             $categories.on('mouseup mousemove', function handler(e){
                                 if(e.type === 'mouseup'){

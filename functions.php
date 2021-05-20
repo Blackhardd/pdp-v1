@@ -223,10 +223,10 @@ function pdp_scripts(){
     wp_enqueue_script( 'pdp-components', get_template_directory_uri() . '/js/components.js', array(), PDP_THEME_VERSION, true );
 
     wp_localize_script( 'pdp-components', 'pdp_components_data', array(
-        'rest_url'          => untrailingslashit( esc_url_raw( rest_url() ) ),
-        'ajax_url'          => admin_url( 'admin-ajax.php' ),
-	    'gift_cards_url'    => get_permalink( 366 ),
-	    'lang'              => pll_current_language( 'slug' )
+        'rest_url'              => untrailingslashit( esc_url_raw( rest_url() ) ),
+        'ajax_url'              => admin_url( 'admin-ajax.php' ),
+	    'gift_cards_url'        => get_permalink( 366 ),
+	    'lang'                  => pll_current_language( 'slug' )
     ) );
 
 	wp_localize_script( 'pdp-components', 'pdp_components_i18n', array(
@@ -253,7 +253,7 @@ function pdp_scripts(){
 	) );
 
     wp_localize_script( 'pdp-forms', 'pdp_forms_data', array(
-        'ajax_url'           => admin_url( 'admin-ajax.php' )
+        'ajax_url'              => admin_url( 'admin-ajax.php' )
     ) );
 
 	wp_localize_script( 'pdp-forms', 'pdp_forms_i18n', array(
@@ -265,11 +265,11 @@ function pdp_scripts(){
 	) );
 
 	wp_localize_script( 'pdp-post', 'pdpData', array(
-		'ajaxurl'           => admin_url( 'admin-ajax.php' )
+		'ajaxurl'               => admin_url( 'admin-ajax.php' )
 	) );
 
 	wp_localize_script( 'pdp-front', 'pdp', array(
-		'booking_url'       => get_permalink( pll_get_post( 66 ) )
+		'booking_url'           => get_permalink( pll_get_post( 66 ) )
 	) );
 }
 
