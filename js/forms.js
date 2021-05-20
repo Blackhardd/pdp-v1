@@ -97,6 +97,7 @@ jQuery(document).ready(function($){
     function validate_select($input){
         if(!$input.val()){
             input_error($input, pdp_forms_i18n.no_selected_option);
+            return false;
         }
 
         return true;

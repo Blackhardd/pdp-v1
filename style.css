@@ -44,6 +44,7 @@ textarea {
 
 img {
 	max-width: 100%;
+	height: auto;
 }
 
 
@@ -65,7 +66,6 @@ img {
 /**
  *  Default Select
  */
-
 select {
 	height: 38px;
 	background: #f9f9f9;
@@ -77,7 +77,6 @@ select {
 /**
  *  Links
  */
-
 a {
 	transition: color 200ms ease;
 }
@@ -90,7 +89,6 @@ a:not(.btn-default):hover {
 /**
  *  Buttons
  */
-
 a.btn-default,
 button.btn-default,
 input[type="submit"].btn-default {
@@ -183,7 +181,6 @@ button.btn-sticky-right {
 /**
  *  Grid
  */
-
 .container {
 	position: relative;
 	flex-grow: 1;
@@ -311,7 +308,6 @@ button.btn-sticky-right {
 /**
  *  Buttons row
  */
-
 .buttonsRow {
 	display: flex;
 	align-items: center;
