@@ -46,6 +46,10 @@ function pdp_load_elementor_widgets(){
 		require TEMPLATEPATH . '/elementor/class-pdp-socials-list.php';
 	endif;
 
+	if( !class_exists( 'PDP_Messenger_Icons' ) ) :
+		require TEMPLATEPATH . '/elementor/class-pdp-messenger-icons.php';
+	endif;
+
 	if( !class_exists( 'PDP_Salons_Carousel' ) ) :
 		require TEMPLATEPATH . '/elementor/class-pdp-salons-carousel.php';
 	endif;
@@ -70,6 +74,7 @@ function pdp_load_elementor_widgets(){
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Tabs() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Accordion() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Socials_List() );
+	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Messenger_Icons() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Salons_Carousel() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Service_Categories_Carousel() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Form() );

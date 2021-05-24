@@ -98,20 +98,20 @@ class PDP_Messenger_Icons extends \Elementor\Widget_Base {
 				'options'       => [
 					'left'          => [
 						'title'         => __( 'Слева', 'pdp' ),
-						'icon'          => 'fa fa-align-left',
+						'icon'          => 'fa fa-align-left'
 					],
 					'center'        => [
 						'title'         => __( 'Центр', 'pdp' ),
-						'icon'          => 'fa fa-align-center',
+						'icon'          => 'fa fa-align-center'
 					],
 					'right'         => [
 						'title'         => __( 'Справа', 'pdp' ),
-						'icon'          => 'fa fa-align-right',
-					],
+						'icon'          => 'fa fa-align-right'
+					]
 				],
 				'devices'       => [ 'desktop', 'tablet', 'mobile' ],
 				'selectors'     => [
-					'{{WRAPPER}}'   => 'text-align: {{VALUE}};',
+					'{{WRAPPER}}'   => 'text-align: {{VALUE}};'
 				]
 			]
 		);
