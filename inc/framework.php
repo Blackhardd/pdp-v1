@@ -43,7 +43,7 @@ function pdp_add_analytics(){
 
 add_action( 'wp_footer', 'pdp_add_analytics_footer' );
 function pdp_add_analytics_footer(){
-    echo carbon_get_theme_option( 'analytics_code_footer' );
+	echo carbon_get_theme_option( 'analytics_code_footer' );
 }
 
 
@@ -52,23 +52,23 @@ function pdp_add_analytics_footer(){
  */
 add_action( 'wp_footer', 'pdp_add_gtag_actions', 100 );
 function pdp_add_gtag_actions(){
-    if( $actions = carbon_get_theme_option( 'gtag_actions' ) ){
-        echo "
+	if( $actions = carbon_get_theme_option( 'gtag_actions' ) ){
+		echo "
             <script>
                 jQuery(function($){
                     $(document).ready(function(){
         ";
 
-        foreach( $actions as $action ){
-            echo "$('{$action['selector']}').on('{$action['event']}', () => gtag('event', '{$action['gtag_event']}', { 'event_category': '{$action['gtag_category']}', 'event_action': '{$action['gtag_action']}' }));\n";
-        }
+		foreach( $actions as $action ){
+			echo "$('{$action['selector']}').on('{$action['event']}', () => gtag('event', '{$action['gtag_event']}', { 'event_category': '{$action['gtag_category']}', 'event_action': '{$action['gtag_action']}' }));\n";
+		}
 
-        echo "
+		echo "
                     });
                 });
             </script>
         ";
-    }
+	}
 }
 
 
@@ -79,17 +79,17 @@ add_filter( 'wp_nav_menu_items', 'pdp_menu_add_appointments', 10, 2 );
 function pdp_menu_add_appointments( $items, $args ){
 	if( 'header-menu' == $args->theme_location ){
 		ob_start(); ?>
-        <li class="menu-item menu-item_book">
-            <button class="booking-btn">
-                <?=__( 'Запись', 'pdp' ); ?>
-                <div class="booking-btn__counter">
-                    {{ cartItems }}
-                </div>
-            </button>
-            <div class="cart-wrap cart-wrap--header">
-                <cart />
-            </div>
-        </li>
+		<li class="menu-item menu-item_book">
+			<button class="booking-btn">
+				<?=__( 'Запись', 'pdp' ); ?>
+				<div class="booking-btn__counter">
+					{{ cartItems }}
+				</div>
+			</button>
+			<div class="cart-wrap cart-wrap--header">
+				<cart />
+			</div>
+		</li>
 		<?php
 		$items .= ob_get_clean();
 	}
@@ -104,9 +104,9 @@ function pdp_menu_add_appointments( $items, $args ){
 add_action( 'wp_footer', 'pdp_add_right_appointment_button' );
 function pdp_add_right_appointment_button(){
 	if( !is_page_template( 'pricelist.php' ) ){ ?>
-        <div class="sticky-btns">
-            <button class="btn-sticky-right sticky-btns__btn" data-micromodal-trigger="modal-appointment"><?=__( 'Online запись', 'pdp' ); ?></button>
-        </div>
+		<div class="sticky-btns">
+			<button class="btn-sticky-right sticky-btns__btn" data-micromodal-trigger="modal-appointment"><?=__( 'Online запись', 'pdp' ); ?></button>
+		</div>
 		<?php
 	}
 }
@@ -135,17 +135,17 @@ function pdp_add_promotions_modal( $promotions = array() ){
 	$html .= '</div>';
 
 	add_action( 'wp_footer', function() use ( &$html ) { ?>
-        <div class="modal" id="modal-promotions" aria-hidden="true">
-            <div class="modal__dimmer" data-micromodal-close>
-                <div class="modal__inner">
-                    <button class="modal__close btn-icon" aria-label="Close modal" data-micromodal-close><svg width="14" height="14" fill="none"><path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4l5.6 5.6 1.4-1.4L8.4 7 14 1.4z" fill="#000"/></svg></button>
-                    <div class="modal__content">
+		<div class="modal" id="modal-promotions" aria-hidden="true">
+			<div class="modal__dimmer" data-micromodal-close>
+				<div class="modal__inner">
+					<button class="modal__close btn-icon" aria-label="Close modal" data-micromodal-close><svg width="14" height="14" fill="none"><path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4l5.6 5.6 1.4-1.4L8.4 7 14 1.4z" fill="#000"/></svg></button>
+					<div class="modal__content">
 						<?=$html; ?>
 						<?php get_template_part( 'templates/forms/appointment-promotion' ); ?>
-                    </div>
-                </div>
-            </div>
-        </div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<?php
 	} );
 }
@@ -250,26 +250,6 @@ function pdp_get_post_likes(){
 
 
 /**
- *  Get salon related masters
- */
-function pdp_get_salon_masters( $salon_term_id ){
-	return get_posts(
-		array(
-			'posts_per_page'    => -1,
-			'post_type'         => 'master',
-			'tax_query'         => array(
-				array(
-					'taxonomy'  => 'salon',
-					'field'     => 'id',
-					'terms'     => $salon_term_id
-				)
-			)
-		)
-	);
-}
-
-
-/**
  *  Getting related service pages
  */
 function pdp_get_related_pages( $post = false ){
@@ -326,19 +306,34 @@ function pdp_get_related_pages( $post = false ){
 /**
  *  Form Fields
  */
-
 function pdp_get_form_field( $name = false, $required = false ){
-    if( $name ){
-        ob_start();
-        get_template_part( 'templates/forms/fields/' . $name, null, ['required' => $required] );
-        return ob_get_clean();
-    }
+	if( $name ){
+		ob_start();
+		get_template_part( 'templates/forms/fields/' . $name, null, ['required' => $required] );
+		return ob_get_clean();
+	}
 
-    return null;
+	return null;
 }
 
 function pdp_form_field( $name = false, $required = false ){
-    if( $name ){
-        echo pdp_get_form_field( $name, $required );
-    }
+	if( $name ){
+		echo pdp_get_form_field( $name, $required );
+	}
+}
+
+
+/**
+ *  Is Plugin Active
+ */
+function pdp_is_plugin_active( $plugin = false ){
+	if( $plugin ){
+		if( !function_exists( 'is_plugin_active' ) ){
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
+
+		return is_plugin_active( $plugin );
+	}
+
+	return null;
 }

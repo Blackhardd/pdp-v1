@@ -9,6 +9,14 @@ if( !defined( 'PDP_THEME_VERSION' ) ) :
 	define( 'PDP_THEME_VERSION', '1.0.26' );
 endif;
 
+if( !defined( 'PDP_THEME_URL' ) ) :
+	define( 'PDP_THEME_URL', get_template_directory_uri() );
+endif;
+
+if( !defined( 'PDP_THEME_DIR' ) ) :
+	define( 'PDP_THEME_DIR', get_template_directory() );
+endif;
+
 
 if( !function_exists( 'pdp_setup' ) ) :
 	function pdp_setup(){
@@ -100,7 +108,7 @@ add_action( 'after_setup_theme', 'pdp_content_width', 0 );
  */
 add_action( 'wp_enqueue_scripts', 'pdp_scripts' );
 function pdp_scripts(){
-	wp_register_style( 'pdp-elementor-widgets', get_template_directory_uri() . '/resources/css/elementor.css', array(), PDP_THEME_VERSION );
+	wp_register_style( 'pdp-elementor-widgets', PDP_THEME_URL . '/resources/css/elementor.css', array(), PDP_THEME_VERSION );
 
 	if( is_plugin_active( 'elementor/elementor.php' ) ){
 		wp_enqueue_style( 'pdp-elementor-widgets' );
@@ -112,19 +120,19 @@ function pdp_scripts(){
 	/**
      * Enqueue fonts.
      */
-    wp_enqueue_style( 'pdp-fonts', get_template_directory_uri() . '/resources/css/fonts.css', array(), PDP_THEME_VERSION );
+    wp_enqueue_style( 'pdp-fonts', PDP_THEME_URL . '/resources/css/fonts.css', array(), PDP_THEME_VERSION );
 
 
     /**
      * Enqueue theme styles.
      */
-    wp_enqueue_style( 'pdp-atomic', get_template_directory_uri() . '/resources/css/atomic.css', array(), PDP_THEME_VERSION );
+    wp_enqueue_style( 'pdp-atomic', PDP_THEME_URL . '/resources/css/atomic.css', array(), PDP_THEME_VERSION );
 
 
     /**
      * Enqueue theme responsive styles.
      */
-    wp_enqueue_style( 'pdp-responsive', get_template_directory_uri() . '/resources/css/responsive.css', array(), PDP_THEME_VERSION );
+    wp_enqueue_style( 'pdp-responsive', PDP_THEME_URL . '/resources/css/responsive.css', array(), PDP_THEME_VERSION );
 
 
     /**
@@ -136,7 +144,7 @@ function pdp_scripts(){
     /**
      * Enqueue Forms script.
      */
-    wp_enqueue_script( 'pdp-forms', get_template_directory_uri() . '/js/forms.js', array(), PDP_THEME_VERSION, true );
+    wp_enqueue_script( 'pdp-forms', PDP_THEME_URL . '/js/forms.js', array(), PDP_THEME_VERSION, true );
 
 
 	/**
@@ -179,7 +187,7 @@ function pdp_scripts(){
         wp_enqueue_style( 'fancybox', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css', array(), PDP_THEME_VERSION );
         wp_enqueue_script( 'fancybox', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array(), PDP_THEME_VERSION, true );
 
-        wp_enqueue_script( 'pdp-salon', get_template_directory_uri() . '/js/salon.js', array(), PDP_THEME_VERSION, true );
+        wp_enqueue_script( 'pdp-salon', PDP_THEME_URL . '/js/salon.js', array(), PDP_THEME_VERSION, true );
     }
 
 
@@ -193,7 +201,7 @@ function pdp_scripts(){
     /**
      * Enqueue Vue.js
      */
-    wp_enqueue_script( 'vue', get_template_directory_uri() . '/js/vue.min.js', array(), PDP_THEME_VERSION, true );
+    wp_enqueue_script( 'vue', PDP_THEME_URL . '/js/vue.min.js', array(), PDP_THEME_VERSION, true );
     wp_enqueue_script( 'vuex', '//unpkg.com/vuex@3.6.0/dist/vuex.js', array(), PDP_THEME_VERSION, true );
 
 
@@ -204,23 +212,23 @@ function pdp_scripts(){
     wp_enqueue_script( 'simplebar', '//cdn.jsdelivr.net/npm/vue-simplebar@2.3.0/dist/vue-simplebar.umd.min.js', array(), PDP_THEME_VERSION, true );
 
     if( is_page_template( 'vacancies.php' ) ){
-        wp_enqueue_script( 'pdp-vacancies', get_template_directory_uri() . '/js/vacancies.js', array(), PDP_THEME_VERSION, true );
+        wp_enqueue_script( 'pdp-vacancies', PDP_THEME_URL . '/js/vacancies.js', array(), PDP_THEME_VERSION, true );
     }
 
 	if( is_page_template( 'promotions.php' ) ){
-		wp_enqueue_script( 'pdp-promotions', get_template_directory_uri() . '/js/promotions.js', array(), PDP_THEME_VERSION, true );
+		wp_enqueue_script( 'pdp-promotions', PDP_THEME_URL . '/js/promotions.js', array(), PDP_THEME_VERSION, true );
 	}
 
     if( is_singular( 'post' ) ){
-	    wp_enqueue_script( 'pdp-post', get_template_directory_uri() . '/js/post.js', array(), PDP_THEME_VERSION, true );
+	    wp_enqueue_script( 'pdp-post', PDP_THEME_URL . '/js/post.js', array(), PDP_THEME_VERSION, true );
     }
 
 
     /**
      * Enqueue theme script.
      */
-    wp_enqueue_script( 'pdp-front', get_template_directory_uri() . '/js/script.js', array(), PDP_THEME_VERSION, true );
-    wp_enqueue_script( 'pdp-components', get_template_directory_uri() . '/js/components.js', array(), PDP_THEME_VERSION, true );
+    wp_enqueue_script( 'pdp-front', PDP_THEME_URL . '/js/script.js', array(), PDP_THEME_VERSION, true );
+    wp_enqueue_script( 'pdp-components', PDP_THEME_URL . '/js/components.js', array(), PDP_THEME_VERSION, true );
 
     wp_localize_script( 'pdp-components', 'pdp_components_data', array(
         'rest_url'              => untrailingslashit( esc_url_raw( rest_url() ) ),
@@ -277,26 +285,20 @@ function pdp_scripts(){
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
-
-
-/**
- * Template shortcodes.
- */
-require get_template_directory() . '/inc/template-shortcodes.php';
+require PDP_THEME_DIR . '/inc/framework.php';
 
 
 /**
  *  Template Modals
  */
-require get_template_directory() . '/inc/modals.php';
+require PDP_THEME_DIR . '/inc/modals.php';
 
 
 /**
  * Elementor widgets.
  */
-if( is_plugin_active( 'elementor/elementor.php' ) ) :
-	require get_template_directory() . '/inc/elementor.php';
+if( pdp_is_plugin_active( 'elementor/elementor.php' ) ) :
+	require PDP_THEME_DIR . '/inc/elementor.php';
 endif;
 
 
@@ -304,6 +306,6 @@ endif;
  * Carbon fields.
  */
 add_action( 'carbon_fields_register_fields', function(){
-	require get_template_directory() . '/inc/template-options.php';
-	require get_template_directory() . '/inc/template-fields.php';
+	require PDP_THEME_DIR . '/inc/theme-settings.php';
+	require PDP_THEME_DIR . '/inc/carbon-meta-fields.php';
 } );

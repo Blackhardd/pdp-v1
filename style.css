@@ -720,7 +720,6 @@ textarea:focus {
 /**
  *  Unordered List - Style 1
  */
-
 .ul_style-01 {
 	list-style: none;
 	margin: 0;
@@ -752,7 +751,6 @@ textarea:focus {
 /**
  *  Ordered List - Style 1
  */
-
 .ol_style01 {
 	counter-reset: counterStyle01;
 	margin: 0;
@@ -790,7 +788,6 @@ textarea:focus {
 /**
  *  Ordered List - Style 2
  */
-
 .ol_style02 {
 	counter-reset: counterStyle02;
 	margin: 0;
@@ -827,7 +824,6 @@ textarea:focus {
 /**
  *  Ordered List - Style 3
  */
-
 .ol_style-03 {
 	counter-reset: counterStyle03;
 	margin: 0;
@@ -859,7 +855,6 @@ textarea:focus {
 /**
  *  Header
  */
-
 header.main-header {
 	position: fixed;
 	top: 0;
@@ -906,7 +901,6 @@ header.main-header.fixed.active {
 /**
  *  Mobile header
  */
-
 .header.header_mobile {
 	position: relative;
 	display: none;
@@ -925,7 +919,6 @@ header.main-header.fixed.active {
 /**
  * Reset WP menu styles
  */
-
 .menu {
 	list-style: none;
 	margin: 0;
@@ -951,7 +944,6 @@ header.main-header.fixed.active {
 /**
  *  Booking Button
  */
-
 .booking-btn {
 	position: relative;
 	padding: 0;
@@ -993,7 +985,6 @@ header.main-header.fixed.active {
 /**
  *  Main navigation
  */
-
 .main-navigation {
 	font-size: 15px;
 	line-height: 15px;
@@ -1170,7 +1161,6 @@ header.main-header.fixed.active {
 /**
  *  Main Navigation - Mobile Toggler
  */
-
 .mobile-navigation-toggle {
 	position: relative;
 }
@@ -1228,7 +1218,6 @@ header.main-header.fixed.active {
 /**
  *  Mobile Menu - Appointment button
  */
-
 .appointment-mobile {
 	margin: 140px 0 20px 60px;
 }
@@ -1269,7 +1258,6 @@ header.main-header.fixed.active {
 /**
  *  Main navigation - mobile
  */
-
 .mobile-navigation {
 	position: fixed;
 	top: 0;
@@ -1422,7 +1410,6 @@ header.main-header.fixed.active {
 /**
  *  Footer Menu - Default
  */
-
 .footer-menu {
 	margin-bottom: 16px;
 }
@@ -1460,7 +1447,6 @@ header.main-header.fixed.active {
 /**
  *  Footer Menu - Salons
  */
-
 .footer-menu_salons {
 	font-weight: 500;
 }
@@ -1493,7 +1479,6 @@ header.main-header.fixed.active {
 /**
  *  Breadcrumbs
  */
-
 .breadcrumbs-wrap {
 	margin-bottom: 60px;
 }
@@ -1549,7 +1534,6 @@ header.main-header.fixed.active {
 /**
  *  Cart Counter
  */
-
 .cart-counter {
 	width: 16px;
 	height: 16px;
@@ -1565,7 +1549,6 @@ header.main-header.fixed.active {
 /**
  *  Phones list
  */
-
 .phonesList {
 	position: relative;
 	display: flex;
@@ -1662,7 +1645,6 @@ header.main-header.fixed.active {
 /**
  *  Phones List - Mobile
  */
-
 .phones-list.phones-list_mobile {
 	position: fixed;
 	display: none;
@@ -1737,7 +1719,6 @@ header.main-header.fixed.active {
 /**
  *  Language switcher
  */
-
 .lang-switcher {
 	position: relative;
 	padding: 10px 0;
@@ -1786,7 +1767,6 @@ header.main-header.fixed.active {
 /**
  *  Social networks
  */
-
 .socials__list {
 	list-style: none;
 	display: flex;
@@ -1849,7 +1829,6 @@ header.main-header.fixed.active {
 /**
  *  Search Form
  */
-
 .search-form {
 	display: flex;
 	align-items: center;
@@ -1878,7 +1857,6 @@ input.search-form__input:focus {
 /**
  *  Promotion Form
  */
-
 .promotion-form {
 	max-width: 330px;
 	margin-top: 40px;
@@ -1906,7 +1884,6 @@ input.search-form__input:focus {
 /**
  *  Footer
  */
-
 .main-footer {
 	background-color: white;
 }
@@ -1927,7 +1904,6 @@ input.search-form__input:focus {
 /**
  *  Hero
  */
-
 #hero-home {
 	display: flex;
 	align-items: center;
@@ -2034,7 +2010,6 @@ input.search-form__input:focus {
 /**
  * Service header
  */
-
 #service-header {
 	display: flex;
 	align-items: center;
@@ -2226,7 +2201,6 @@ input.search-form__input:focus {
 /**
  *  Extended service list
  */
-
 .serviceListExt {
 	border-top: 1px solid black;
 }
@@ -2254,7 +2228,6 @@ input.search-form__input:focus {
 /**
  *  Title
  */
-
 .title__subtitle {
 	margin-top: 10px;
 	font-size: 18px;
@@ -4444,7 +4417,6 @@ input.search-form__input:focus {
 /**
  *  UAH Symbol
  */
-
 .uah:before {
 	content: "\0024";
 	font-family: 'PDPIcons';
@@ -4455,7 +4427,6 @@ input.search-form__input:focus {
 /**
  *  Error 404 Block
  */
-
 .error-404 {
 	max-width: 400px;
 }
@@ -4476,104 +4447,8 @@ input.search-form__input:focus {
 
 
 /**
- *  Preloader
- */
-
-.backdrop {
-	position: absolute;
-	display: none;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	height: 100%;
-	width: 100%;
-	background: rgba(249, 249, 249, 0.8);
-	background: rgba(249, 249, 249, 0.8);
-	z-index: 2;
-}
-
-.backdrop.active {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-}
-
-.loader {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-}
-
-.dot {
-	background: rgba(57, 43, 223, 1);
-	margin: 5px;
-	-webkit-animation-name: loader;
-	animation-name: loader;
-	-webkit-animation-duration: 0.7s;
-	animation-duration: 0.7s;
-	-webkit-animation-iteration-count: infinite;
-	animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	animation-direction: alternate;
-}
-
-.dot:nth-child(1) {
-	-webkit-animation-delay: 0.1s;
-	animation-delay: 0.1s;
-}
-.dot:nth-child(2) {
-	-webkit-animation-delay: 0.3s;
-	animation-delay: 0.3s;
-}
-.dot:nth-child(3) {
-	-webkit-animation-delay: 0.5s;
-	animation-delay: 0.5s;
-}
-.dot:nth-child(4) {
-	-webkit-animation-delay: 0.7s;
-	animation-delay: 0.7s;
-}
-
-@-webkit-keyframes loader {
-	from {
-		width: 2px;
-		height: 2px;
-		border-radius: 1px;
-	}
-	to {
-		width: 20px;
-		height: 20px;
-		border-radius: 10px;
-	}
-}
-
-@keyframes loader {
-	from {
-		width: 2px;
-		height: 2px;
-		border-radius: 1px;
-	}
-	to {
-		width: 20px;
-		height: 20px;
-		border-radius: 10px;
-	}
-}
-
-
-/**
  *  Modal
  */
-
 .modal {
 	position: fixed;
 	display: none;
@@ -4648,7 +4523,6 @@ input.search-form__input:focus {
 /**
  *  Modal - animations
  */
-
 @keyframes modalFadeIn {
 	from {
 		opacity: 0;
@@ -4689,37 +4563,12 @@ input.search-form__input:focus {
 /**
  *  Homepage
  */
-
 #home-services {
 	margin-bottom: 150px;
 }
 
 #home-about {
 	margin-bottom: 90px;
-}
-
-#home-about > .container > .row {
-	max-width: 728px;
-	margin: 0 auto;
-}
-
-#home-about .row_1-2 {
-	grid-template-columns: minmax(auto, 332px) 1fr;
-}
-
-#home-about #fan {
-	display: inline-flex;
-}
-
-#home-about #fan img {
-	position: absolute;
-	top: -120px;
-	left: calc(100% - 20px);
-	max-width: unset;
-}
-
-#home-about #autoclave {
-	margin-bottom: 0;
 }
 
 #home-salons {
@@ -4796,7 +4645,6 @@ input.search-form__input:focus {
 /**
  *  About Us
  */
-
 #about-hero {
 	margin-bottom: 110px;
 }
@@ -4872,7 +4720,6 @@ input.search-form__input:focus {
 /**
  *  Salons Archive Page
  */
-
 #salons-header {
 	margin-bottom: 40px;
 }
@@ -4881,7 +4728,6 @@ input.search-form__input:focus {
 /**
  *  Salon Page
  */
-
 #salon-header {
 	margin-bottom: 40px;
 }
@@ -4902,7 +4748,6 @@ input.search-form__input:focus {
 /**
  *  Vacancies Page
  */
-
 #vacancies-header {
 	margin-bottom: 40px;
 }
@@ -4931,7 +4776,6 @@ input.search-form__input:focus {
 /**
  *  Gift Cards Page
  */
-
 .page-template-gift-cards-ua .main-article,
 .page-template-gift-cards .main-article {
 	background: url("./resources/images/gift-cards/header.png") no-repeat right 63vw top 110px;
@@ -4976,7 +4820,6 @@ input.search-form__input:focus {
 /**
  *  School Page
  */
-
 #hero-school {
 	margin-bottom: 120px;
 }
@@ -5054,7 +4897,6 @@ input.search-form__input:focus {
 /**
  *  SMI About Us Page
  */
-
 .page-id-348 .main-article {
 	background: url("./resources/images/smi/smi-about-us.png") no-repeat right center;
 }
@@ -5063,7 +4905,6 @@ input.search-form__input:focus {
 /**
  *  Blog archive
  */
-
 #blog-archive-header {
 	margin-bottom: 60px;
 }
@@ -5077,7 +4918,6 @@ input.search-form__input:focus {
 /**
  *  Promotions Page
  */
-
 #promotions-header {
 	margin-bottom: 30px;
 }
@@ -5105,7 +4945,6 @@ input.search-form__input:focus {
 /**
  *  Contacts Page
  */
-
 .page-template-contacts .main-article {
 	margin-bottom: 0;
 	padding-bottom: 120px;
@@ -5124,7 +4963,6 @@ input.search-form__input:focus {
 /**
  *  Default Page Template
  */
-
 .page-header {
 	margin-bottom: 90px;
 }
@@ -5137,7 +4975,6 @@ input.search-form__input:focus {
 /**
  *  Error 404 Page
  */
-
 body.error404 .main-article {
 	margin-bottom: 0;
 	padding-top: 200px;
@@ -5149,40 +4986,6 @@ body.error404 .main-article {
 /**
  *  Modal - Promotions
  */
-
 #modal-promotions .modal__inner {
 	max-width: 600px;
-}
-
-
-/**
- *  Vue.js
- */
-
-/* Enter and leave animations can use different */
-/* durations and timing functions.              */
-.slide-fade-enter-active {
-	transition: all .3s ease;
-}
-.slide-fade-leave-active {
-	transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-	/* .slide-fade-leave-active below version 2.1.8 */ {
-	transform: translateX(10px);
-	opacity: 0;
-}
-
-/**
- *	Animations
- */
-
-@keyframes spin {
-	from {
-		transform: rotateZ(0deg);
-	}
-
-	to {
-		transform: rotateZ(360deg);
-	}
 }
