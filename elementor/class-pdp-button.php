@@ -21,8 +21,8 @@ class PDP_Button extends \Elementor\Widget_Base {
 		$this->start_controls_section(
 			'settings_tab',
 			[
-				'label' => __( 'Настройки', 'pdp' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+				'label'         => __( 'Настройки', 'pdp' ),
+				'tab'           => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
 
