@@ -62,6 +62,26 @@ class PDP_Text extends \Elementor\Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'style_tab',
+			[
+				'label'         => __( 'Контент', 'pdp' ),
+				'tab'           => \Elementor\Controls_Manager::TAB_STYLE
+			]
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name'          => 'content_typography',
+				'label'         => __( 'Типографика', 'pdp' ),
+				'scheme'        => \Elementor\Core\Schemes\Typography::TYPOGRAPHY_1,
+				'selector'      => '{{WRAPPER}} .text'
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
 	protected function render(){
