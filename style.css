@@ -92,6 +92,7 @@ a:not(.btn-default):hover {
 a.btn-default,
 button.btn-default,
 input[type="submit"].btn-default {
+	-webkit-appearance: none;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -104,6 +105,7 @@ input[type="submit"].btn-default {
 	text-transform: lowercase;
 	background: #392BDF;
 	border-radius: 10px;
+	-webkit-border-radius: 10px;
 	border: 0;
 	cursor: pointer;
 }
