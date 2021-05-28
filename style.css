@@ -139,6 +139,19 @@ input[type="submit"].btn-icon > svg {
 	pointer-events: none;
 }
 
+a.btn-icon > svg path,
+button.btn-icon > svg path,
+input[type="submit"].btn-icon > svg path {
+	fill: var(--pdp-text);
+	transition: fill 300ms ease;
+}
+
+a.btn-icon:hover > svg path,
+button.btn-icon:hover > svg path,
+input[type="submit"].btn-icon:hover > svg path {
+	fill: var(--pdp-primary);
+}
+
 a.btn-square,
 button.btn-square {
 	display: inline-flex;
