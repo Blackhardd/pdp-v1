@@ -58,6 +58,10 @@ function pdp_load_elementor_widgets(){
 		require TEMPLATEPATH . '/elementor/class-pdp-service-categories-carousel.php';
 	endif;
 
+	if( !class_exists( 'PDP_Promotions' ) ) :
+		require TEMPLATEPATH . '/elementor/class-pdp-promotions.php';
+	endif;
+
 	if( !class_exists( 'PDP_Form' ) ) :
 		require TEMPLATEPATH . '/elementor/class-pdp-form.php';
 	endif;
@@ -77,6 +81,7 @@ function pdp_load_elementor_widgets(){
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Messenger_Icons() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Salons_Carousel() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Service_Categories_Carousel() );
+	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Promotions() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Form() );
 	\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new PDP_Franchise() );
 }

@@ -215,10 +215,6 @@ function pdp_scripts(){
         wp_enqueue_script( 'pdp-vacancies', PDP_THEME_URL . '/js/vacancies.js', array(), PDP_THEME_VERSION, true );
     }
 
-	if( is_page_template( 'promotions.php' ) ){
-		wp_enqueue_script( 'pdp-promotions', PDP_THEME_URL . '/js/promotions.js', array(), PDP_THEME_VERSION, true );
-	}
-
     if( is_singular( 'post' ) ){
 	    wp_enqueue_script( 'pdp-post', PDP_THEME_URL . '/js/post.js', array(), PDP_THEME_VERSION, true );
     }

@@ -310,6 +310,77 @@
 
 
 /**
+ *  Promotions
+ */
+.promotions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.promotions::-webkit-scrollbar {
+    display: none;
+}
+
+.promotion {
+    display: flex!important;
+    flex-direction: column;
+    height: unset!important;
+    cursor: pointer;
+}
+
+.promotions .slick-track .promotion {
+    max-width: 288px;
+    margin: 0 10px;
+}
+
+.promotion__thumbnail {
+    cursor: pointer;
+}
+
+.promotion__thumbnail > img {
+    display: block;
+    border-radius: 4px 4px 0 0;
+}
+
+.promotion__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 15px 14px 17px 19px;
+    background-color: white;
+    border-radius: 0 0 4px 4px;
+}
+
+.promotion__title {
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.promotion__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.promotion__dates {
+    color: #F27A24;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+}
+
+.promotion__link svg {
+    display: block;
+}
+
+
+/**
  *  Media Queries
  */
 
@@ -429,5 +500,16 @@
     }
     .franchise__cta .cta__phone {
         margin-top: 25px;
+    }
+
+    .promotions {
+        display: block;
+        grid-template-columns: unset;
+        grid-gap: unset;
+        margin: 0 -20px !important;
+        padding: 0 20px;
+    }
+    .promotions .promotion {
+        margin-right: 20px;
     }
 }
