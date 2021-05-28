@@ -82,7 +82,7 @@ a {
 }
 
 a:not(.btn-default):hover {
-	color: #392BDF !important;
+	color: var(--pdp-primary) !important;
 }
 
 
@@ -103,7 +103,7 @@ input[type="submit"].btn-default {
 	font-weight: 500;
 	text-decoration: none;
 	text-transform: lowercase;
-	background: #392BDF;
+	background: var(--pdp-primary);
 	border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border: 0;
@@ -626,7 +626,7 @@ textarea:focus {
 	width: 10px;
 	left: 1px;
 	bottom: 1px;
-	background-color: #392BDF;
+	background-color: var(--pdp-primary);
 	border-radius: 50%;
 	-webkit-transition: .4s;
 	transition: .4s;
@@ -847,7 +847,7 @@ textarea:focus {
 	content: counter(counterStyle03, decimal-leading-zero);
 	display: block;
 	margin-right: 12px;
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 17px;
@@ -934,7 +934,7 @@ header.main-header.fixed.active {
 }
 
 .menu .menu-item a:hover {
-	color: #392BDF;
+	color: var(--pdp-primary);
 }
 
 .menu .menu-item > .sub-menu {
@@ -963,7 +963,7 @@ header.main-header.fixed.active {
 }
 
 .booking-btn:hover {
-	color: #392BDF;
+	color: var(--pdp-primary);
 }
 
 .booking-btn__counter {
@@ -979,7 +979,7 @@ header.main-header.fixed.active {
 	color: white;
 	font-size: 8px;
 	line-height: 12px;
-	background-color: #392BDF;
+	background-color: var(--pdp-primary);
 	border-radius: 50%;
 }
 
@@ -1010,7 +1010,7 @@ header.main-header.fixed.active {
 
 .main-navigation .menu a:hover,
 .main-navigation .menu button:hover {
-	color: #392BDF;
+	color: var(--pdp-primary);
 }
 
 .main-navigation .current-menu-item > a,
@@ -1248,7 +1248,7 @@ header.main-header.fixed.active {
 	font-weight: bold;
 	font-size: 10px;
 	line-height: 16px;
-	background: #392BDF;
+	background: var(--pdp-primary);
 	border-radius: 50%;
 }
 
@@ -1334,7 +1334,7 @@ header.main-header.fixed.active {
 	height: 12px;
 	width: 3px;
 	margin-right: 6px;
-	background-color: #392BDF;
+	background-color: var(--pdp-primary);
 }
 
 .mobile-navigation .menu > .menu-item-has-children > .sub-menu > .menu-item:last-child {
@@ -1342,7 +1342,7 @@ header.main-header.fixed.active {
 }
 
 .mobile-navigation .menu > .menu-item-has-children > .sub-menu > .current-menu-item a {
-	color: #392BDF;
+	color: var(--pdp-primary);
 }
 
 .mobile-navigation .menu {
@@ -1543,7 +1543,7 @@ header.main-header.fixed.active {
 	font-weight: bold;
 	font-size: 10px;
 	line-height: 18px;
-	background: #392BDF;
+	background: var(--pdp-primary);
 	border-radius: 50%;
 }
 
@@ -1575,7 +1575,7 @@ header.main-header.fixed.active {
 }
 
 .phonesList__placeholder a:hover .phonesList__phone {
-	color: #392BDF;
+	color: var(--pdp-primary);
 }
 
 .phonesList__address {
@@ -1795,7 +1795,7 @@ header.main-header.fixed.active {
 }
 
 .socials__item a:hover path {
-	fill: #392BDF;
+	fill: var(--pdp-primary);
 }
 
 .socials_list ul {
@@ -2556,12 +2556,12 @@ input.search-form__input:focus {
 
 .testimonials__prev-btn:hover,
 .testimonials__next-btn:hover {
-	color: #392BDF;
+	color: var(--pdp-primary);
 }
 
 .testimonials__prev-btn:hover svg path,
 .testimonials__next-btn:hover svg path {
-	fill: #392BDF;
+	fill: var(--pdp-primary);
 }
 
 .testimonials__prev-btn:focus,
@@ -2590,7 +2590,7 @@ input.search-form__input:focus {
 }
 
 .testimonials__dots .slick-dots li.slick-active {
-	color: #392BDF;
+	color: var(--pdp-primary);
 }
 
 .testimonials .slick-slide {
@@ -2876,7 +2876,7 @@ input.search-form__input:focus {
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	background: radial-gradient(#392BDF 4px, #392BDF 4px, transparent 4px) no-repeat center;
+	background: radial-gradient(var(--pdp-primary) 4px, var(--pdp-primary) 4px, transparent 4px) no-repeat center;
 	border-radius: 50%;
 	border: 2px solid #000;
 }
@@ -3499,7 +3499,7 @@ input.search-form__input:focus {
 	position: absolute;
 	left: 0;
 	bottom: calc(100% + 4px);
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-weight: bold;
 	font-size: 18px;
 	line-height: 17px;
@@ -3691,7 +3691,7 @@ input.search-form__input:focus {
 	display: flex;
 	align-items: center;
 	margin-bottom: 12px;
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-size: 16px;
 	line-height: 16px;
 }
@@ -3700,7 +3700,7 @@ input.search-form__input:focus {
 	width: 1px;
 	height: 14px;
 	margin: 0 10px;
-	background: #392BDF;
+	background: var(--pdp-primary);
 }
 
 .blog-item__likes {
@@ -3747,7 +3747,7 @@ input.search-form__input:focus {
 }
 
 .blog-pagination .page-numbers.current {
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-weight: bold;
 }
 
@@ -3780,7 +3780,7 @@ input.search-form__input:focus {
 
 .post-actions__likes span {
 	margin-left: 10px;
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-size: 16px;
 	line-height: 15px;
 }
@@ -3797,7 +3797,7 @@ input.search-form__input:focus {
 }
 
 .post-header__date {
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-size: 16px;
 	line-height: 15px;
 }
@@ -3856,7 +3856,7 @@ input.search-form__input:focus {
 	max-width: 560px;
 	margin: 80px 0 0 0;
 	padding-left: 20px;
-	border-left: 6px solid #392BDF;
+	border-left: 6px solid var(--pdp-primary);
 }
 
 .post-relink:not(:last-child) {
@@ -3871,7 +3871,7 @@ input.search-form__input:focus {
 }
 
 .post-relink__link {
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-weight: bold;
 	font-size: 24px;
 	line-height: 23px;
@@ -3957,14 +3957,14 @@ input.search-form__input:focus {
 .badge.pro {
 	display: inline-block;
 	padding: 0 4px 1px 4px;
-	border: 1px solid #392BDF;
+	border: 1px solid var(--pdp-primary);
 	border-radius: 2px;
 }
 
 .badge.pro:before {
 	content: "pro";
 	display: block;
-	color: #392BDF;
+	color: var(--pdp-primary);
 	font-weight: 500;
 	font-size: 10px;
 	line-height: 10px;
@@ -4029,7 +4029,7 @@ input.search-form__input:focus {
 .founders__badge {
 	padding: 17px 24px;
 	color: white;
-	background: #392BDF;
+	background: var(--pdp-primary);
 }
 
 .founders__title {
@@ -4297,7 +4297,7 @@ input.search-form__input:focus {
 }
 
 .accordion.accordion_style-02 .accordion__item.active path {
-	fill: #392BDF;
+	fill: var(--pdp-primary);
 }
 
 .accordion.accordion_style-02 .accordion__item.active .accordion__title {
@@ -4404,7 +4404,7 @@ input.search-form__input:focus {
 }
 
 .tabs__nav-item.active svg path {
-	fill: #392BDF;
+	fill: var(--pdp-primary);
 }
 
 .tabs__tab {
