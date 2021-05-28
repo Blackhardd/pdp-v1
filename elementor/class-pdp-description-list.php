@@ -10,7 +10,7 @@ class PDP_Description_List extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon(){
-		return 'fa fa-code';
+		return 'fa fa-list';
 	}
 
 	public function get_categories(){

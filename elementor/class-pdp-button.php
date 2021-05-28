@@ -10,7 +10,7 @@ class PDP_Button extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon(){
-		return 'fa fa-code';
+		return 'fa fa-hand-pointer';
 	}
 
 	public function get_categories(){

@@ -10,7 +10,7 @@ class PDP_Text extends \Elementor\Widget_Base {
 	}
 
 	public function get_icon(){
-		return 'fa fa-code';
+		return 'fa fa-paragraph';
 	}
 
 	public function get_categories(){
