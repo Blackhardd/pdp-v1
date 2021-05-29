@@ -57,8 +57,10 @@ Container::make( 'theme_options', 'PIED-DE-POULE' )
 		Field::make( 'select', 'forms_default_salon', __( 'Салон по умолчанию', 'pdp' ) )
 			->set_options( $salons )
 			->set_width( 30 ),
-		Field::make( 'text', 'thank_you_page_id', __( 'Thank You Page ID', 'pdp' ) )
-			->set_width( 30 )
+		Field::make( 'text', 'thank_you_page_id', __( 'Thank You Page ID (RU)', 'pdp' ) )
+			->set_width( 15 ),
+		Field::make( 'text', 'thank_you_page_id_ua', __( 'Thank You Page ID (UA)', 'pdp' ) )
+		     ->set_width( 15 )
 	) )
 	->add_tab( __( 'Аналитика', 'pdp' ), array(
 		Field::make( 'textarea', 'analytics_code', __( 'Коды аналитик (head)', 'pdp' ) ),
