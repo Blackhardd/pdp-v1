@@ -679,7 +679,7 @@ textarea:focus {
 	border-radius: 50%;
 	opacity: 0;
 	transition: opacity 300ms ease, visibility 300ms ease;
-	animation: spin 1s linear infinite;
+	animation: loader-spin 1s linear infinite;
 	z-index: 10001;
 }
 
@@ -687,6 +687,16 @@ textarea:focus {
 .form.cart.loading:after {
 	visibility: visible;
 	opacity: 1;
+}
+
+@keyframes loader-spin {
+	from {
+		transform: rotateZ(0deg);
+	}
+
+	to {
+		transform: rotateZ(360deg);
+	}
 }
 
 .form__response {
@@ -2760,6 +2770,10 @@ input.search-form__input:focus {
 	font-weight: bold;
 }
 
+.pricelist-item__price .uah {
+	font-size: 12px;
+}
+
 .pricelist-item__add-btn {
 	height: 26px;
 	margin-left: 6px;
@@ -4344,7 +4358,8 @@ input.search-form__input:focus {
 .uah:before {
 	content: "\0024";
 	font-family: 'PDPIcons';
-	font-size: 8px;
+	font-weight: 400;
+	font-size: inherit;
 }
 
 

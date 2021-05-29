@@ -139,25 +139,11 @@ jQuery(function($){
                 },
                 async setHairLength(ctx, length){
                     ctx.commit('setHairLength', length)
-
-                    await fetch(`${pdp_components_data.rest_url}/pdp/v1/update_cart/`, {
-                        method: 'POST',
-                        body: JSON.stringify({ cart: ctx.state.cart }),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                    window.sessionStorage.setItem('cart', JSON.stringify(ctx.state.cart))
                 },
                 async setMasterOption(ctx, value){
                     ctx.commit('setMasterOption', value)
-
-                    await fetch(`${pdp_components_data.rest_url}/pdp/v1/update_cart/`, {
-                        method: 'POST',
-                        body: JSON.stringify({ cart: ctx.state.cart }),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    })
+                    window.sessionStorage.setItem('cart', JSON.stringify(ctx.state.cart))
                 },
                 async fetchSalons(ctx){
                     const res = await fetch(`${pdp_components_data.rest_url}/pdp/v1/salons/get_all/${pdp_components_data.lang}`)
@@ -625,7 +611,9 @@ jQuery(function($){
             },
             methods: {
                 removeFromCart(service){
-                    this.$store.dispatch('addToCart', service)
+                    if(!this.isLoading){
+                        this.$store.dispatch('addToCart', service)
+                    }
                 },
                 validateForm(){
                     this.isFormValid = true
@@ -718,15 +706,25 @@ jQuery(function($){
                                 ctx.isLoading = true
                             },
                             success: function(res){
+                                res = JSON.parse(res)
+
+                                console.log(res)
+
                                 ctx.isLoading = false
-                                ctx.fields.name = ctx.fields.phone = ctx.fields.email = {
+                                ctx.fields.name, ctx.fields.phone, ctx.fields.email = {
                                     value: '',
                                     error: '',
                                     isInvalid: false,
                                     isTooltipVisible: false
                                 }
                                 ctx.isSubmitSuccess = true
-                                ctx.submitResponse = JSON.parse(res).message
+                                ctx.submitResponse = res.message
+
+                                if(res.redirect){
+                                    setTimeout(function(){
+                                        location.href = res.location
+                                    }, 2000);
+                                }
                             }
                         })
                     }

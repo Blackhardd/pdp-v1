@@ -955,6 +955,9 @@
         font-size: 11px;
         background-color: #F9F9F9;
     }
+    .pricelist-item__price .uah {
+        font-size: 8px;
+    }
     .pricelist-item__add-btn {
         margin-top: auto;
         margin-bottom: -4px;
