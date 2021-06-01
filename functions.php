@@ -144,7 +144,7 @@ function pdp_scripts(){
     /**
      * Enqueue Forms script.
      */
-    wp_enqueue_script( 'pdp-forms', PDP_THEME_URL . '/js/forms.js', array(), PDP_THEME_VERSION, true );
+    wp_enqueue_script( 'pdp-forms', PDP_THEME_URL . '/js/forms.js', array( 'jquery' ), PDP_THEME_VERSION, true );
 
 
 	/**
@@ -158,7 +158,7 @@ function pdp_scripts(){
      */
     wp_enqueue_style( 'slick', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css', array(), PDP_THEME_VERSION );
     wp_enqueue_style( 'slick-theme', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css', array(), PDP_THEME_VERSION );
-	wp_enqueue_script( 'slick', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array(), PDP_THEME_VERSION, true );
+	wp_enqueue_script( 'slick', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array( 'jquery' ), PDP_THEME_VERSION, true );
 
 
 	/**
@@ -171,7 +171,7 @@ function pdp_scripts(){
     /**
      * Enqueue jQuery.svg.
      */
-	wp_enqueue_script( 'jquery-svg', '//cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js', array(), PDP_THEME_VERSION, true );
+	wp_enqueue_script( 'jquery-svg', '//cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js', array( 'jquery' ), PDP_THEME_VERSION, true );
 
 
     /**
@@ -185,9 +185,9 @@ function pdp_scripts(){
          * Enqueue fancybox.js
          */
         wp_enqueue_style( 'fancybox', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css', array(), PDP_THEME_VERSION );
-        wp_enqueue_script( 'fancybox', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array(), PDP_THEME_VERSION, true );
+        wp_enqueue_script( 'fancybox', '//cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array( 'jquery' ), PDP_THEME_VERSION, true );
 
-        wp_enqueue_script( 'pdp-salon', PDP_THEME_URL . '/js/salon.js', array(), PDP_THEME_VERSION, true );
+        wp_enqueue_script( 'pdp-salon', PDP_THEME_URL . '/js/salon.js', array( 'jquery' ), PDP_THEME_VERSION, true );
     }
 
 
@@ -195,7 +195,7 @@ function pdp_scripts(){
      * Enqueue Selectric.js
      */
     wp_enqueue_style( 'selectric', '//cdn.jsdelivr.net/npm/selectric@1.13.0/public/selectric.min.css', array(), PDP_THEME_VERSION );
-    wp_enqueue_script( 'selectric', '//cdn.jsdelivr.net/npm/selectric@1.13.0/public/jquery.selectric.min.js', array(), PDP_THEME_VERSION, true );
+    wp_enqueue_script( 'selectric', '//cdn.jsdelivr.net/npm/selectric@1.13.0/public/jquery.selectric.min.js', array( 'jquery' ), PDP_THEME_VERSION, true );
 
 
     /**
@@ -212,18 +212,18 @@ function pdp_scripts(){
     wp_enqueue_script( 'simplebar', '//cdn.jsdelivr.net/npm/vue-simplebar@2.3.0/dist/vue-simplebar.umd.min.js', array(), PDP_THEME_VERSION, true );
 
     if( is_page_template( 'vacancies.php' ) ){
-        wp_enqueue_script( 'pdp-vacancies', PDP_THEME_URL . '/js/vacancies.js', array(), PDP_THEME_VERSION, true );
+        wp_enqueue_script( 'pdp-vacancies', PDP_THEME_URL . '/js/vacancies.js', array( 'jquery' ), PDP_THEME_VERSION, true );
     }
 
     if( is_singular( 'post' ) ){
-	    wp_enqueue_script( 'pdp-post', PDP_THEME_URL . '/js/post.js', array(), PDP_THEME_VERSION, true );
+	    wp_enqueue_script( 'pdp-post', PDP_THEME_URL . '/js/post.js', array( 'jquery' ), PDP_THEME_VERSION, true );
     }
 
 
     /**
      * Enqueue theme script.
      */
-    wp_enqueue_script( 'pdp-front', PDP_THEME_URL . '/js/script.js', array(), PDP_THEME_VERSION, true );
+    wp_enqueue_script( 'pdp-front', PDP_THEME_URL . '/js/script.js', array( 'jquery' ), PDP_THEME_VERSION, true );
     wp_enqueue_script( 'pdp-components', PDP_THEME_URL . '/js/components.js', array(), PDP_THEME_VERSION, true );
 
     wp_localize_script( 'pdp-components', 'pdp_components_data', array(
