@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Pied-de-Poul
+ * @package PIED-DE-POUL
  */
 ?>
 <!doctype html>
@@ -37,7 +37,8 @@
                     <?php
                     wp_nav_menu( array(
                         'theme_location'    => 'header-menu',
-                        'menu_id'           => 'primary-menu'
+                        'menu_id'           => 'primary-menu',
+                        'walker'            => new PDP_Core_Menu_Walker()
                     ) ); ?>
                 </nav>
 
@@ -89,7 +90,7 @@
 	            wp_nav_menu( array(
 			        'theme_location'    => 'mobile-menu',
                     'menu_id'           => 'primary-menu-mobile',
-                    'walker'            => new PDP_Core_Walker_Nav_Menu()
+                    'walker'            => new PDP_Core_Mobile_Menu_Walker()
                 ) ); ?>
 
 	            <?php get_template_part( 'templates/widgets/socials' ); ?>
