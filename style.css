@@ -1125,7 +1125,7 @@ header.main-header.fixed.active {
 }
 
 .main-navigation .menu > .menu-item > .sub-menu-wrap > .sub-menu > .menu-item > .sub-menu-wrap > .sub-menu {
-	max-height: calc(100vh - 150px);
+	max-height: calc(100vh - 300px);
 	padding: 20px 0;
 	background: rgba(249,249,249,.97);
 	border-radius: 4px;
