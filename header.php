@@ -86,12 +86,14 @@
                     </button>
                 </div>
 
-	            <?php
-	            wp_nav_menu( array(
-			        'theme_location'    => 'mobile-menu',
-                    'menu_id'           => 'primary-menu-mobile',
-                    'walker'            => new PDP_Core_Mobile_Menu_Walker()
-                ) ); ?>
+                <div class="mobile-menu-wrapper">
+	                <?php
+	                wp_nav_menu( array(
+		                'theme_location'    => 'mobile-menu',
+		                'menu_id'           => 'primary-menu-mobile',
+		                'walker'            => new PDP_Core_Mobile_Menu_Walker()
+	                ) ); ?>
+                </div>
 
 	            <?php get_template_part( 'templates/widgets/socials' ); ?>
             </div>
