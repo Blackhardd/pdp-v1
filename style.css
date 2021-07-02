@@ -1333,6 +1333,10 @@ header.main-header.fixed.active {
 	height: 100%;
 }
 
+.mobile-menu-wrapper > div {
+	height: 100%;
+}
+
 .mobile-navigation .menu > .menu-item:not(:last-of-type) {
 	margin-bottom: 28px;
 }
