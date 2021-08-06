@@ -136,6 +136,22 @@ jQuery(function($) {
         pdp_init_accordions();
 
 
+        function pdp_init_hero_slider(){
+            if($('.hero:not(.hero_about-us, .hero_school)').length){
+                const swiper = new Swiper('.hero .swiper-container', {
+                    direction: 'horizontal',
+                    loop: true,
+                    centeredSlides: true,
+                    effect: 'flip',
+                    pagination: {
+                        el: '.swiper-pagination',
+                    }
+                });
+            }
+        }
+
+        pdp_init_hero_slider();
+
         function pdp_init_sliders(){
             if(!$('body').hasClass('elementor-page') && $('.service-categories__slider, .salons-slider').length){
                 $('.service-categories__slider, .salons-slider').each(function(i){

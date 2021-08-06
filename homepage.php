@@ -15,7 +15,19 @@ get_header(); ?>
                 <button class="hero__btn btn-default" data-micromodal-trigger="modal-appointment"><?=carbon_get_post_meta( get_the_ID(), 'hero_btn_text' ); ?></button>
             </div>
 
-            <?=wp_get_attachment_image( 15, 'full' ); ?>
+            <div class="hero__slider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><?=wp_get_attachment_image( 11078, 'full' ); ?></div>
+                        <div class="swiper-slide"><?=wp_get_attachment_image( 11077, 'full' ); ?></div>
+                        <div class="swiper-slide"><?=wp_get_attachment_image( 11076, 'full' ); ?></div>
+                        <div class="swiper-slide"><?=wp_get_attachment_image( 11075, 'full' ); ?></div>
+                        <div class="swiper-slide"><?=wp_get_attachment_image( 11074, 'full' ); ?></div>
+                        <div class="swiper-slide"><?=wp_get_attachment_image( 11073, 'full' ); ?></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
 
             <div class="hero__socials">
                 <?php get_template_part( 'templates/widgets/socials' ); ?>

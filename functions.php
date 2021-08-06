@@ -6,7 +6,7 @@
  */
 
 if( !defined( 'PDP_THEME_VERSION' ) ) :
-	define( 'PDP_THEME_VERSION', '1.0.31a' );
+	define( 'PDP_THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 endif;
 
 if( !defined( 'PDP_THEME_URL' ) ) :
@@ -151,6 +151,13 @@ function pdp_scripts(){
 	 * Enqueue Clipboard.js
 	 */
 	wp_enqueue_script( 'clipboard', '//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js', array( 'jquery' ), PDP_THEME_VERSION, true );
+
+
+	/**
+	 * Enqueue Swiper
+	 */
+	wp_enqueue_style( 'swiper', 'https://unpkg.com/swiper/swiper-bundle.min.css', array(), PDP_THEME_VERSION );
+	wp_enqueue_script( 'swiper', '//unpkg.com/swiper/swiper-bundle.min.js', array(), PDP_THEME_VERSION, true );
 
 
     /**
