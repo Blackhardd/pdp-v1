@@ -18,12 +18,9 @@ get_header(); ?>
             <div class="hero__slider">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><?=wp_get_attachment_image( 11078, 'full' ); ?></div>
-                        <div class="swiper-slide"><?=wp_get_attachment_image( 11077, 'full' ); ?></div>
-                        <div class="swiper-slide"><?=wp_get_attachment_image( 11076, 'full' ); ?></div>
-                        <div class="swiper-slide"><?=wp_get_attachment_image( 11075, 'full' ); ?></div>
-                        <div class="swiper-slide"><?=wp_get_attachment_image( 11074, 'full' ); ?></div>
-                        <div class="swiper-slide"><?=wp_get_attachment_image( 11073, 'full' ); ?></div>
+	                    <?php foreach( carbon_get_post_meta( get_the_ID(), 'hero_carousel' ) as $item ) : ?>
+                            <div class="swiper-slide"><?=wp_get_attachment_image( $item, 'full' ); ?></div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>

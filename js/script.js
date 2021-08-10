@@ -141,8 +141,11 @@ jQuery(function($) {
                 const swiper = new Swiper('.hero .swiper-container', {
                     direction: 'horizontal',
                     loop: true,
-                    centeredSlides: true,
+                    slidesPerView: 1,
                     effect: 'flip',
+                    autoplay: {
+                        delay: 5000
+                    },
                     pagination: {
                         el: '.swiper-pagination',
                     }

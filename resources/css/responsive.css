@@ -267,6 +267,7 @@
         bottom: -24px;
         color: white;
         text-align: center;
+        z-index: 2;
     }
     .hero__subheading {
         margin-bottom: 40px;
@@ -281,6 +282,9 @@
     }
     .hero__btn {
         order: 3;
+    }
+    .hero__slider {
+        max-width: calc(100vw - 40px);
     }
     .hero__socials {
         display: none;

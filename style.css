@@ -1983,6 +1983,24 @@ input.search-form__input:focus {
 	max-width: 414px;
 }
 
+.hero__slider .swiper-slide img {
+	display: block;
+	border-radius: 4px;
+}
+
+.hero__slider .swiper-pagination {
+	bottom: 24px;
+}
+
+.hero__slider .swiper-pagination-bullet {
+	background: #FCFCFC;
+	opacity: 0.6;
+}
+
+.hero__slider .swiper-pagination-bullet.swiper-pagination-bullet-active {
+	opacity: 1;
+}
+
 .hero__socials {
 	position: absolute;
 	left: 20px;

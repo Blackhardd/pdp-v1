@@ -12,6 +12,8 @@ Container::make( 'post_meta', __( 'Настройки шаблона', 'pdp' ) )
 		Field::make( 'text', 'hero_title', __( 'Заголовок', 'pdp' ) ),
 		Field::make( 'text', 'hero_subtitle', __( 'Подзаголовок', 'pdp' ) ),
 		Field::make( 'text', 'hero_btn_text', __( 'Текст кнопки', 'pdp' ) ),
+		Field::make( 'media_gallery', 'hero_carousel', __( 'Карусель', 'pdp' ) )
+			->set_type( 'image' )
 	) )
 	->add_tab( __( 'Слайдер услуг', 'pdp' ), array(
 		Field::make( 'text', 'service_categories_heading', __( 'Заголовок секции', 'pdp' ) ),
