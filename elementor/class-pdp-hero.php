@@ -1,6 +1,12 @@
 <?php
 
 class PDP_Hero extends \Elementor\Widget_Base {
+	public function __construct( $data = [], $args = null ){
+		parent::__construct( $data, $args );
+
+		wp_register_script( 'pdp-hero', get_template_directory_uri() . '/js/elementor/hero.js', [ 'elementor-frontend', 'swiper' ], PDP_THEME_VERSION, true );
+	}
+
 	public function get_name(){
 		return 'pdp_hero';
 	}
@@ -17,6 +23,10 @@ class PDP_Hero extends \Elementor\Widget_Base {
 		return ['pdp'];
 	}
 
+	public function get_script_depends(){
+		return [ 'pdp-hero' ];
+	}
+
 	protected function register_controls(){
 		$this->start_controls_section(
 			'content_tab',
@@ -27,12 +37,39 @@ class PDP_Hero extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
+			'use_carousel',
+			[
+				'label'         => __( 'Использовать карусель', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::SWITCHER,
+				'label_on'      => __( 'Да', 'pdp' ),
+				'label_off'     => __( 'Нет', 'pdp' ),
+				'return_value'  => 'yes',
+				'default'       => ''
+			]
+		);
+
+		$this->add_control(
 			'image',
 			[
 				'label'         => __( 'Изображение', 'pdp' ),
 				'type'          => \Elementor\Controls_Manager::MEDIA,
 				'default'       => [
 					'url'           => \Elementor\Utils::get_placeholder_image_src(),
+				],
+				'condition'     => [
+					'use_carousel'  => ''
+				]
+			]
+		);
+
+		$this->add_control(
+			'carousel',
+			[
+				'label'         => __( 'Добавить изображения', 'pdp' ),
+				'type'          => \Elementor\Controls_Manager::GALLERY,
+				'default'       => [],
+				'condition'     => [
+					'use_carousel'  => 'yes'
 				]
 			]
 		);
@@ -162,9 +199,25 @@ class PDP_Hero extends \Elementor\Widget_Base {
 		}
 
 		echo "
-                </div>
-                {$image}
+        	</div>
         ";
+
+		if( $settings['use_carousel'] == 'yes' ){ ?>
+			<div class="pdp-hero__slider">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<?php foreach( $settings['carousel'] as $item ) : ?>
+							<div class="swiper-slide"><?=wp_get_attachment_image( $item['id'], 'full' ); ?></div>
+						<?php endforeach; ?>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<?php
+		}
+		else{
+			echo $image;
+		}
 
 		if( $settings['show_socials'] == 'yes' ){
 			echo "<div class='pdp-hero__socials'>";
