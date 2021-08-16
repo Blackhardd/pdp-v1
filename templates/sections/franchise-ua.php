@@ -24,7 +24,7 @@
 			</div>
 
 			<div class="franchise__founders founders">
-				<img width="450" height="468" src="https://kharkiv.p-de-p.com/wp-content/uploads/2020/11/founders-upd.png" class="attachment-full size-full" alt="основатели салона" loading="lazy" srcset="https://kharkiv.p-de-p.com/wp-content/uploads/2020/11/founders-upd.png 450w, https://kharkiv.p-de-p.com/wp-content/uploads/2020/11/founders-upd-288x300.png 288w" sizes="(max-width: 450px) 100vw, 450px">
+				<?=wp_get_attachment_image( carbon_get_post_meta( get_the_ID(), 'franchise_image' ), 'full' ); ?>
 				<div class="founders__badge">
 					<div class="founders__title">Аргумент №1</div>
 					<div class="founders__desc">Відкриваючи салон з нами, ви заощаджуєте багато часу та коштів у процесі його запуску.</div>

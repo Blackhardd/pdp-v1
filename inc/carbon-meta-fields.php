@@ -60,6 +60,7 @@ Container::make( 'post_meta', __( 'Настройки шаблона', 'pdp' ) )
 		Field::make( 'text', 'franchise_cta_btn_title', __( 'Надпись на кнопке', 'pdp' ) ),
 		Field::make( 'text', 'franchise_cta_btn_link', __( 'Ссылка кнопки', 'pdp' ) ),
 		Field::make( 'text', 'franchise_cta_phone', __( 'Номер телефона', 'pdp' ) ),
+		Field::make( 'image', 'franchise_image', __( 'Фото основателей', 'pdp' ) )
 	) )
 	->add_tab( __( 'Сеть салонов', 'pdp' ), array(
 		Field::make( 'text', 'network_heading', __( 'Заголовок секции', 'pdp' ) ),
