@@ -95,6 +95,15 @@ Container::make( 'post_meta', __( 'Настройки шаблона', 'pdp' ) )
 
 
 /**
+ *  About Us
+ */
+Container::make( 'post_meta', __( 'Настройки шаблона', 'pdp' ) )
+	->where( 'post_template', 'IN', array( 'about-us.php', 'about-us-ua.php' ) )
+	->add_fields( array(
+		Field::make( 'image', 'franchise_image', __( 'Фото основателей', 'pdp' ) )
+	) );
+
+/**
  *  Blog
  */
 Container::make( 'post_meta', __( 'Настройки', 'pdp' ) )
