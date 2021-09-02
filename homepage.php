@@ -15,16 +15,20 @@ get_header(); ?>
                 <button class="hero__btn btn-default" data-micromodal-trigger="modal-appointment"><?=carbon_get_post_meta( get_the_ID(), 'hero_btn_text' ); ?></button>
             </div>
 
-            <div class="hero__slider">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-	                    <?php foreach( carbon_get_post_meta( get_the_ID(), 'hero_carousel' ) as $item ) : ?>
-                            <div class="swiper-slide"><?=wp_get_attachment_image( $item, 'full' ); ?></div>
-                        <?php endforeach; ?>
+            <?php if( count( carbon_get_post_meta( get_the_ID(), 'hero_carousel' ) ) > 1 ): ?>
+                <div class="hero__slider">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <?php foreach( carbon_get_post_meta( get_the_ID(), 'hero_carousel' ) as $item ) : ?>
+                                <div class="swiper-slide"><?=wp_get_attachment_image( $item, 'full' ); ?></div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="swiper-pagination"></div>
                     </div>
-                    <div class="swiper-pagination"></div>
                 </div>
-            </div>
+            <?php else: ?>
+	            <?=wp_get_attachment_image( carbon_get_post_meta( get_the_ID(), 'hero_carousel' )[0], 'full' ); ?>
+            <?php endif; ?>
 
             <div class="hero__socials">
                 <?php get_template_part( 'templates/widgets/socials' ); ?>

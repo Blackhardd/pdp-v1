@@ -6,6 +6,11 @@
     </div>
 
     <div class="phones-list__inner">
+        <div class="phones-list__header">
+            <div class="phones-list__footer-title"><?=__( 'Он-лайн запись', 'pdp' ); ?></div>
+            <a href="https://t.me/Pied_De_Poule_bot" target="_blank" class="btn-default phones-list__telegram"><?=__( 'через Telegram bot', 'pdp' ); ?><svg width="18" height="16" fill="none"><path d="M7 10.4l-.2 4.2c.4 0 .6-.2.8-.4l2-2 4.1 3c.8.5 1.3.3 1.5-.6L18 1.9C18.2.7 17.5.3 16.8.6l-16 6c-1 .5-1 1.1-.1 1.4l4 1.3 9.5-6c.5-.3.9-.1.5.2l-7.6 6.9z" fill="#fff"/></svg></a>
+        </div>
+
 	    <?php
 	    $cat_args = array(
 		    'taxonomy'      => 'city',
@@ -38,10 +43,5 @@
 			    <?php } ?>
             </div>
 	    <?php } ?>
-
-        <div class="phones-list__footer">
-            <div class="phones-list__footer-title"><?=__( 'Он-лайн запись', 'pdp' ); ?></div>
-            <a href="https://t.me/Pied_De_Poule_bot" target="_blank" class="btn-default phones-list__telegram"><?=__( 'через Telegram bot', 'pdp' ); ?><svg width="18" height="16" fill="none"><path d="M7 10.4l-.2 4.2c.4 0 .6-.2.8-.4l2-2 4.1 3c.8.5 1.3.3 1.5-.6L18 1.9C18.2.7 17.5.3 16.8.6l-16 6c-1 .5-1 1.1-.1 1.4l4 1.3 9.5-6c.5-.3.9-.1.5.2l-7.6 6.9z" fill="#fff"/></svg></a>
-        </div>
     </div>
 </div>

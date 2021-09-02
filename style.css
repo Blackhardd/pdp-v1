@@ -3,7 +3,7 @@ Theme Name: PIED-DE-POULE
 Author: Alexander Piskun
 Author URI: https://www.instagram.com/lovu_volnu/
 Description: https://www.instagram.com/lovu_volnu/
-Version: 1.13.2
+Version: 1.13.3
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -1707,7 +1707,11 @@ header.main-header.fixed.active {
 	overflow: auto;
 }
 
-.phones-list_mobile .phones-list__group {
+.phones-list_mobile .phones-list__header {
+	margin-bottom: 30px;
+}
+
+.phones-list_mobile .phones-list__group:not(:last-child) {
 	margin-bottom: 30px;
 }
 
