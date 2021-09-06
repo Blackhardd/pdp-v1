@@ -222,10 +222,6 @@ function pdp_scripts(){
         wp_enqueue_script( 'pdp-vacancies', PDP_THEME_URL . '/js/vacancies.js', array( 'jquery' ), PDP_THEME_VERSION, true );
     }
 
-    if( is_singular( 'post' ) ){
-	    wp_enqueue_script( 'pdp-post', PDP_THEME_URL . '/js/post.js', array( 'jquery' ), PDP_THEME_VERSION, true );
-    }
-
 
     /**
      * Enqueue theme script.
@@ -275,11 +271,8 @@ function pdp_scripts(){
 		'name_longer'           => __( 'Должно быть меньше 25 символов', 'pdp' ),
 	) );
 
-	wp_localize_script( 'pdp-post', 'pdpData', array(
-		'ajaxurl'               => admin_url( 'admin-ajax.php' )
-	) );
-
 	wp_localize_script( 'pdp-front', 'pdp', array(
+		'ajax_url'              => admin_url( 'admin-ajax.php' ),
 		'booking_url'           => get_permalink( pll_get_post( 66 ) )
 	) );
 }
