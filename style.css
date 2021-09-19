@@ -1098,7 +1098,7 @@ header.main-header.fixed.active {
 	opacity: 1;
 }
 
-.main-navigation .menu > .menu-item .sub-menu a {
+.main-navigation .menu > .menu-item:not(.menu-item--not-lowercase) .sub-menu a {
 	padding: 4px 0;
 	text-transform: lowercase;
 }
