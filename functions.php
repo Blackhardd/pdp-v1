@@ -176,12 +176,6 @@ function pdp_scripts(){
 
 
     /**
-     * Enqueue jQuery.svg.
-     */
-	wp_enqueue_script( 'jquery-svg', '//cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js', array( 'jquery' ), PDP_THEME_VERSION, true );
-
-
-    /**
      * Enqueue micromodal.js
      */
     wp_enqueue_script( 'micromodal', '//cdn.jsdelivr.net/npm/micromodal@0.4.6/dist/micromodal.min.js', array(), PDP_THEME_VERSION, true );
