@@ -200,7 +200,7 @@ get_header(); ?>
                     </div>
 
                     <div class="textBlock">
-	                    <?=carbon_get_post_meta( get_the_ID(), 'network_first_content' ); ?>
+	                    <?=wpautop( carbon_get_post_meta( get_the_ID(), 'network_first_content' ) ); ?>
                     </div>
                 </div>
             </div>
@@ -212,7 +212,7 @@ get_header(); ?>
                     </div>
 
                     <div class="textBlock">
-	                    <?=carbon_get_post_meta( get_the_ID(), 'network_second_content' ); ?>
+	                    <?=wpautop( carbon_get_post_meta( get_the_ID(), 'network_second_content' ) ); ?>
                     </div>
 
                     <div class="image mt_50px mb_40px_m">
@@ -226,7 +226,7 @@ get_header(); ?>
                     </div>
 
                     <div class="textBlock mb_40px_m">
-	                    <?=carbon_get_post_meta( get_the_ID(), 'network_third_content' ); ?>
+	                    <?=wpautop( carbon_get_post_meta( get_the_ID(), 'network_third_content' ) ); ?>
                     </div>
                 </div>
 
@@ -240,7 +240,7 @@ get_header(); ?>
                     </div>
 
                     <div class="textBlock">
-	                    <?=carbon_get_post_meta( get_the_ID(), 'network_fourth_content' ); ?>
+	                    <?=wpautop( carbon_get_post_meta( get_the_ID(), 'network_fourth_content' ) ); ?>
                     </div>
                 </div>
             </div>
@@ -282,7 +282,7 @@ get_header(); ?>
                     </div>
 
                     <div class="textBlock">
-                        <?=carbon_get_post_meta( get_the_ID(), 'perfectionism_content' ); ?>
+                        <?=wpautop( carbon_get_post_meta( get_the_ID(), 'perfectionism_content' ) ); ?>
                     </div>
                 </div>
 
