@@ -1914,6 +1914,10 @@ input.search-form__input:focus {
 	max-width: 332px;
 }
 
+.service-form .form__submit {
+	text-align: left;
+}
+
 
 /**
  *  Footer
@@ -3305,10 +3309,6 @@ input.search-form__input:focus {
 
 .service-row__pricelist {
 	margin-top: 60px;
-}
-
-.service-row .form__submit {
-	text-align: left;
 }
 
 
