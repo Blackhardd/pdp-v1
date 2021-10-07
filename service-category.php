@@ -16,11 +16,11 @@
                     <?=wp_get_attachment_image( carbon_get_the_post_meta( 'hero_img' ), 'full', false,  array( 'class' => 'service-header__img-mobile' ) ); ?>
 
                     <div class="service-header__description">
-                        <?=carbon_get_the_post_meta( 'hero_content' ); ?>
+                        <?=wpautop( carbon_get_the_post_meta( 'hero_content' ) ); ?>
+                    </div>
 
-                        <div class="service-header__btn-wrap">
-                            <button class="btn-default" data-micromodal-trigger="modal-service-category-appointment"><?=__( 'Записаться', 'pdp' ); ?></button>
-                        </div>
+                    <div class="service-header__btn-wrap">
+                        <button class="btn-default" data-micromodal-trigger="modal-service-category-appointment"><?=__( 'Записаться', 'pdp' ); ?></button>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@
                             <h2 class="service-row__title"><?=$section['title']; ?></h2>
                         <?php } ?>
 
-                        <div class="service-row__desc"><?=do_shortcode( $section['content'] ); ?></div>
+                        <div class="service-row__desc"><?=wpautop( do_shortcode( $section['content'] ) ); ?></div>
 
                         <?php if( $section['details'] ){ ?>
                             <a href="<?=get_permalink( $section['details']['id'] ); ?>" class="service-row__read-more btn-default">подробнее</a>
