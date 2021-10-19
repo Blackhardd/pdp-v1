@@ -61,6 +61,10 @@
 /**
  *  Margin
  */
+.mt_20px {
+    margin-top: 20px;
+}
+
 .mt_35px {
     margin-top: 35px;
 }
