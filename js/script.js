@@ -158,7 +158,9 @@ jQuery(document).ready(function($) {
         if(!$('body').hasClass('elementor-page') && $('.service-categories__slider, .salons-slider').length){
             $('.service-categories__slider, .salons-slider').each(function(i){
                 let offset = $(this).offset().left;
-                $(this).width('calc(100vw - ' + offset + 'px)').css('padding-right', offset + 'px');
+                $(this).css({
+                    width: 'calc(100vw - ' + offset + 'px)'
+                });
 
                 let item_width = $(this).data('item-width');
 

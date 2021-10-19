@@ -2133,6 +2133,7 @@ input.search-form__input:focus {
 }
 
 .service-category {
+	flex-shrink: 0;
 	margin-right: 12px;
 	cursor: pointer;
 }
@@ -2188,6 +2189,7 @@ input.search-form__input:focus {
  *  Salons Slider
  */
 .salon-card {
+	flex-shrink: 0;
 	margin-right: 12px;
 }
 
