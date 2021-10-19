@@ -1398,8 +1398,12 @@ header.main-header.fixed.active {
 }
 
 .mobile-navigation .menu > .menu-item > .sub-menu > .menu-item {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 	padding: 0 30px;
+}
+
+.mobile-navigation .menu > .menu-item > .sub-menu > .menu-item.menu-item-has-children {
+	margin-bottom: 40px;
 }
 
 .mobile-navigation .menu > .menu-item > .sub-menu > .menu-item > a {
