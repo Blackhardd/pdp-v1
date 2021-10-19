@@ -22,8 +22,12 @@ class SalonsCarousel extends elementorModules.frontend.handlers.Base {
     }
 
     stretchCarousel(){
-        let carousel_width = jQuery(window).width() - this.elements.$carousel.offset().left;
-        this.elements.$carousel.css('width', carousel_width + 'px');
+        let offset = this.elements.$carousel.offset().left;
+        let carousel_width = jQuery(window).width() - offset;
+        this.elements.$carousel.css({
+            width: carousel_width + 'px',
+            paddingRight: offset + 'px'
+        });
     }
 
     initCarousel(){
