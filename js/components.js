@@ -204,7 +204,7 @@ jQuery(function($){
                             :value="salon.id"
                             :disabled="!salon.pricelist"
                         >
-                            {{ salon.title }}
+                            {{ salon.city + ', ' + salon.title }}
                         </option>
                     </select>
                 </div>
