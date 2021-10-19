@@ -1403,8 +1403,11 @@ header.main-header.fixed.active {
 }
 
 .mobile-navigation .menu > .menu-item > .sub-menu > .menu-item > a {
-	font-weight: bold;
 	font-size: 18px;
+}
+
+.mobile-navigation .menu > .menu-item > .sub-menu > .menu-item.menu-item-has-children > a {
+	font-weight: bold;
 }
 
 .mobile-navigation .menu > .menu-item > .sub-menu > .menu-item > .sub-menu {
