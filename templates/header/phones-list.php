@@ -52,31 +52,38 @@ $main_salon_phone = carbon_get_post_meta( $main_salon->ID, 'phone' );
 	                'hide_empty'    => 1
                 ) );
 
-                foreach( $terms as $term ){ ?>
-                    <div class="phonesList__dropdownGroup">
-                        <div class="phonesList__dropdownLabel"><?=$term->name; ?></div>
-                        <?php
-                        $posts_args = array(
-                            'post_type'         => 'salon',
-                            'post_status'       => 'publish',
-                            'posts_per_page'    => -1,
-                            'tax_query'         => array(
-                                array(
-                                    'taxonomy'  => 'city',
-                                    'field'     => 'slug',
-                                    'terms'     => $term->slug
+                foreach( $terms as $term ) :
+                    if( carbon_get_term_meta( $term->term_id, 'display_in_header' ) === 'yes' ) : ?>
+                        <div class="phonesList__dropdownGroup">
+                            <div class="phonesList__dropdownLabel"><?=$term->name; ?></div>
+                            <?php
+                            $posts_args = array(
+                                'post_type'         => 'salon',
+                                'post_status'       => 'publish',
+                                'posts_per_page'    => -1,
+                                'tax_query'         => array(
+                                    array(
+                                        'taxonomy'  => 'city',
+                                        'field'     => 'slug',
+                                        'terms'     => $term->slug
+                                    )
                                 )
-                            )
-                        );
+                            );
 
-                        foreach( get_posts( $posts_args ) as $salon ) : $salon_phone = carbon_get_post_meta( $salon->ID, 'phone' ); ?>
-                            <div class="phonesList__dropdownItem">
-                                <div class="phonesList__dropdownItemAddress"><?=$salon->post_title; ?></div>
-                                <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', $salon_phone ); ?>" class="phonesList__dropdownItemPhone"><?=$salon_phone; ?></a>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                <?php } ?>
+                            foreach( get_posts( $posts_args ) as $salon ) :
+                                if( carbon_get_post_meta( $salon->ID, 'display_in_header' ) === 'yes' ) :
+                                $salon_phone = carbon_get_post_meta( $salon->ID, 'phone' ); ?>
+                                    <div class="phonesList__dropdownItem">
+                                        <div class="phonesList__dropdownItemAddress"><?=$salon->post_title; ?></div>
+                                        <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', $salon_phone ); ?>" class="phonesList__dropdownItemPhone"><?=$salon_phone; ?></a>
+                                    </div>
+                            <?php
+                                endif;
+                            endforeach; ?>
+                        </div>
+                <?php
+                    endif;
+                endforeach; ?>
             </div>
         </div>
     <?php endif; ?>
