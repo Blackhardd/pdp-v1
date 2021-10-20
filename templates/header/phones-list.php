@@ -24,7 +24,7 @@ if( $main_city ){
 $main_salon = null;
 
 if( $main_salon_id ){
-	$main_salon = pll_get_post( $main_salon_id );
+	$main_salon = get_post( pll_get_post( $main_salon_id ) );
 }
 else{
 	$main_salon = get_posts( $main_salon_args );

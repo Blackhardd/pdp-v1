@@ -4,7 +4,7 @@ use Carbon_Fields\Field;
 
 $salons = [];
 
-foreach( pdp_get_salons() as $salon ){
+foreach( pdp_get_salons( 'ASC', false, 'ru' ) as $salon ){
 	$salons[$salon->ID] = $salon->post_title;
 }
 
