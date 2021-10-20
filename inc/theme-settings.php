@@ -36,7 +36,10 @@ Container::make( 'theme_options', 'PIED-DE-POULE' )
 				'0' => __( 'Скрывать', 'pdp' ),
 				'1' => __( 'Показывать', 'pdp' )
 			) )
-			->set_width( 50 ),
+			->set_width( 30 ),
+		Field::make( 'select', 'header_main_salon', __( 'Салон по умолчанию', 'pdp' ) )
+		     ->set_options( $salons )
+		     ->set_width( 30 ),
 		Field::make( 'association', 'header_main_city', __( 'Основной город', 'pdp' ) )
 			->set_types( array(
 				array(
@@ -45,7 +48,7 @@ Container::make( 'theme_options', 'PIED-DE-POULE' )
 				)
 			) )
 			->set_max( 1 )
-			->set_width( 50 ),
+			->set_width( 40 ),
 		Field::make( 'html', 'forms_heading' )
 			->set_html( sprintf( '<h2>%s</h2>', 'Формы' ) ),
 		Field::make( 'select', 'forms_show_salon_select', __( 'Выбор салона в формах', 'pdp' ) )

@@ -2,6 +2,7 @@
 
 $is_show_dropdown = carbon_get_theme_option( 'header_show_salons_dropdown' );
 $main_city = carbon_get_theme_option( 'header_main_city' );
+$main_salon_id = carbon_get_theme_option( 'header_main_salon' );
 
 $main_salon_args = array(
 	'post_type'         => 'salon',
@@ -20,8 +21,16 @@ if( $main_city ){
 	);
 }
 
-$main_salon = get_posts( $main_salon_args );
-$main_salon = array_shift( $main_salon );
+$main_salon = null;
+
+if( $main_salon_id ){
+	$main_salon = get_post( $main_salon_id );
+}
+else{
+	$main_salon = get_posts( $main_salon_args );
+	$main_salon = array_shift( $main_salon );
+}
+
 $main_salon_phone = carbon_get_post_meta( $main_salon->ID, 'phone' );
 
 ?>
