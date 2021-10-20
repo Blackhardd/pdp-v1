@@ -174,22 +174,49 @@ a.btn-link {
 
 a.btn-sticky-right,
 button.btn-sticky-right {
+	position: relative;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	height: 40px;
-	padding: 10px 50px 15px;
+	padding: 10px 0px 15px;
 	color: white;
 	font-weight: 500;
 	font-size: 16px;
 	line-height: 15px;
 	text-transform: lowercase ;
-	background-color: transparent;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 211 40'%3E%3Cpath d='M183.1 7.1c-3.8-4.5-9.4-7.1-15.3-7.1H43.2c-5.9 0-11.5 2.6-15.3 7.1L0 40h211L183.1 7.1z' fill='%23392bdf'/%3E%3C/svg%3E");
-	background-size: contain;
-	background-repeat: no-repeat;
+	background-color: var(--pdp-primary);
 	border: 0;
 	cursor: pointer;
+}
+
+a.btn-sticky-right:before,
+button.btn-sticky-right:before,
+a.btn-sticky-right:after,
+button.btn-sticky-right:after {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 50px;
+	height: 100%;
+	background-color: var(--pdp-primary);
+	z-index: -1;
+}
+
+a.btn-sticky-right:before,
+button.btn-sticky-right:before {
+	top: 0;
+	left: -38px;
+	border-top-left-radius: 14px;
+	transform: skewX(-30deg);
+}
+
+a.btn-sticky-right:after,
+button.btn-sticky-right:after {
+	top: 0;
+	right: -38px;
+	border-top-right-radius: 14px;
+	transform: skewX(30deg);
 }
 
 
@@ -3893,7 +3920,7 @@ input.search-form__input:focus {
 
 .sticky-btns {
 	position: fixed;
-	right: -88px;
+	right: -36px;
 	top: 50%;
 	transform: rotateZ(-90deg) translateY(100%);
 	z-index: 2;
