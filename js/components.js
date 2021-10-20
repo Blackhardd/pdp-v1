@@ -708,8 +708,6 @@ jQuery(function($){
                             success: function(res){
                                 res = JSON.parse(res)
 
-                                console.log(res)
-
                                 ctx.isLoading = false
                                 ctx.fields.name, ctx.fields.phone, ctx.fields.email = {
                                     value: '',
@@ -718,12 +716,12 @@ jQuery(function($){
                                     isTooltipVisible: false
                                 }
                                 ctx.isSubmitSuccess = true
-                                ctx.submitResponse = res.message
 
                                 if(res.redirect){
-                                    setTimeout(function(){
-                                        location.href = res.location
-                                    }, 2000);
+                                    location.href = res.location
+                                }
+                                else{
+                                    ctx.submitResponse = res.message
                                 }
                             }
                         })
