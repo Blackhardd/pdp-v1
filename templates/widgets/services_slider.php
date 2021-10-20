@@ -1,17 +1,21 @@
-<?php $categories = carbon_get_theme_option( 'service_categories' );
-$salons = pdp_get_salons(); ?>
+<?php
+$categories = carbon_get_theme_option( 'service_categories' );
+$salons = pdp_get_salons( 'ASC', false, pll_current_language() );
+?>
 
 <div class="service-categories">
     <div class="service-categories__salon-switcher">
         <select name="services_salon" id="services-salon-select" class="selectric selectric_pdp service-categories__salon-select">
             <?php
             foreach( $salons as $salon ){
-                if( $salon->ID == 49 ){ ?>
-                    <option value="<?=$salon->ID; ?>" selected><?=$salon->post_title; ?></option>
-                <?php } else { ?>
-                    <option value="<?=$salon->ID; ?>"><?=$salon->post_title; ?></option>
-                <?php
-                }
+                if( carbon_get_post_meta( $salon->ID, 'display_in_booking' ) === 'yes' ) :
+                    if( $salon->ID == pll_get_post( carbon_get_theme_option( 'header_main_salon' ) ) ){ ?>
+                        <option value="<?=$salon->ID; ?>" selected><?=$salon->post_title; ?></option>
+                    <?php } else { ?>
+                        <option value="<?=$salon->ID; ?>"><?=$salon->post_title; ?></option>
+                    <?php
+                    }
+                endif;
             } ?>
         </select>
     </div>
