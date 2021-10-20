@@ -543,7 +543,7 @@ jQuery(function($){
                         </div>
                     </div>
                         
-                    <div class="form__response active success" v-if="isSubmitSuccess">
+                    <div class="form__response active success" v-if="false">
                         <div v-html="submitResponse"></div>
                     </div>
                         
