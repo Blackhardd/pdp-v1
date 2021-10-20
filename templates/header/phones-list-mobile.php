@@ -18,30 +18,36 @@
 		    'hide_empty'    => 1
 	    );
 
-	    foreach( get_categories( $cat_args ) as $tax ){ ?>
-            <div class="phones-list__group">
-                <div class="phones-list__label"><?=$tax->name; ?></div>
-			    <?php
-			    $posts_args = array(
-				    'post_type'         => 'salon',
-				    'post_status'       => 'publish',
-				    'posts_per_page'    => -1,
-				    'tax_query'         => array(
-					    array(
-						    'taxonomy'  => 'city',
-						    'field'     => 'slug',
-						    'terms'     => $tax->slug
-					    )
-				    )
-			    );
+	    foreach( get_categories( $cat_args ) as $tax ){
+	        if( carbon_get_term_meta( $tax->term_id, 'display_in_header' ) === 'yes' ){ ?>
+                <div class="phones-list__group">
+                    <div class="phones-list__label"><?=$tax->name; ?></div>
+                    <?php
+                    $posts_args = array(
+                        'post_type'         => 'salon',
+                        'post_status'       => 'publish',
+                        'posts_per_page'    => -1,
+                        'tax_query'         => array(
+                            array(
+                                'taxonomy'  => 'city',
+                                'field'     => 'slug',
+                                'terms'     => $tax->slug
+                            )
+                        )
+                    );
 
-			    foreach( get_posts( $posts_args ) as $salon ){ ?>
-                    <div class="phones-list__item">
-                        <div class="phones-list__address"><?=$salon->post_title; ?></div>
-                        <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', carbon_get_post_meta( $salon->ID, 'phone' ) ); ?>" class="phones-list__phone"><?=carbon_get_post_meta( $salon->ID, 'phone' ); ?></a>
-                    </div>
-			    <?php } ?>
-            </div>
-	    <?php } ?>
+                    foreach( get_posts( $posts_args ) as $salon ){
+                        if( carbon_get_post_meta( $salon->ID, 'display_in_header' ) === 'yes' ){ ?>
+                            <div class="phones-list__item">
+                                <div class="phones-list__address"><?=$salon->post_title; ?></div>
+                                <a href="tel:<?=str_replace( array( '(', ')', ' ' ), '', carbon_get_post_meta( $salon->ID, 'phone' ) ); ?>" class="phones-list__phone"><?=carbon_get_post_meta( $salon->ID, 'phone' ); ?></a>
+                            </div>
+                    <?php
+                        }
+                    } ?>
+                </div>
+	    <?php
+	        }
+	    } ?>
     </div>
 </div>
