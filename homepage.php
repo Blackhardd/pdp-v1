@@ -11,8 +11,8 @@ get_header(); ?>
         <div class="hero">
             <div class="hero__title">
                 <h1 class="hero__heading">
-                    <div class="hero__subheading"><?=carbon_get_post_meta( get_the_ID(), 'hero_subtitle' ); ?></div>
-                    <div><?=carbon_get_post_meta( get_the_ID(), 'hero_title' ); ?></div>
+                    <span class="hero__subheading"><?=carbon_get_post_meta( get_the_ID(), 'hero_subtitle' ); ?> </span>
+                    <span><?=carbon_get_post_meta( get_the_ID(), 'hero_title' ); ?></span>
                 </h1>
                 <button class="hero__btn btn-default" data-micromodal-trigger="modal-appointment"><?=carbon_get_post_meta( get_the_ID(), 'hero_btn_text' ); ?></button>
             </div>
