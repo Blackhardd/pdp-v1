@@ -186,8 +186,10 @@ class PDP_Hero extends \Elementor\Widget_Base {
 		echo "
 			<div class='pdp-hero'>
             	<div class='pdp-hero__title'>
-                	<div class='pdp-hero__subheading'>{$settings['subtitle']}</div>
-                	<h1 class='pdp-hero__heading'>{$settings['title']}</h1>
+                	<h1 class='pdp-hero__heading'>
+                	    <div class='pdp-hero__subheading'>{$settings['subtitle']}</div>
+                	    <div>{$settings['title']}</div>
+                	</h1>
                         
 		";
 

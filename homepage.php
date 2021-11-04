@@ -10,8 +10,10 @@ get_header(); ?>
     <section id="hero-home">
         <div class="hero">
             <div class="hero__title">
-                <div class="hero__subheading"><?=carbon_get_post_meta( get_the_ID(), 'hero_subtitle' ); ?></div>
-                <h1 class="hero__heading"><?=carbon_get_post_meta( get_the_ID(), 'hero_title' ); ?></h1>
+                <h1 class="hero__heading">
+                    <div class="hero__subheading"><?=carbon_get_post_meta( get_the_ID(), 'hero_subtitle' ); ?></div>
+                    <div><?=carbon_get_post_meta( get_the_ID(), 'hero_title' ); ?></div>
+                </h1>
                 <button class="hero__btn btn-default" data-micromodal-trigger="modal-appointment"><?=carbon_get_post_meta( get_the_ID(), 'hero_btn_text' ); ?></button>
             </div>
 
