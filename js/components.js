@@ -176,7 +176,7 @@ jQuery(function($){
                         ctx.commit('setActiveCategory', params.get('cat'))
                     }
                     else{
-                        ctx.commit('setActiveCategory', 'vse-uslugi-dlya-muzhchin');
+                        ctx.commit('setActiveCategory', ctx.state.categories[0].slug);
                     }
                 },
                 setActiveCategory(ctx, category){
