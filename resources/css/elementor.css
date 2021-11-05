@@ -23,6 +23,7 @@
 .pdp-hero__subheading {
     display: block;
     margin-bottom: 18px;
+    font-weight: 400;
     font-size: 24px;
     line-height: 1;
 }
