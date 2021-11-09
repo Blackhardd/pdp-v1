@@ -117,31 +117,31 @@ jQuery(function($){
                 }
             },
             actions: {
-                async fetchCart(ctx){
+                fetchCart(ctx){
                     let cart = JSON.parse(window.sessionStorage.getItem('cart'))
 
                     if(cart !== null){
                         ctx.commit('setCart', cart)
                     }
                 },
-                async addToCart(ctx, service){
+                addToCart(ctx, service){
                     ctx.commit('addToCart', service)
                     window.sessionStorage.setItem('cart', JSON.stringify(ctx.state.cart))
                 },
-                async setActiveSalon(ctx, salon){
-                    ctx.commit('setActiveSalon', salon)
-
+                setActiveSalon(ctx, salon){
                     if(salon != ctx.state.cart.salon){
                         ctx.commit('clearCart')
                     }
 
+                    ctx.commit('setActiveSalon', salon)
+
                     ctx.dispatch('fetchPricelist', salon)
                 },
-                async setHairLength(ctx, length){
+                setHairLength(ctx, length){
                     ctx.commit('setHairLength', length)
                     window.sessionStorage.setItem('cart', JSON.stringify(ctx.state.cart))
                 },
-                async setMasterOption(ctx, value){
+                setMasterOption(ctx, value){
                     ctx.commit('setMasterOption', value)
                     window.sessionStorage.setItem('cart', JSON.stringify(ctx.state.cart))
                 },
@@ -171,6 +171,8 @@ jQuery(function($){
                 setDefaultCategory(ctx){
                     let uri = window.location.search.substring(1)
                     let params = new URLSearchParams(uri)
+
+                    console.log(ctx.state.categories)
 
                     if(params.get('cat')){
                         ctx.commit('setActiveCategory', params.get('cat'))
@@ -336,39 +338,42 @@ jQuery(function($){
          */
         Vue.component('service-categories', {
             template: `
-                <div class="service-categories-wrap">
+                <div class="service-categories-wrap" :class="{ loading: isLoading }">
                     <div class="service-categories">
-                        <div class="service-category" v-for="(category, index) of categories" :key="index">
-                            <div class="service-category__inner" :data-category="category.slug">
-                                <div v-html="category.img"></div>
-                                <div class="service-category__title">
-                                    {{ category.name[(pdp_components_data.lang == 'ru') ? pdp_components_data.lang : 'ua'] }}
-                                    <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" /></svg>
+                        <div class="glider-track">
+                            <div class="service-category" v-for="(category, index) of categories" :key="index">
+                                <div class="service-category__inner" :data-category="category.slug">
+                                    <div v-html="category.img"></div>
+                                    <div class="service-category__title">
+                                        {{ category.name[(pdp_components_data.lang == 'ru') ? pdp_components_data.lang : 'ua'] }}
+                                        <svg width="25" height="16" fill="none"><path d="M24.7 8.7a1 1 0 000-1.4L18.35.92a1 1 0 10-1.41 1.41L22.59 8l-5.66 5.66a1 1 0 001.41 1.41l6.37-6.36zM0 9h24V7H0v2z" /></svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             `,
+            props: ['isLoading'],
             mounted(){
-                this.fetchCategories()
+                this.gliderInstance = new Glider($(this.$el).find('.service-categories')[0], this.gliderOptions)
+            },
+            updated(){
+                this.gliderInstance.refresh()
+                this.bindCategoriesOpening()
+                this.stretchSlider()
             },
             methods: {
-                fetchCategories(){
-                    let vm = this
-                    this.$store.dispatch('fetchCategories').then(() => {
-                        new Glider($(vm.$el).find('.service-categories')[0], vm.gliderOptions)
-                        let $categories = $(vm.$el).find('.service-category__inner')
-                        $categories.on('mousedown', function(e){
-                            $categories.on('mouseup mousemove', function handler(e){
-                                if(e.type === 'mouseup'){
-                                    vm.$emit('show-category', $(this).data('category'))
-                                }
-                                $categories.off('mouseup mousemove', handler);
-                            })
+                bindCategoriesOpening(){
+                    const vm = this
+                    const $categories = $(vm.$el).find('.service-category__inner')
+                    $categories.on('mousedown', function(e){
+                        $categories.on('mouseup mousemove', function handler(e){
+                            if(e.type === 'mouseup'){
+                                vm.$emit('show-category', $(this).data('category'))
+                            }
+                            $categories.off('mouseup mousemove', handler);
                         })
-                        vm.stretchSlider()
-                        window.addEventListener('resize', vm.stretchSlider)
                     })
                 },
                 stretchSlider(){
@@ -378,19 +383,29 @@ jQuery(function($){
             },
             data: function(){
                 return {
+                    categories: [],
+                    gliderInstance: null,
                     gliderOptions: {
                         slidesToShow: 'auto',
                         slidesToScroll: 'auto',
                         itemWidth: 352,
                         exactWidth: true,
                         draggable: true,
-                        dragVelocity: 1
+                        dragVelocity: 1,
+                        skipTrack: true
                     }
                 }
             },
+            watch: {
+                pricelist: function(){
+                    console.log('Updating categories!')
+                    this.categories = [...this.$store.getters.categories.filter(item => item.slug in this.pricelist)]
+                    this.$forceUpdate()
+                }
+            },
             computed: {
-                categories: function(){
-                    return this.$store.getters.categories
+                pricelist: function(){
+                    return this.$store.getters.pricelist
                 }
             }
         })
@@ -441,11 +456,7 @@ jQuery(function($){
                     return this.$store.getters.masterOption
                 },
                 name: function(){
-                    if(pdp_components_data.lang == 'ru'){
-                        return this.data.name.ru
-                    }
-
-                    return this.data.name.ua
+                    return pdp_components_data.lang === 'ru' ? this.data.name.ru : this.data.name.ua
                 },
                 price: function(){
                     let service = this.data
@@ -827,13 +838,10 @@ jQuery(function($){
         new Vue({
             el: '#appointment-app',
             store: store,
+            mounted: function(){
+                this.$store.dispatch('fetchCategories')
+            },
             methods: {
-                fetchSalons(){
-                    return this.$store.dispatch('fetchSalons')
-                },
-                fetchCategories(){
-                    return this.$store.dispatch('fetchCategories')
-                },
                 setActiveCategory(cat){
                     if(cat == 'sertifikati'){
                         window.open(pdp_components_data.gift_cards_url,'_blank')
@@ -849,12 +857,13 @@ jQuery(function($){
                     this.$store.dispatch('setMasterOption', $event.target.checked ? 1 : 0)
                 }
             },
-            data: {
-                isPricelistLoading: false
-            },
             computed: {
                 lang: function(){
                     return (pdp_components_data.lang == 'ru') ? pdp_components_data.lang : 'ua';
+                },
+                categories: function(){
+                    console.log('updating categories')
+                    return this.$store.getters.categories
                 },
                 pricelist: function(){
                     return this.$store.getters.pricelist
