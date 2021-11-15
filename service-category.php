@@ -53,7 +53,7 @@
                         <?php } ?>
 
                         <?php
-                        if( $section['pricelist'] ){
+                        if( $section['pricelist'] && false ){
                             foreach( $section['pricelist'] as $pricelist ){
                                 get_template_part( 'templates/services/pricelist-' . $pricelist['_type'], null, ['pricelist' => $pricelist] );
                             }
