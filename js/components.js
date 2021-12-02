@@ -70,6 +70,7 @@ jQuery(function($){
                     return state.categories
                 },
                 pricelist: function(state){
+                    console.log('State pricelist:', state.pricelist)
                     return state.pricelist
                 },
                 activeCategory: function(state){
