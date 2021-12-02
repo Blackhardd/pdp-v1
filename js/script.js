@@ -71,7 +71,7 @@ jQuery(document).ready(function($) {
                 });
             }
 
-            parseURLs(49);
+            parseURLs($('.service-categories .selectric-hide-select select').val());
 
             if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
                 $('.service-categories__salon-switcher select').on('change', function(){

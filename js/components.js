@@ -135,7 +135,6 @@ jQuery(function($){
                     }
 
                     ctx.commit('setActiveSalon', salon)
-
                     ctx.dispatch('fetchPricelist', salon)
                 },
                 setHairLength(ctx, length){

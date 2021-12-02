@@ -61,8 +61,10 @@ class PDP_Service_Categories_Carousel extends \Elementor\Widget_Base {
         			<select name='services_salon' id='services-salon-select' class='selectric selectric_pdp service-categories__salon-select'>
 		";
 
+		$counter = 0;
 		foreach( $salons as $salon ) :
-			$selected_attr = ( $salon->ID == 49 ) ? 'selected' : '';
+			$selected_attr = ( $counter == 0 ) ? 'selected' : '';
+			$counter++;
 			echo "<option value='{$salon->ID}' {$selected_attr}>{$salon->post_title}</option>";
 		endforeach;
 
