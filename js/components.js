@@ -172,8 +172,6 @@ jQuery(function($){
                     let uri = window.location.search.substring(1)
                     let params = new URLSearchParams(uri)
 
-                    console.log(ctx.state.categories)
-
                     if(params.get('cat')){
                         ctx.commit('setActiveCategory', params.get('cat'))
                     }
@@ -398,7 +396,7 @@ jQuery(function($){
             },
             watch: {
                 pricelist: function(){
-                    console.log('Updating categories!')
+                    console.log(this.pricelist)
                     this.categories = [...this.$store.getters.categories.filter(item => item.slug in this.pricelist)]
                     this.$forceUpdate()
                 }
@@ -862,7 +860,6 @@ jQuery(function($){
                     return (pdp_components_data.lang == 'ru') ? pdp_components_data.lang : 'ua';
                 },
                 categories: function(){
-                    console.log('updating categories')
                     return this.$store.getters.categories
                 },
                 pricelist: function(){
