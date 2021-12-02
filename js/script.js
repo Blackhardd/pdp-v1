@@ -71,7 +71,7 @@ jQuery(document).ready(function($) {
                 });
             }
 
-            parseURLs($('.service-categories .selectric-hide-select select').val());
+            parseURLs($('.service-categories #services-salon-select')[0].value);
 
             if(/android|ip(hone|od|ad)/i.test(navigator.userAgent)){
                 $('.service-categories__salon-switcher select').on('change', function(){
@@ -137,7 +137,7 @@ jQuery(document).ready(function($) {
 
     function pdp_init_hero_slider(){
         if($('.hero:not(.hero_about-us, .hero_school)').length){
-            const swiper = new Swiper('.hero .swiper-container', {
+            new Swiper('.hero .swiper-container', {
                 direction: 'horizontal',
                 loop: true,
                 slidesPerView: 1,
